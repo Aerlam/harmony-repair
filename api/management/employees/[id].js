@@ -1,7 +1,7 @@
 import { del } from "@vercel/blob";
 import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
-import { loadEmployee, saveEmployee } from "../../../lib/server/employees.js";
+import { isValidDiscordId, isValidGarageRole, loadEmployee, saveEmployee } from "../../../lib/server/employees.js";
 
 export default async function handler(request, response) {
   if (!await requireDirector(request, response)) return;
@@ -12,14 +12,15 @@ export default async function handler(request, response) {
     if (!employee) return json(response, 404, { error: "employee_not_found" });
     if (request.method === "GET") return json(response, 200, { employee });
     if (request.method === "PATCH") {
-      const { firstName, lastName, employeeNumber } = request.body || {};
+      const { firstName, lastName, employeeNumber, discordId, garageRole } = request.body || {};
       const clean = (value) => typeof value === "string" ? value.trim() : "";
-      const first = clean(firstName), last = clean(lastName), number = clean(employeeNumber);
-      if (first.length < 1 || first.length > 60 || last.length < 1 || last.length > 60 || !/^[\p{L}\p{N}_-]{2,24}$/u.test(number)) return json(response, 400, { error: "invalid_employee" });
+      const first = clean(firstName), last = clean(lastName), number = clean(employeeNumber), discord = clean(discordId), role = clean(garageRole);
+      if (first.length < 1 || first.length > 60 || last.length < 1 || last.length > 60 || !/^[\p{L}\p{N}_-]{2,24}$/u.test(number) || !isValidDiscordId(discord) || !isValidGarageRole(role)) return json(response, 400, { error: "invalid_employee" });
       const { listEmployees } = await import("../../../lib/server/employees.js");
-      const duplicate = (await listEmployees()).some((item) => item.id !== id && item.employeeNumber.toLowerCase() === number.toLowerCase());
-      if (duplicate) return json(response, 409, { error: "employee_number_exists" });
-      employee.firstName = first; employee.lastName = last; employee.employeeNumber = number;
+      const allEmployees = await listEmployees();
+      if (allEmployees.some((item) => item.id !== id && item.employeeNumber.toLowerCase() === number.toLowerCase())) return json(response, 409, { error: "employee_number_exists" });
+      if (allEmployees.some((item) => item.id !== id && item.discordId === discord)) return json(response, 409, { error: "employee_discord_id_exists" });
+      employee.firstName = first; employee.lastName = last; employee.employeeNumber = number; employee.discordId = discord; employee.garageRole = role;
       return json(response, 200, { employee: await saveEmployee(employee) });
     }
     if (request.method === "DELETE") {
@@ -30,3 +31,4 @@ export default async function handler(request, response) {
     return methodNotAllowed(response, ["GET", "PATCH", "DELETE"]);
   } catch { return json(response, 503, { error: "storage_unavailable" }); }
 }
+

@@ -8,7 +8,7 @@ async function api(url, options = {}) {
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ employee_number_exists: "Cet ID unique est déjà utilisé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function missing(employee) { return Object.keys(DOCS).filter((key) => !employee.documents?.[key]); }
@@ -36,13 +36,13 @@ function docCell(employee, type) {
 }
 function renderEmployees() {
   const query = (document.querySelector("#search")?.value || "").trim().toLocaleLowerCase("fr");
-  const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber).toLocaleLowerCase("fr").includes(query));
+  const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber + " " + (e.discordId || "") + " " + (e.garageRole || "")).toLocaleLowerCase("fr").includes(query));
   document.querySelector("#employee-count").textContent = employees.length;
   const tbody = document.querySelector("#employee-rows");
   tbody.innerHTML = visible.length ? visible.map((employee) => {
     const miss = missing(employee);
-    return '<tr><td><div class="person-name">' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</div><div class="person-id">Ajouté le ' + new Date(employee.createdAt).toLocaleDateString("fr-FR") + '</div></td><td><strong>' + safe(employee.employeeNumber) + '</strong></td><td>' + docCell(employee, "identity") + '</td><td>' + docCell(employee, "license") + '</td><td>' + docCell(employee, "diploma") + '</td><td><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' manquante' + (miss.length > 1 ? "s" : "") : "Complet") + '</span></td><td><button class="remove-link" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></td></tr>';
-  }).join("") : '<tr class="empty-row"><td colspan="7">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</td></tr>";
+    return '<tr><td><div class="person-name">' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</div><div class="person-id">Ajouté le ' + new Date(employee.createdAt).toLocaleDateString("fr-FR") + '</div></td><td><strong>' + safe(employee.employeeNumber) + '</strong></td><td><strong>' + safe(employee.discordId || "—") + '</strong></td><td>' + safe(employee.garageRole || "—") + '</td><td>' + docCell(employee, "identity") + '</td><td>' + docCell(employee, "license") + '</td><td>' + docCell(employee, "diploma") + '</td><td><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' manquante' + (miss.length > 1 ? "s" : "") : "Complet") + '</span></td><td><button class="remove-link" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></td></tr>';
+  }).join("") : '<tr class="empty-row"><td colspan="9">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</td></tr>";
 }
 document.querySelector("#search")?.addEventListener("input", renderEmployees);
 const dialog = document.querySelector("#employee-dialog");
@@ -50,8 +50,8 @@ document.querySelector("#add-employee")?.addEventListener("click", () => dialog.
 document.querySelector(".dialog-close")?.addEventListener("click", () => dialog.close());
 document.querySelector(".dialog-cancel")?.addEventListener("click", () => dialog.close());
 document.querySelector("#employee-form")?.addEventListener("submit", async (event) => {
-  event.preventDefault(); const form = new FormData(event.currentTarget); const button = event.currentTarget.querySelector("[type=submit]"); button.disabled = true;
-  try { await api("/api/management/employees", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); dialog.close(); event.currentTarget.reset(); tell("Employé ajouté."); await load(); }
+  event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
+  try { await api("/api/management/employees", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); dialog.close(); formElement.reset(); tell("Employé ajouté."); await load(); }
   catch (error) { tell(error.message, true); } finally { button.disabled = false; }
 });
 document.querySelector("#employee-rows")?.addEventListener("click", async (event) => {
@@ -87,8 +87,8 @@ async function loadDirectors() {
 }
 
 document.querySelector("#director-form")?.addEventListener("submit", async (event) => {
-  event.preventDefault(); const form = new FormData(event.currentTarget); const button = event.currentTarget.querySelector("[type=submit]"); button.disabled = true;
-  try { await api("/api/management/directors", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); event.currentTarget.reset(); tell("Compte autorisé."); await loadDirectors(); }
+  event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
+  try { await api("/api/management/directors", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); formElement.reset(); tell("Compte autorisé."); await loadDirectors(); }
   catch (error) { tell(error.message, true); } finally { button.disabled = false; }
 });
 
@@ -99,3 +99,5 @@ document.querySelector("#director-rows")?.addEventListener("click", async (event
   catch (error) { tell(error.message, true); }
 });
 load();
+
+
