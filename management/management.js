@@ -1,5 +1,5 @@
 const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme", contract: "Contrat" };
-const ROLE_LABELS = { Patron: "Patron", "Co-patron": "Co-patronne", DRH: "DRH", RH: "RH", "Chef d’atelier": "Chef d’atelier", "Mécano confirmé": "Mécano confirmé", "Mécano apprenti": "Mécano apprenti", Stagiaire: "Stagiaire" };
+const ROLE_LABELS = { Patron: "Patron", "Co-patron": "Co-patronne", DRH: "DRH", RH: "RH", "Chef d’atelier": "Cheffe d’atelier", "Mécano confirmé": "Mécano confirmé", "Mécano apprenti": "Mécano apprenti", Stagiaire: "Stagiaire" };
 const ROLE_ORDER = ["Patron", "Co-patron", "DRH", "RH", "Chef d’atelier", "Mécano confirmé", "Mécano apprenti", "Stagiaire"];
 const notice = document.querySelector("#notice");
 let employees = [];
