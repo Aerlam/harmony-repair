@@ -1,5 +1,6 @@
 const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme", contract: "Contrat" };
-const ROLE_LABELS = { Patron: 'Patron (« Patronne »)', "Co-patron": 'Co-patron (« Co-patronne »)', DRH: "DRH", RH: "RH", "Chef d’atelier": 'Chef d’atelier (« Cheffe d’atelier »)', "Mécano confirmé": 'Mécano confirmé (« Mécano confirmée »)', "Mécano apprenti": 'Mécano apprenti (« Mécano apprentie »)', Stagiaire: "Stagiaire" };
+const ROLE_LABELS = { Patron: 'Patron"ne"', "Co-patron": 'Co-patron"ne"', DRH: "DRH", RH: "RH", "Chef d’atelier": 'Chef"fe" d’atelier', "Mécano confirmé": 'Mécano confirmé"e"', "Mécano apprenti": 'Mécano apprenti"e"', Stagiaire: "Stagiaire" };
+const ROLE_ORDER = ["Patron", "Co-patron", "DRH", "RH", "Chef d’atelier", "Mécano confirmé", "Mécano apprenti", "Stagiaire"];
 const notice = document.querySelector("#notice");
 let employees = [];
 let currentRole = "director";
@@ -50,7 +51,11 @@ function docCell(employee, type) {
 }
 function renderEmployees() {
   const query = (document.querySelector("#search")?.value || "").trim().toLocaleLowerCase("fr");
-  const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber + " " + (e.discordId || "") + " " + (e.garageRole || "")).toLocaleLowerCase("fr").includes(query));
+  const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber + " " + (e.discordId || "") + " " + (e.garageRole || "")).toLocaleLowerCase("fr").includes(query)).sort((a, b) => {
+    const rankA = ROLE_ORDER.indexOf(a.garageRole);
+    const rankB = ROLE_ORDER.indexOf(b.garageRole);
+    return (rankA < 0 ? ROLE_ORDER.length : rankA) - (rankB < 0 ? ROLE_ORDER.length : rankB) || (a.lastName || "").localeCompare(b.lastName || "", "fr") || (a.firstName || "").localeCompare(b.firstName || "", "fr");
+  });
   document.querySelector("#employee-count").textContent = employees.length;
   const list = document.querySelector("#employee-list");
   const expandedIds = new Set([...list.querySelectorAll(".employee-card[open]")].map((card) => card.dataset.id));
