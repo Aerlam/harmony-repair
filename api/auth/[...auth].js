@@ -1,8 +1,7 @@
 import { Auth } from "@auth/core";
-import Discord from "@auth/core/providers/discord";
+import { authConfig } from "../../lib/server/config.js";
 
 const BODY_LIMIT = 16 * 1024;
-const SESSION_MAX_AGE = 7 * 24 * 60 * 60;
 
 function makeHeaders(source) {
   const headers = new Headers();
@@ -77,20 +76,7 @@ export default async function handler(request, response) {
   });
 
   try {
-    const authResponse = await Auth(authRequest, {
-      basePath: "/api/auth",
-      secret: process.env.AUTH_SECRET,
-      trustHost: true,
-      providers: [
-        Discord({
-          clientId: process.env.AUTH_DISCORD_ID,
-          clientSecret: process.env.AUTH_DISCORD_SECRET,
-          authorization: { params: { scope: "identify" } },
-        }),
-      ],
-      session: { strategy: "jwt", maxAge: SESSION_MAX_AGE },
-      pages: { signIn: "/login/" },
-    });
+    const authResponse = await Auth(authRequest, authConfig());
 
     response.status(authResponse.status);
     for (const [name, value] of authResponse.headers) {
@@ -106,4 +92,3 @@ export default async function handler(request, response) {
     response.status(500).json({ error: "authentication_failed" });
   }
 }
-
