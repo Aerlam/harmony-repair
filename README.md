@@ -1,16 +1,26 @@
 # Harmony Repair
 
-Base de site vitrine responsive pour un atelier automobile indépendant. Le site est en HTML/CSS statique et peut être déployé directement sur Vercel.
+Site vitrine statique avec une fonction Vercel pour l’authentification Discord.
 
-## Démarrage local
+## Développement local
 
-Ouvrir `index.html` dans un navigateur. Aucun build ni dépendance n’est nécessaire.
+Le site vitrine est dans `index.html` et `styles.css`. La page de connexion et ses styles/scripts se trouvent dans `login/`. Le flux d’authentification est séparé dans `api/auth/` et utilise Auth.js Core avec des cookies de session chiffrés. Aucun secret n’est conservé dans le dépôt.
 
-## Avant publication
+## Activer la connexion Discord
 
-Remplacer le numéro de téléphone, l’adresse, les horaires, l’e-mail, les avis et les informations commerciales par les coordonnées réelles de l’atelier. Le formulaire utilise `mailto:` et devra être raccordé à un service de réception des demandes pour fonctionner sans client mail.
+1. Dans le [portail développeur Discord](https://discord.com/developers/applications), crée une application et copie son Client ID ainsi que son Client Secret.
+2. Dans **OAuth2 > Redirects**, ajoute exactement : `https://harmony-repair.vercel.app/api/auth/callback/discord`.
+3. Dans **Vercel > harmony-repair > Settings > Environment Variables**, ajoute ces variables pour l’environnement **Production** :
+   - `AUTH_DISCORD_ID` : Client ID Discord
+   - `AUTH_DISCORD_SECRET` : Client Secret Discord
+   - `AUTH_SECRET` : secret aléatoire d’au moins 32 caractères (générer avec `openssl rand -base64 32`)
+4. Redéploie la production si Vercel ne lance pas automatiquement un déploiement après l’ajout des variables.
 
-## Déploiement Vercel
+La portée Discord est limitée à `identify`; le site ne demande pas l’accès à l’e-mail. Auth.js vérifie state/PKCE et protège les actions de session contre les requêtes CSRF. Les sessions JWT sont chiffrées dans un cookie HttpOnly, SameSite=Lax, avec une durée de sept jours. Les données du profil ne sont pas persistées dans une base de données.
 
-Importer ce dépôt dans Vercel comme projet statique. Aucun framework ni commande de build n’est requis; le dossier racine contient `index.html`.
+La page est `/login/`. Le callback OAuth est `/api/auth/callback/discord`. Les headers de sécurité sont définis dans `vercel.json`.
+
+## Limite actuelle du formulaire de contact
+
+Le formulaire de contact existant utilise `mailto:`. Il devra être raccordé à un service serveur si tu souhaites recevoir les demandes directement sans client mail.
 
