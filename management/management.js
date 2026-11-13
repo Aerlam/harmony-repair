@@ -80,8 +80,14 @@ document.querySelector("#employee-form")?.addEventListener("submit", async (even
   try {
     const isEditing = Boolean(editingEmployeeId);
     const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingEmployeeId) : "/api/management/employees";
-    await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(Object.fromEntries(form)) });
-    dialog.close(); tell(isEditing ? "Fiche employé mise à jour." : "Employé ajouté."); await load();
+    const saved = await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(Object.fromEntries(form)) });
+    if (isEditing && saved.employee) {
+      employees = employees.map((employee) => employee.id === saved.employee.id ? saved.employee : employee);
+      renderEmployees();
+    } else {
+      await load();
+    }
+    dialog.close(); tell(isEditing ? "Fiche employé mise à jour." : "Employé ajouté.");
   }
   catch (error) { tell(error.message, true); } finally { button.disabled = false; }
 });
