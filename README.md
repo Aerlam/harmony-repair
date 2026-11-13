@@ -1,25 +1,34 @@
 # Harmony Repair
 
-Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. La page d’accueil redirige vers le tableau de bord, avec un onglet employés et le suivi des pièces administratives (carte d’identité RP, permis et diplôme).
+Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise l’ID unique et les pièces RP (identité, permis, diplôme). L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
 
-## Développement local
+## Organisation
 
-Le site est séparé en pages statiques (management/, employees/, login/), routes Vercel Functions (api/) et logique serveur partagée (lib/server/). Aucun secret n’est enregistré dans le dépôt.
+Les pages statiques sont réparties dans management/, employees/, directors/ et login/. Les routes API sont dans api/ et la logique serveur partagée dans lib/server/. Les secrets restent dans les variables d’environnement Vercel.
 
-## Connexion Discord et accès direction
+## Configuration Discord
 
-1. Dans le portail développeur Discord, vérifie que l’application possède le redirect OAuth exact https://harmony-repair.vercel.app/api/auth/callback/discord.
-2. Configure dans Vercel > harmony-repair > Settings > Environment Variables pour Production : AUTH_DISCORD_ID, AUTH_DISCORD_SECRET et AUTH_SECRET (secret aléatoire d’au moins 32 caractères).
-3. Configure HARMONY_DIRECTOR_IDS avec les identifiants numériques Discord des membres de direction autorisés, séparés par des virgules. Active le mode développeur Discord, clic droit sur le profil puis Copier l’identifiant de l’utilisateur.
-4. Relie le stockage Blob privé harmony-rp-private-documents au projet et à l’environnement Production. Vercel doit fournir BLOB_READ_WRITE_TOKEN.
-5. Redéploie la production après tout changement de variables.
+Dans le portail développeur Discord, vérifie que le redirect OAuth exact est configuré :
+https://harmony-repair.vercel.app/api/auth/callback/discord
 
-Après la connexion OAuth, l’API contrôle l’identifiant Discord dans la liste autorisée. Sans identifiant configuré, l’accès aux données est refusé. Les documents (PDF/JPG/PNG/WebP, 4 Mo maximum) sont privés et ne sont servis qu’après vérification de la session et du rôle directeur. Les types de fichiers sont contrôlés côté serveur par signature binaire. Les requêtes de modification doivent provenir du même site.
+Les variables Production attendues dans Vercel :
+- AUTH_DISCORD_ID : identifiant de l’application Discord
+- AUTH_DISCORD_SECRET : secret OAuth Discord
+- AUTH_SECRET : secret aléatoire d’au moins 32 caractères
+- HARMONY_ADMIN_IDS : identifiant Discord de l’admin principal, séparés par des virgules en cas de plusieurs admins principaux
 
-## Sécurité des identifiants
+L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les documents et la liste d’accès sont stockés dans le Blob privé harmony-rp-private-documents. Vercel fournit BLOB_READ_WRITE_TOKEN lorsque le magasin est connecté au projet.
 
-Si le Client Secret Discord a été envoyé dans une conversation, régénère-le dans le portail développeur Discord et remplace AUTH_DISCORD_SECRET dans Vercel. Ne place jamais le secret dans le code, GitHub ou une variable préfixée NEXT_PUBLIC_.
+## Accès et documents
 
-## Limites de cette première version
+L’API vérifie la session Discord et le rôle sur le serveur avant chaque opération. Les changements doivent avoir la même origine que le site. Les documents sont vérifiés par signature de fichier, limités à 4 Mo par document, stockés en privé et téléchargés en pièce jointe. Formats acceptés : PDF, JPG, PNG et WebP.
 
-Les dossiers employés sont conservés comme fichiers JSON séparés dans Blob privé. Cette solution convient à un petit effectif, mais une base PostgreSQL sera préférable si plusieurs responsables modifient souvent les dossiers simultanément. La protection Vercel Authentication peut aussi demander un compte Vercel avant d’atteindre la connexion Discord ; pour ouvrir le portail aux directeurs via Discord uniquement, il faudra ensuite choisir explicitement de retirer cette protection ou de connecter un domaine personnalisé.
+Ces dossiers sont prévus pour des documents fictifs de personnages RP. Évite d’y déposer de vrais documents personnels.
+
+## Rotation des identifiants
+
+Si un secret Discord a été partagé dans une conversation, régénère-le dans le portail développeur Discord puis remplace AUTH_DISCORD_SECRET directement dans Vercel. Ne l’ajoute jamais au dépôt ni à une variable exposée au navigateur.
+
+## Protection Vercel
+
+La protection Vercel Authentication est indépendante de la connexion Discord et peut exiger un compte Vercel avant de montrer la page. Elle est conservée tant qu’un administrateur n’a pas demandé explicitement de l’enlever pour la production.

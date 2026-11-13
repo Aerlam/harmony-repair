@@ -1,11 +1,12 @@
 const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme" };
 const notice = document.querySelector("#notice");
 let employees = [];
+let currentRole = "director";
 function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
 async function api(url, options = {}) {
   const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
-  if (response.status === 403) throw new Error("Accès refusé. Demande à la direction d’ajouter ton identifiant Discord dans Vercel.");
+  if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
   if (!response.ok) throw new Error(({ employee_number_exists: "Cet ID unique est déjà utilisé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
@@ -14,9 +15,10 @@ function missing(employee) { return Object.keys(DOCS).filter((key) => !employee.
 function safe(text) { const el = document.createElement("span"); el.textContent = text || ""; return el.innerHTML; }
 async function load() {
   try {
-    const result = await api("/api/management/employees"); employees = result.employees;
+    const result = await api("/api/management/employees"); employees = result.employees; currentRole = result.role;
     document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
-    if (document.body.dataset.page === "dashboard") renderDashboard(); else renderEmployees();
+    document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
+    if (document.body.dataset.page === "dashboard") renderDashboard(); else if (document.body.dataset.page === "employees") renderEmployees(); else await loadDirectors();
     tell("");
   } catch (error) { tell(error.message, true); document.querySelector("#employee-rows")?.replaceChildren(); }
 }
@@ -74,5 +76,26 @@ document.querySelector("#employee-rows")?.addEventListener("change", async (even
     if (!response.ok) throw new Error(({ unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo." })[data.error] || "Envoi impossible.");
     tell("Document enregistré dans l’espace privé."); await load();
   } catch (error) { tell(error.message, true); } finally { input.disabled = false; input.value = ""; }
+});
+
+async function loadDirectors() {
+  try {
+    const data = await api("/api/management/directors");
+    const tbody = document.querySelector("#director-rows");
+    tbody.innerHTML = data.directors.length ? data.directors.map((director) => '<tr><td><div class="person-name">' + safe(director.name || "Directeur") + (director.role === "admin" ? ' <span class="admin-badge">ADMIN</span>' : "") + '</div><div class="person-id">' + safe(director.discordId) + '</div></td><td>' + (director.addedAt ? new Date(director.addedAt).toLocaleDateString("fr-FR") : "Compte principal") + '</td><td>' + (director.role === "admin" ? '<span class="doc-status">Protégé</span>' : '<button class="remove-link" data-action="remove-director" data-id="' + safe(director.discordId) + '">Retirer l’accès</button>') + '</td></tr>').join("") : '<tr class="empty-row"><td colspan="3">Aucun directeur secondaire. Tu peux ajouter un compte ci-dessus.</td></tr>';
+  } catch (error) { tell(error.message, true); }
+}
+
+document.querySelector("#director-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault(); const form = new FormData(event.currentTarget); const button = event.currentTarget.querySelector("[type=submit]"); button.disabled = true;
+  try { await api("/api/management/directors", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); event.currentTarget.reset(); tell("Compte autorisé."); await loadDirectors(); }
+  catch (error) { tell(error.message, true); } finally { button.disabled = false; }
+});
+
+document.querySelector("#director-rows")?.addEventListener("click", async (event) => {
+  const button = event.target.closest('[data-action="remove-director"]'); if (!button) return;
+  if (!confirm("Retirer l’accès de ce compte Discord ?")) return;
+  try { await api("/api/management/directors/" + button.dataset.id, { method: "DELETE" }); tell("Accès retiré."); await loadDirectors(); }
+  catch (error) { tell(error.message, true); }
 });
 load();
