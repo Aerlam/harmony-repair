@@ -1,1 +1,2 @@
-export { default } from "../../../lib/server/auth-handler.js";
+import { createAuthHandler } from "../../../lib/server/auth-handler.js";
+export default createAuthHandler("/api/auth/callback/discord");

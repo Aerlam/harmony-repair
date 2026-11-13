@@ -1,5 +1,5 @@
 const statusPanel = document.querySelector("#auth-status");
-const signInLink = document.querySelector("#discord-signin");
+const signInButton = document.querySelector("#discord-signin");
 const signedInPanel = document.querySelector("#signed-in");
 const signOutForm = document.querySelector("#signout-form");
 
@@ -8,10 +8,6 @@ function showStatus(message, state = "info") {
   statusPanel.dataset.state = state;
   statusPanel.hidden = !message;
 }
-
-signInLink.addEventListener("click", (event) => {
-  if (signInLink.getAttribute("aria-disabled") === "true") event.preventDefault();
-});
 
 async function getJson(url) {
   const response = await fetch(url, {
@@ -27,15 +23,18 @@ async function loadLoginState() {
   try {
     const { configured } = await getJson("/api/auth/status");
     if (!configured) {
-      signInLink.setAttribute("aria-disabled", "true");
+      signInButton.disabled = true;
       showStatus("La connexion Discord est en cours de configuration.");
       return;
     }
 
     const session = await getJson("/api/auth/session");
+    const csrf = await getJson("/api/auth/csrf");
+    document.querySelector("#signin-csrf-token").value = csrf.csrfToken;
+    document.querySelector("#csrf-token").value = csrf.csrfToken;
     const user = session?.user;
     if (user) {
-      signInLink.hidden = true;
+      signInButton.hidden = true;
       signedInPanel.hidden = false;
       document.querySelector("#user-name").textContent = user.name || "Compte Discord";
       const avatar = document.querySelector("#user-avatar");
@@ -45,13 +44,11 @@ async function loadLoginState() {
         avatar.hidden = true;
       }
 
-      const csrf = await getJson("/api/auth/csrf");
-      document.querySelector("#csrf-token").value = csrf.csrfToken;
       showStatus("");
       return;
     }
 
-    signInLink.removeAttribute("aria-disabled");
+    signInButton.disabled = false;
     const params = new URLSearchParams(window.location.search);
     if (params.has("error")) {
       showStatus("La connexion n’a pas abouti. Vous pouvez réessayer.", "error");
@@ -59,7 +56,7 @@ async function loadLoginState() {
       showStatus("");
     }
   } catch {
-    signInLink.setAttribute("aria-disabled", "true");
+    signInButton.disabled = true;
     showStatus("La connexion est momentanément indisponible. Réessayez un peu plus tard.", "error");
   }
 }
@@ -72,4 +69,3 @@ signOutForm.addEventListener("submit", (event) => {
 });
 
 loadLoginState();
-
