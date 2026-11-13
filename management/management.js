@@ -2,13 +2,14 @@ const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", d
 const notice = document.querySelector("#notice");
 let employees = [];
 let currentRole = "director";
+let editingEmployeeId = null;
 function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
 async function api(url, options = {}) {
   const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -55,17 +56,33 @@ function renderEmployees() {
     const miss = missing(employee);
     const initials = safe(((employee.firstName || "")[0] || "") + ((employee.lastName || "")[0] || "")).toLocaleUpperCase("fr");
     const date = employee.createdAt ? new Date(employee.createdAt).toLocaleDateString("fr-FR") : "—";
-    return '<article class="employee-card"><header class="employee-card-head"><div class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><div><h3>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</h3><span class="employee-subtitle">Dossier ' + safe(employee.employeeNumber) + ' <i>·</i> ajouté le ' + date + '</span></div></div><div class="employee-head-actions"><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' + (miss.length > 1 ? "" : "") : "Dossier complet") + '</span><button class="remove-link" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></header><div class="employee-meta"><div><span>ID Discord</span><strong>' + safe(employee.discordId || "—") + '</strong></div><div><span>Rôle dans le garage</span><strong class="role-pill">' + safe(employee.garageRole || "—") + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document employee-document-diploma"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section></div></article>';
+    return '<article class="employee-card"><header class="employee-card-head"><div class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><div><h3>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</h3><span class="employee-subtitle">Dossier ' + safe(employee.employeeNumber) + ' <i>·</i> ajouté le ' + date + '</span></div></div><div class="employee-head-actions"><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' : "Dossier complet") + '</span><button class="edit-link" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></header><div class="employee-meta"><div><span>ID Discord</span><strong>' + safe(employee.discordId || "À renseigner") + '</strong></div><div><span>Rôle dans la société</span><strong class="role-pill">' + safe(employee.garageRole || "À définir") + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document employee-document-diploma"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section></div></article>';
   }).join("") : '<div class="empty-row">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</div>";
 }
 document.querySelector("#search")?.addEventListener("input", renderEmployees);
 const dialog = document.querySelector("#employee-dialog");
-document.querySelector("#add-employee")?.addEventListener("click", () => dialog.showModal());
+const employeeForm = document.querySelector("#employee-form");
+const employeeSubmitLabel = document.querySelector("#employee-submit-label");
+function setEmployeeFormMode(employee = null) {
+  editingEmployeeId = employee?.id || null;
+  employeeForm.reset();
+  document.querySelector("#employee-form-eyebrow").textContent = employee ? "MODIFICATION DU DOSSIER" : "NOUVEAU DOSSIER";
+  document.querySelector("#employee-dialog-title").textContent = employee ? "Modifier la fiche" : "Ajouter un employé";
+  employeeSubmitLabel.textContent = employee ? "Enregistrer les changements" : "Enregistrer";
+  if (employee) for (const key of ["firstName", "lastName", "employeeNumber", "discordId", "garageRole"]) employeeForm.elements[key].value = employee[key] || "";
+}
+document.querySelector("#add-employee")?.addEventListener("click", () => { setEmployeeFormMode(); dialog.showModal(); });
 document.querySelector(".dialog-close")?.addEventListener("click", () => dialog.close());
 document.querySelector(".dialog-cancel")?.addEventListener("click", () => dialog.close());
+dialog?.addEventListener("close", () => setEmployeeFormMode());
 document.querySelector("#employee-form")?.addEventListener("submit", async (event) => {
   event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
-  try { await api("/api/management/employees", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); dialog.close(); formElement.reset(); tell("Employé ajouté."); await load(); }
+  try {
+    const isEditing = Boolean(editingEmployeeId);
+    const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingEmployeeId) : "/api/management/employees";
+    await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(Object.fromEntries(form)) });
+    dialog.close(); tell(isEditing ? "Fiche employé mise à jour." : "Employé ajouté."); await load();
+  }
   catch (error) { tell(error.message, true); } finally { button.disabled = false; }
 });
 document.querySelector("#employee-list")?.addEventListener("click", async (event) => {
@@ -74,6 +91,13 @@ document.querySelector("#employee-list")?.addEventListener("click", async (event
   try {
     const documentQuery = new URLSearchParams({ type });
     if (documentId) documentQuery.set("documentId", documentId);
+    if (action === "edit-employee") {
+      const employee = employees.find((item) => item.id === id);
+      if (!employee) throw new Error("Fiche employé introuvable. Actualise la page et réessaie.");
+      setEmployeeFormMode(employee);
+      dialog.showModal();
+      return;
+    }
     if (action === "download") {
       const response = await fetch("/api/management/documents/" + id + "?" + documentQuery, { credentials: "same-origin", cache: "no-store" });
       if (!response.ok) throw new Error("Téléchargement impossible ou accès refusé.");
