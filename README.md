@@ -1,6 +1,6 @@
 # Harmony Repair
 
-Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise l’ID unique et les pièces RP (identité, permis, diplôme). L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
+Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise l’ID unique et les pièces RP (identité, permis, diplômes et contrat). L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
 
 ## Organisation
 

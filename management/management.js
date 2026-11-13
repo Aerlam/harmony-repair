@@ -1,4 +1,5 @@
-const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme" };
+const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme", contract: "Contrat" };
+const ROLE_LABELS = { Patron: 'Patron (« Patronne »)', "Co-patron": 'Co-patron (« Co-patronne »)', DRH: "DRH", RH: "RH", "Chef d’atelier": 'Chef d’atelier (« Cheffe d’atelier »)', "Mécano confirmé": 'Mécano confirmé (« Mécano confirmée »)', "Mécano apprenti": 'Mécano apprenti (« Mécano apprentie »)', Stagiaire: "Stagiaire" };
 const notice = document.querySelector("#notice");
 let employees = [];
 let currentRole = "director";
@@ -52,11 +53,14 @@ function renderEmployees() {
   const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber + " " + (e.discordId || "") + " " + (e.garageRole || "")).toLocaleLowerCase("fr").includes(query));
   document.querySelector("#employee-count").textContent = employees.length;
   const list = document.querySelector("#employee-list");
+  const expandedIds = new Set([...list.querySelectorAll(".employee-card[open]")].map((card) => card.dataset.id));
   list.innerHTML = visible.length ? visible.map((employee) => {
     const miss = missing(employee);
     const initials = safe(((employee.firstName || "")[0] || "") + ((employee.lastName || "")[0] || "")).toLocaleUpperCase("fr");
     const date = employee.createdAt ? new Date(employee.createdAt).toLocaleDateString("fr-FR") : "—";
-    return '<article class="employee-card"><header class="employee-card-head"><div class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><div><h3>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</h3><span class="employee-subtitle">Dossier ' + safe(employee.employeeNumber) + ' <i>·</i> ajouté le ' + date + '</span></div></div><div class="employee-head-actions"><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' : "Dossier complet") + '</span><button class="edit-link" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></header><div class="employee-meta"><div><span>ID Discord</span><strong>' + safe(employee.discordId || "À renseigner") + '</strong></div><div><span>Rôle dans la société</span><strong class="role-pill">' + safe(employee.garageRole || "À définir") + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document employee-document-diploma"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section></div></article>';
+    const expanded = expandedIds.has(employee.id) ? " open" : "";
+    const roleLabel = ROLE_LABELS[employee.garageRole] || employee.garageRole || "À définir";
+    return '<details class="employee-card" data-id="' + employee.id + '"' + expanded + '><summary class="employee-summary"><span class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><span class="employee-name-block"><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>ID unique · ' + safe(employee.employeeNumber) + '</small></span></span><span class="employee-summary-role"><small>Grade</small><strong class="role-pill">' + safe(roleLabel) + '</strong></span><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' : "Dossier complet") + '</span><span class="employee-chevron" aria-hidden="true">⌄</span></summary><div class="employee-details"><div class="employee-detail-bar"><span class="employee-subtitle">Ajouté le ' + date + '</span><div class="employee-head-actions"><button class="edit-link" type="button" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" type="button" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></div><div class="employee-meta"><div><span>ID unique</span><strong>' + safe(employee.employeeNumber) + '</strong></div><div><span>ID Discord</span><strong>' + safe(employee.discordId || "À renseigner") + '</strong></div><div><span>Rôle dans la société</span><strong class="role-pill">' + safe(roleLabel) + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section><section class="employee-document"><h4>Contrat</h4>' + docCell(employee, "contract") + '</section></div></div></details>';
   }).join("") : '<div class="empty-row">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</div>";
 }
 document.querySelector("#search")?.addEventListener("input", renderEmployees);
@@ -66,6 +70,9 @@ const employeeSubmitLabel = document.querySelector("#employee-submit-label");
 function setEmployeeFormMode(employee = null) {
   editingEmployeeId = employee?.id || null;
   employeeForm.reset();
+  const formNotice = document.querySelector("#employee-form-notice");
+  formNotice.textContent = "";
+  formNotice.hidden = true;
   document.querySelector("#employee-form-eyebrow").textContent = employee ? "MODIFICATION DU DOSSIER" : "NOUVEAU DOSSIER";
   document.querySelector("#employee-dialog-title").textContent = employee ? "Modifier la fiche" : "Ajouter un employé";
   employeeSubmitLabel.textContent = employee ? "Enregistrer les changements" : "Enregistrer";
@@ -89,7 +96,14 @@ document.querySelector("#employee-form")?.addEventListener("submit", async (even
     }
     dialog.close(); tell(isEditing ? "Fiche employé mise à jour." : "Employé ajouté.");
   }
-  catch (error) { tell(error.message, true); } finally { button.disabled = false; }
+  catch (error) {
+    if (dialog.open) {
+      const formNotice = document.querySelector("#employee-form-notice");
+      formNotice.textContent = error.message;
+      formNotice.hidden = false;
+      formNotice.focus?.();
+    } else tell(error.message, true);
+  } finally { button.disabled = false; }
 });
 document.querySelector("#employee-list")?.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]"); if (!button) return;
