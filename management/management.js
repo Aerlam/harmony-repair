@@ -11,7 +11,11 @@ async function api(url, options = {}) {
   if (!response.ok) throw new Error(({ employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
-function missing(employee) { return Object.keys(DOCS).filter((key) => !employee.documents?.[key]); }
+function hasDocument(employee, type) {
+  if (type === "diploma") return Array.isArray(employee.documents?.diplomas) ? employee.documents.diplomas.length > 0 : Boolean(employee.documents?.diploma);
+  return Boolean(employee.documents?.[type]);
+}
+function missing(employee) { return Object.keys(DOCS).filter((key) => !hasDocument(employee, key)); }
 function safe(text) { const el = document.createElement("span"); el.textContent = text || ""; return el.innerHTML; }
 async function load() {
   try {
@@ -31,8 +35,16 @@ function renderDashboard() {
   list.innerHTML = incomplete.length ? incomplete.slice(0, 8).map((employee) => '<article class="reminder"><i class="reminder-dot"></i><div><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>À ajouter : ' + missing(employee).map((key) => DOCS[key]).join(", ") + '</small></div><a href="/employees/">Ouvrir le dossier ↗</a></article>').join("") : '<article class="reminder ok"><i class="reminder-dot"></i><div><strong>' + (employees.length ? "Tous les dossiers sont complets." : "Aucun employé enregistré.") + '</strong><small>' + (employees.length ? "Les trois justificatifs sont présents pour chaque membre." : "Ajoute le premier employé pour commencer le suivi.") + '</small></div><a href="/employees/">' + (employees.length ? "Voir les dossiers" : "Ajouter un employé") + ' ↗</a></article>';
 }
 function docCell(employee, type) {
+  if (type === "diploma") {
+    const docs = Array.isArray(employee.documents?.diplomas) ? employee.documents.diplomas : employee.documents?.diploma?.pathname ? [employee.documents.diploma] : [];
+    const rows = docs.map((doc, index) => {
+      const documentId = safe(doc.id || "");
+      return '<div class="doc-row"><span class="doc-status present">Diplôme ' + (index + 1) + '</span><button class="file-button" type="button" data-action="preview" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">Aperçu</button><button class="file-button" type="button" data-action="download" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">Ouvrir ↗</button><button class="icon-button" type="button" title="Supprimer ce diplôme" data-action="remove-doc" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">×</button></div>';
+    }).join("");
+    return '<div class="doc-list">' + (rows || '<span class="doc-status">Aucun diplôme</span>') + '<label class="file-button">+ Ajouter diplôme<input hidden type="file" data-action="upload" data-id="' + employee.id + '" data-type="diploma" accept="application/pdf,image/jpeg,image/png,image/webp"></label></div>';
+  }
   const doc = employee.documents?.[type];
-  return '<div class="doc-control">' + (doc ? '<span class="doc-status present">Présent</span><button class="file-button" data-action="download" data-id="' + employee.id + '" data-type="' + type + '">Ouvrir ↗</button><button class="icon-button" title="Supprimer le document" data-action="remove-doc" data-id="' + employee.id + '" data-type="' + type + '">×</button>' : '<span class="doc-status">Manquant</span>') + '<label class="file-button">' + (doc ? "Remplacer" : "+ Ajouter") + '<input hidden type="file" data-action="upload" data-id="' + employee.id + '" data-type="' + type + '" accept="application/pdf,image/jpeg,image/png,image/webp"></label></div>';
+  return '<div class="doc-control">' + (doc ? '<span class="doc-status present">Présent</span><button class="file-button" type="button" data-action="preview" data-id="' + employee.id + '" data-type="' + type + '">Aperçu</button><button class="file-button" type="button" data-action="download" data-id="' + employee.id + '" data-type="' + type + '">Ouvrir ↗</button><button class="icon-button" type="button" title="Supprimer le document" data-action="remove-doc" data-id="' + employee.id + '" data-type="' + type + '">×</button>' : '<span class="doc-status">Manquant</span>') + '<label class="file-button">' + (doc ? "Remplacer" : "+ Ajouter") + '<input hidden type="file" data-action="upload" data-id="' + employee.id + '" data-type="' + type + '" accept="application/pdf,image/jpeg,image/png,image/webp"></label></div>';
 }
 function renderEmployees() {
   const query = (document.querySelector("#search")?.value || "").trim().toLocaleLowerCase("fr");
@@ -56,17 +68,94 @@ document.querySelector("#employee-form")?.addEventListener("submit", async (even
 });
 document.querySelector("#employee-rows")?.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]"); if (!button) return;
-  const { action, id, type } = button.dataset;
+  const { action, id, type, documentId } = button.dataset;
   try {
+    const documentQuery = new URLSearchParams({ type });
+    if (documentId) documentQuery.set("documentId", documentId);
     if (action === "download") {
-      const response = await fetch("/api/management/documents/" + id + "?type=" + type, { credentials: "same-origin", cache: "no-store" });
+      const response = await fetch("/api/management/documents/" + id + "?" + documentQuery, { credentials: "same-origin", cache: "no-store" });
       if (!response.ok) throw new Error("Téléchargement impossible ou accès refusé.");
       const blob = await response.blob(); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "harmony-" + type; a.click(); URL.revokeObjectURL(a.href); return;
     }
-    if (action === "remove-doc") { if (!confirm("Supprimer " + DOCS[type].toLowerCase() + " ?")) return; await api("/api/management/documents/" + id + "?type=" + type, { method: "DELETE" }); tell("Document supprimé."); await load(); }
+    if (action === "remove-doc") { if (!confirm(type === "diploma" ? "Supprimer ce diplôme ?" : "Supprimer " + DOCS[type].toLowerCase() + " ?")) return; await api("/api/management/documents/" + id + "?" + documentQuery, { method: "DELETE" }); tell(type === "diploma" ? "Diplôme supprimé." : "Document supprimé."); await load(); }
     if (action === "delete-employee") { if (!confirm("Supprimer cet employé et toutes ses pièces ? Cette action est définitive.")) return; await api("/api/management/employees/" + id, { method: "DELETE" }); tell("Dossier employé supprimé."); await load(); }
   } catch (error) { tell(error.message, true); }
 });
+const previewPanel = document.createElement("aside");
+previewPanel.className = "doc-preview";
+previewPanel.hidden = true;
+previewPanel.setAttribute("role", "status");
+previewPanel.setAttribute("aria-live", "polite");
+document.body.append(previewPanel);
+let previewToken = 0;
+let previewUrl = "";
+function hidePreview() {
+  previewToken += 1;
+  previewPanel.hidden = true;
+  previewPanel.replaceChildren();
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  previewUrl = "";
+}
+function positionPreview(button) {
+  const rect = button.getBoundingClientRect();
+  const width = Math.min(460, window.innerWidth - 24);
+  let top = rect.top - 332;
+  if (top < 12) top = Math.min(rect.bottom + 10, window.innerHeight - 332);
+  previewPanel.style.width = width + "px";
+  previewPanel.style.left = Math.min(window.innerWidth - width - 12, Math.max(12, rect.right + 10)) + "px";
+  previewPanel.style.top = Math.max(12, top) + "px";
+}
+async function showPreview(button) {
+  hidePreview();
+  const token = ++previewToken;
+  positionPreview(button);
+  previewPanel.textContent = "Chargement de l’aperçu…";
+  previewPanel.hidden = false;
+  const query = new URLSearchParams({ type: button.dataset.type });
+  if (button.dataset.documentId) query.set("documentId", button.dataset.documentId);
+  try {
+    const response = await fetch("/api/management/documents/" + button.dataset.id + "?" + query, { credentials: "same-origin", cache: "no-store" });
+    if (!response.ok) throw new Error("Aperçu indisponible.");
+    const blob = await response.blob();
+    if (token !== previewToken) return;
+    previewUrl = URL.createObjectURL(blob);
+    previewPanel.replaceChildren();
+    if (blob.type === "application/pdf") {
+      const frame = document.createElement("iframe");
+      frame.title = "Aperçu du document PDF";
+      frame.src = previewUrl;
+      previewPanel.append(frame);
+    } else if (blob.type.startsWith("image/")) {
+      const image = document.createElement("img");
+      image.alt = "Aperçu du document enregistré";
+      image.src = previewUrl;
+      previewPanel.append(image);
+    } else {
+      previewPanel.textContent = "Format d’aperçu non pris en charge.";
+    }
+    positionPreview(button);
+  } catch (error) {
+    if (token === previewToken) previewPanel.textContent = error.message;
+  }
+}
+window.addEventListener("scroll", hidePreview, { passive: true });
+window.addEventListener("resize", hidePreview);
+document.querySelector("#employee-rows")?.addEventListener("pointerover", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button && !button.contains(event.relatedTarget)) showPreview(button);
+});
+document.querySelector("#employee-rows")?.addEventListener("pointerout", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button && !button.contains(event.relatedTarget)) hidePreview();
+});
+document.querySelector("#employee-rows")?.addEventListener("focusin", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button) showPreview(button);
+});
+document.querySelector("#employee-rows")?.addEventListener("focusout", (event) => {
+  if (event.target.closest('[data-action="preview"]')) hidePreview();
+});
+
 document.querySelector("#employee-rows")?.addEventListener("change", async (event) => {
   const input = event.target.closest('input[data-action="upload"]'); if (!input || !input.files?.[0]) return;
   const file = input.files[0]; input.disabled = true; tell("Envoi de " + DOCS[input.dataset.type].toLowerCase() + "…");

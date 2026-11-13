@@ -24,7 +24,8 @@ export default async function handler(request, response) {
       return json(response, 200, { employee: await saveEmployee(employee) });
     }
     if (request.method === "DELETE") {
-      for (const doc of Object.values(employee.documents || {})) if (doc?.pathname) await del(doc.pathname, { access: "private" });
+      const documents = Object.values(employee.documents || {}).flatMap((value) => Array.isArray(value) ? value : [value]);
+      for (const doc of documents) if (doc?.pathname) await del(doc.pathname, { access: "private" });
       await del(`harmony/employees/${id}.json`, { access: "private" });
       return json(response, 200, { deleted: true });
     }
