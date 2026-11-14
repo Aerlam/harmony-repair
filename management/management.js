@@ -63,7 +63,7 @@ function resetContractForm() {
 }
 async function loadContracts() {
   try {
-    const result = await api("/api/management/contracts");
+    const result = await api("/api/management/employees?resource=contracts");
     contracts = result.contracts;
     currentRole = result.role;
     document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
@@ -81,7 +81,7 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   button.disabled = true;
   try {
     const isEditing = Boolean(editingContractId);
-    const endpoint = isEditing ? "/api/management/contracts/" + encodeURIComponent(editingContractId) : "/api/management/contracts";
+    const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingContractId) + "?resource=contracts" : "/api/management/employees?resource=contracts";
     await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
     resetContractForm();
     await loadContracts();
@@ -110,7 +110,7 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
   }
   if (button.dataset.action === "delete-contract") {
     if (!confirm("Supprimer le contrat de « " + contract.name + " » ?")) return;
-    try { await api("/api/management/contracts/" + encodeURIComponent(contract.id), { method: "DELETE" }); await loadContracts(); tell("Contrat supprimé."); }
+    try { await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "DELETE" }); await loadContracts(); tell("Contrat supprimé."); }
     catch (error) { tell(error.message, true); }
   }
 });

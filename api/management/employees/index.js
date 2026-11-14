@@ -1,8 +1,10 @@
 import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, listEmployees, newEmployee, saveEmployee } from "../../../lib/server/employees.js";
+import { handleContractCollection } from "../../../lib/server/contracts-api.js";
 
 export default async function handler(request, response) {
+  if (request.query?.resource === "contracts") return handleContractCollection(request, response);
   const actor = await requireDirector(request, response);
   if (!actor) return;
   if (request.method === "GET") {
