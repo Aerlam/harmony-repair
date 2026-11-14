@@ -15,7 +15,7 @@ async function api(url, options = {}) {
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres, le prix et les prestations. Si le contrat est limité, complète les prénoms et noms autorisés.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -49,7 +49,9 @@ function renderContracts() {
     const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
     const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert à tous les membres du groupe";
     const date = contract.updatedAt || contract.createdAt;
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    const file = contract.contractFile ? '<div class="contract-attached"><span>Contrat signé : ' + safe(contract.contractFile.filename || "contrat.pdf") + '</span><button class="file-button" type="button" data-action="open-contract-file" data-id="' + safe(contract.id) + '">Ouvrir</button><button class="remove-link" type="button" data-action="remove-contract-file" data-id="' + safe(contract.id) + '">Retirer</button></div>' : '<small class="contract-no-file">Aucun contrat signé joint</small>';
+    const declaredMembers = Number.isInteger(contract.declaredMembers) && contract.declaredMembers > 0 ? contract.declaredMembers + ' membre' + (contract.declaredMembers > 1 ? 's' : '') + ' déclarés' : 'Effectif déclaré non renseigné';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -61,6 +63,8 @@ function resetContractForm() {
   document.querySelector("#contract-restricted").checked = false;
   document.querySelector("#contract-people-fields").hidden = true;
   document.querySelector("#contract-people-list").replaceChildren();
+  document.querySelector("#contract-file-current").replaceChildren();
+  document.querySelector("#contract-file-current").hidden = true;
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
@@ -93,6 +97,7 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   const form = event.currentTarget;
   const payload = Object.fromEntries(new FormData(form));
   payload.services = new FormData(form).getAll("services");
+  payload.declaredMembers = Number(payload.declaredMembers);
   payload.weeklyPrice = Number(payload.weeklyPrice);
   payload.restrictToPeople = document.querySelector("#contract-restricted").checked;
   payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
@@ -100,14 +105,39 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
     lastName: row.querySelector('[name="authorizedLastName"]').value.trim(),
   })) : [];
   const button = form.querySelector('[type="submit"]');
+  const fileInput = document.querySelector("#contract-file-input");
+  const selectedFile = fileInput.files?.[0];
+  if (selectedFile && (!selectedFile.name.toLowerCase().endsWith(".pdf") || selectedFile.size > 3 * 1024 * 1024)) {
+    tell(selectedFile.size > 3 * 1024 * 1024 ? "Le PDF dépasse la limite de 3 Mo." : "Le fichier du contrat doit être un PDF.", true);
+    return;
+  }
   button.disabled = true;
   try {
     const isEditing = Boolean(editingContractId);
     const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingContractId) + "?resource=contracts" : "/api/management/employees?resource=contracts";
     const result = await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
-    if (result.contract) {
-      contracts = isEditing ? contracts.map((contract) => contract.id === result.contract.id ? result.contract : contract) : [...contracts, result.contract];
+    let savedContract = result.contract;
+    if (savedContract) {
+      contracts = isEditing ? contracts.map((contract) => contract.id === savedContract.id ? savedContract : contract) : [...contracts, savedContract];
       renderContracts();
+    }
+    if (savedContract && selectedFile) {
+      try {
+        const bytes = new Uint8Array(await selectedFile.arrayBuffer());
+        let binary = "";
+        for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+        const uploaded = await api("/api/management/employees/" + encodeURIComponent(savedContract.id) + "?resource=contract-file", { method: "PUT", body: JSON.stringify({ fileName: selectedFile.name, data: btoa(binary) }) });
+        savedContract = uploaded.contract;
+        contracts = contracts.map((contract) => contract.id === savedContract.id ? savedContract : contract);
+        renderContracts();
+      } catch (error) {
+        editingContractId = savedContract.id;
+        document.querySelector("#contract-form-title").textContent = "Contrat créé — fichier à ajouter";
+        document.querySelector("#contract-submit-label").textContent = "Réessayer l’ajout du PDF";
+        document.querySelector("#contract-cancel").hidden = false;
+        tell("La fiche partenaire est enregistrée, mais le PDF n’a pas été ajouté : " + error.message, true);
+        return;
+      }
     }
     resetContractForm();
     tell(isEditing ? "Contrat mis à jour." : "Contrat ajouté.");
@@ -141,12 +171,33 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
   if (!button) return;
   const contract = contracts.find((item) => item.id === button.dataset.id);
   if (!contract) return;
+  if (button.dataset.action === "open-contract-file") {
+    window.open("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contract-file", "_blank", "noopener");
+    return;
+  }
+  if (button.dataset.action === "remove-contract-file") {
+    if (!confirm("Retirer le PDF du contrat « " + contract.name + " » ?")) return;
+    try {
+      const result = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contract-file", { method: "DELETE" });
+      contracts = contracts.map((item) => item.id === contract.id ? result.contract : item);
+      renderContracts();
+      if (editingContractId === contract.id) { const currentFile = document.querySelector("#contract-file-current"); currentFile.replaceChildren(); currentFile.hidden = true; }
+      tell("PDF du contrat retiré.");
+    } catch (error) { tell(error.message, true); }
+    return;
+  }
   if (button.dataset.action === "edit-contract") {
     editingContractId = contract.id;
     const form = document.querySelector("#contract-form");
     form.elements.name.value = contract.name;
     form.elements.category.value = contract.category;
+    form.elements.declaredMembers.value = contract.declaredMembers;
     form.elements.weeklyPrice.value = contract.weeklyPrice;
+    const currentFile = document.querySelector("#contract-file-current");
+    if (contract.contractFile) {
+      currentFile.innerHTML = 'PDF actuel : <strong>' + safe(contract.contractFile.filename || "contrat.pdf") + '</strong>. Sélectionne un autre PDF pour le remplacer.';
+      currentFile.hidden = false;
+    } else { currentFile.replaceChildren(); currentFile.hidden = true; }
     for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
     const restricted = Boolean(contract.restrictToPeople);
     document.querySelector("#contract-restricted").checked = restricted;
