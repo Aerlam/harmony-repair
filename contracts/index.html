@@ -32,13 +32,19 @@
         <form id="contract-form">
           <div class="contract-fields">
             <label>Nom de l’entreprise, famille ou groupe<input name="name" maxlength="100" placeholder="Ex. Los Santos Customs" required></label>
-            <label>Type<select name="category" required><option value="">Choisir un type</option><option value="entreprise">Entreprise</option><option value="famille">Famille</option><option value="groupe">Groupe</option></select></label>
+            <label>Type<select name="category" required><option value="">Choisir un type</option><option value="entreprise">Entreprise</option><option value="famille_groupe">Famille / Groupe</option></select></label>
+            <label>Nombre de membres<input name="memberCount" type="number" min="1" max="10000" step="1" placeholder="Ex. 12" required></label>
+            <label>Prix du contrat par semaine ($)<input name="weeklyPrice" type="number" min="0" max="1000000000" step="1" placeholder="Ex. 5 000" required><small>Indique 0 si le contrat est gratuit.</small></label>
           </div>
           <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Choisis une ou plusieurs prestations prévues au contrat.</p>
             <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>
             <label><input type="checkbox" name="services" value="impound"><span>Fourrière</span></label>
             <label><input type="checkbox" name="services" value="displacement"><span>Déplacement</span></label>
           </fieldset>
+          <section class="contract-restriction">
+            <label class="restriction-toggle"><input id="contract-restricted" type="checkbox"><span>Limiter le contrat à certaines personnes</span></label>
+            <div id="contract-people-fields" hidden><p class="restriction-help">Sans restriction, le contrat s’applique à tous les membres du groupe. Si tu actives la restriction, ajoute les personnes autorisées.</p><div id="contract-people-list" class="contract-people-list"></div><button id="contract-add-person" class="file-button" type="button">＋ Ajouter une personne</button></div>
+          </section>
           <div class="contract-form-actions"><button id="contract-cancel" class="button button-quiet" type="button" hidden>Annuler</button><button class="button" type="submit"><span id="contract-submit-label">Enregistrer le contrat</span><span aria-hidden="true">↗</span></button></div>
         </form>
       </section>

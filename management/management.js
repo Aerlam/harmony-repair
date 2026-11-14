@@ -1,7 +1,7 @@
 const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme", contract: "Contrat" };
 const ROLE_LABELS = { Patron: "Patron", "Co-patron": "Co-patronne", DRH: "DRH", RH: "RH", "Chef d’atelier": "Cheffe d’atelier", "Mécano confirmé": "Mécano confirmé", "Mécano apprenti": "Mécano apprenti", Stagiaire: "Stagiaire" };
 const ROLE_ORDER = ["Patron", "Co-patron", "DRH", "RH", "Chef d’atelier", "Mécano confirmé", "Mécano apprenti", "Stagiaire"];
-const CONTRACT_CATEGORIES = { entreprise: "Entreprise", famille: "Famille", groupe: "Groupe" };
+const CONTRACT_CATEGORIES = { entreprise: "Entreprise", famille_groupe: "Famille / Groupe" };
 const CONTRACT_SERVICES = { repair: "Réparation", impound: "Fourrière", displacement: "Déplacement" };
 const notice = document.querySelector("#notice");
 let employees = [];
@@ -15,7 +15,7 @@ async function api(url, options = {}) {
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Saisis un nom, une catégorie et au moins une prestation.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres, le prix et les prestations. Si le contrat est limité, complète les prénoms et noms autorisés.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -47,8 +47,9 @@ function renderContracts() {
   list.innerHTML = contracts.length ? contracts.map((contract) => {
     const serviceLabels = contract.services.map((service) => CONTRACT_SERVICES[service]).filter(Boolean);
     const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
+    const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert à tous les membres du groupe";
     const date = contract.updatedAt || contract.createdAt;
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-services">' + services + '</div><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + contract.memberCount + ' membre' + (contract.memberCount > 1 ? 's' : '') + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -57,6 +58,9 @@ function resetContractForm() {
   if (!form) return;
   editingContractId = null;
   form.reset();
+  document.querySelector("#contract-restricted").checked = false;
+  document.querySelector("#contract-people-fields").hidden = true;
+  document.querySelector("#contract-people-list").replaceChildren();
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
@@ -77,6 +81,13 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   const form = event.currentTarget;
   const payload = Object.fromEntries(new FormData(form));
   payload.services = new FormData(form).getAll("services");
+  payload.memberCount = Number(payload.memberCount);
+  payload.weeklyPrice = Number(payload.weeklyPrice);
+  payload.restrictToPeople = document.querySelector("#contract-restricted").checked;
+  payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
+    firstName: row.querySelector('[name="authorizedFirstName"]').value.trim(),
+    lastName: row.querySelector('[name="authorizedLastName"]').value.trim(),
+  })) : [];
   const button = form.querySelector('[type="submit"]');
   button.disabled = true;
   try {
@@ -90,6 +101,27 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   finally { button.disabled = false; }
 });
 document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
+function addAuthorizedPersonRow(person = {}) {
+  const row = document.createElement("div");
+  row.className = "contract-person-row";
+  row.innerHTML = '<label>Prénom<input name="authorizedFirstName" maxlength="60" autocomplete="given-name"></label><label>Nom<input name="authorizedLastName" maxlength="60" autocomplete="family-name"></label><button class="icon-button" type="button" data-action="remove-authorized-person" aria-label="Retirer cette personne">×</button>';
+  row.querySelector('[name="authorizedFirstName"]').value = person.firstName || "";
+  row.querySelector('[name="authorizedLastName"]').value = person.lastName || "";
+  for (const input of row.querySelectorAll("input")) input.required = document.querySelector("#contract-restricted").checked;
+  document.querySelector("#contract-people-list").append(row);
+}
+document.querySelector("#contract-restricted")?.addEventListener("change", (event) => {
+  const enabled = event.currentTarget.checked;
+  document.querySelector("#contract-people-fields").hidden = !enabled;
+  for (const input of document.querySelectorAll(".contract-person-row input")) input.required = enabled;
+  if (enabled && !document.querySelector(".contract-person-row")) addAuthorizedPersonRow();
+});
+document.querySelector("#contract-add-person")?.addEventListener("click", () => addAuthorizedPersonRow());
+document.querySelector("#contract-people-list")?.addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="remove-authorized-person"]');
+  if (!button) return;
+  button.closest(".contract-person-row").remove();
+});
 document.querySelector("#contract-list")?.addEventListener("click", async (event) => {
   const button = event.target.closest("[data-action]");
   if (!button) return;
@@ -100,7 +132,16 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     const form = document.querySelector("#contract-form");
     form.elements.name.value = contract.name;
     form.elements.category.value = contract.category;
+    form.elements.memberCount.value = contract.memberCount;
+    form.elements.weeklyPrice.value = contract.weeklyPrice;
     for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
+    const restricted = Boolean(contract.restrictToPeople);
+    document.querySelector("#contract-restricted").checked = restricted;
+    document.querySelector("#contract-people-fields").hidden = !restricted;
+    const peopleList = document.querySelector("#contract-people-list");
+    peopleList.replaceChildren();
+    if (restricted) (contract.authorizedPeople.length ? contract.authorizedPeople : [{}]).forEach(addAuthorizedPersonRow);
+    for (const input of peopleList.querySelectorAll("input")) input.required = restricted;
     document.querySelector("#contract-form-title").textContent = "Modifier le contrat";
     document.querySelector("#contract-submit-label").textContent = "Enregistrer les changements";
     document.querySelector("#contract-cancel").hidden = false;
