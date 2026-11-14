@@ -1,17 +1,21 @@
 const DOCS = { identity: "Carte d’identité", license: "Permis de conduire", diploma: "Diplôme", contract: "Contrat" };
 const ROLE_LABELS = { Patron: "Patron", "Co-patron": "Co-patronne", DRH: "DRH", RH: "RH", "Chef d’atelier": "Cheffe d’atelier", "Mécano confirmé": "Mécano confirmé", "Mécano apprenti": "Mécano apprenti", Stagiaire: "Stagiaire" };
 const ROLE_ORDER = ["Patron", "Co-patron", "DRH", "RH", "Chef d’atelier", "Mécano confirmé", "Mécano apprenti", "Stagiaire"];
+const CONTRACT_CATEGORIES = { entreprise: "Entreprise", famille: "Famille", groupe: "Groupe" };
+const CONTRACT_SERVICES = { repair: "Réparation", impound: "Fourrière", displacement: "Déplacement" };
 const notice = document.querySelector("#notice");
 let employees = [];
+let contracts = [];
 let currentRole = "director";
 let editingEmployeeId = null;
+let editingContractId = null;
 function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
 async function api(url, options = {}) {
   const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Saisis un nom, une catégorie et au moins une prestation.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -21,6 +25,7 @@ function hasDocument(employee, type) {
 function missing(employee) { return Object.keys(DOCS).filter((key) => !hasDocument(employee, key)); }
 function safe(text) { const el = document.createElement("span"); el.textContent = text || ""; return el.innerHTML; }
 async function load() {
+  if (document.body.dataset.page === "contracts") { await loadContracts(); return; }
   try {
     const result = await api("/api/management/employees"); employees = result.employees; currentRole = result.role;
     document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
@@ -35,8 +40,80 @@ function renderDashboard() {
   document.querySelector("#complete-count").textContent = employees.length - incomplete.length;
   document.querySelector("#incomplete-count").textContent = incomplete.length;
   const list = document.querySelector("#reminders");
-  list.innerHTML = incomplete.length ? incomplete.slice(0, 8).map((employee) => '<article class="reminder"><i class="reminder-dot"></i><div><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>À ajouter : ' + missing(employee).map((key) => DOCS[key]).join(", ") + '</small></div><a href="/employees/">Ouvrir le dossier ↗</a></article>').join("") : '<article class="reminder ok"><i class="reminder-dot"></i><div><strong>' + (employees.length ? "Tous les dossiers sont complets." : "Aucun employé enregistré.") + '</strong><small>' + (employees.length ? "Les trois justificatifs sont présents pour chaque membre." : "Ajoute le premier employé pour commencer le suivi.") + '</small></div><a href="/employees/">' + (employees.length ? "Voir les dossiers" : "Ajouter un employé") + ' ↗</a></article>';
+  list.innerHTML = incomplete.length ? incomplete.slice(0, 8).map((employee) => '<article class="reminder"><i class="reminder-dot"></i><div><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>À ajouter : ' + missing(employee).map((key) => DOCS[key]).join(", ") + '</small></div><a href="/employees/">Ouvrir le dossier ↗</a></article>').join("") : '<article class="reminder ok"><i class="reminder-dot"></i><div><strong>' + (employees.length ? "Tous les dossiers sont complets." : "Aucun employé enregistré.") + '</strong><small>' + (employees.length ? "Toutes les pièces requises sont présentes pour chaque membre." : "Ajoute le premier employé pour commencer le suivi.") + '</small></div><a href="/employees/">' + (employees.length ? "Voir les dossiers" : "Ajouter un employé") + ' ↗</a></article>';
 }
+function renderContracts() {
+  const list = document.querySelector("#contract-list");
+  list.innerHTML = contracts.length ? contracts.map((contract) => {
+    const serviceLabels = contract.services.map((service) => CONTRACT_SERVICES[service]).filter(Boolean);
+    const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
+    const date = contract.updatedAt || contract.createdAt;
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-services">' + services + '</div><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+  }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
+  document.querySelector("#contract-count").textContent = contracts.length;
+}
+function resetContractForm() {
+  const form = document.querySelector("#contract-form");
+  if (!form) return;
+  editingContractId = null;
+  form.reset();
+  document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
+  document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
+  document.querySelector("#contract-cancel").hidden = true;
+}
+async function loadContracts() {
+  try {
+    const result = await api("/api/management/contracts");
+    contracts = result.contracts;
+    currentRole = result.role;
+    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
+    document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
+    renderContracts();
+    tell("");
+  } catch (error) { tell(error.message, true); document.querySelector("#contract-list")?.replaceChildren(); }
+}
+document.querySelector("#contract-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const payload = Object.fromEntries(new FormData(form));
+  payload.services = new FormData(form).getAll("services");
+  const button = form.querySelector('[type="submit"]');
+  button.disabled = true;
+  try {
+    const isEditing = Boolean(editingContractId);
+    const endpoint = isEditing ? "/api/management/contracts/" + encodeURIComponent(editingContractId) : "/api/management/contracts";
+    await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
+    resetContractForm();
+    await loadContracts();
+    tell(isEditing ? "Contrat mis à jour." : "Contrat ajouté.");
+  } catch (error) { tell(error.message, true); }
+  finally { button.disabled = false; }
+});
+document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
+document.querySelector("#contract-list")?.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-action]");
+  if (!button) return;
+  const contract = contracts.find((item) => item.id === button.dataset.id);
+  if (!contract) return;
+  if (button.dataset.action === "edit-contract") {
+    editingContractId = contract.id;
+    const form = document.querySelector("#contract-form");
+    form.elements.name.value = contract.name;
+    form.elements.category.value = contract.category;
+    for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
+    document.querySelector("#contract-form-title").textContent = "Modifier le contrat";
+    document.querySelector("#contract-submit-label").textContent = "Enregistrer les changements";
+    document.querySelector("#contract-cancel").hidden = false;
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.elements.name.focus();
+    return;
+  }
+  if (button.dataset.action === "delete-contract") {
+    if (!confirm("Supprimer le contrat de « " + contract.name + " » ?")) return;
+    try { await api("/api/management/contracts/" + encodeURIComponent(contract.id), { method: "DELETE" }); await loadContracts(); tell("Contrat supprimé."); }
+    catch (error) { tell(error.message, true); }
+  }
+});
 function docCell(employee, type) {
   if (type === "diploma") {
     const docs = Array.isArray(employee.documents?.diplomas) ? employee.documents.diplomas : employee.documents?.diploma?.pathname ? [employee.documents.diploma] : [];

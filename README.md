@@ -1,10 +1,10 @@
 # Harmony Repair
 
-Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise l’ID unique et les pièces RP (identité, permis, diplômes et contrat). L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
+Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise les informations et pièces du personnel. L’onglet Contrats suit les entreprises, familles et groupes ainsi que leurs prestations autorisées. L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
 
 ## Organisation
 
-Les pages statiques sont réparties dans management/, employees/, directors/ et login/. Les routes API sont dans api/ et la logique serveur partagée dans lib/server/. Les secrets restent dans les variables d’environnement Vercel.
+Les pages statiques sont réparties dans management/, employees/, contracts/, directors/ et login/. Les routes API sont dans api/ et la logique serveur partagée dans lib/server/. Les secrets restent dans les variables d’environnement Vercel.
 
 ## Configuration Discord
 
@@ -17,7 +17,7 @@ Les variables Production attendues dans Vercel :
 - AUTH_SECRET : secret aléatoire d’au moins 32 caractères
 - HARMONY_ADMIN_IDS : identifiant Discord de l’admin principal, séparés par des virgules en cas de plusieurs admins principaux
 
-L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les documents et la liste d’accès sont stockés dans le Blob privé harmony-rp-private-documents. Vercel fournit BLOB_READ_WRITE_TOKEN lorsque le magasin est connecté au projet.
+L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les documents, contrats et listes d’accès sont stockés dans le Blob privé harmony-rp-private-documents. Vercel fournit BLOB_READ_WRITE_TOKEN lorsque le magasin est connecté au projet.
 
 ## Accès et documents
 

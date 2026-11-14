@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070b11">
+    <title>Contrats — Harmony Repair</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/management/management.css">
+    <script src="/management/management.js" defer></script>
+  </head>
+  <body data-page="contracts">
+    <header class="topbar">
+      <a class="brand" href="/management/"><img class="brand-mark" src="/assets/harmony-logo.png" alt=""><span>harmony<span class="brand-light">repair</span></span></a>
+      <nav class="nav">
+        <a href="/management/">Vue d’ensemble</a>
+        <a href="/employees/">Employés</a>
+        <a class="active" href="/contracts/">Contrats</a>
+        <a class="admin-link" href="/directors/" hidden>Accès</a>
+      </nav>
+      <div class="account"><span id="director-name">Direction</span><a href="/login/">Compte Discord ↗</a></div>
+    </header>
+    <main class="shell">
+      <section class="welcome">
+        <div><div class="eyebrow"><i></i> PARTENAIRES DU GARAGE</div><h1>Les contrats <em>Harmony.</em></h1><p>Entreprises, familles et groupes avec leurs prestations autorisées.</p></div>
+      </section>
+      <div id="notice" class="notice" role="status" hidden></div>
+      <section class="panel contract-editor">
+        <div class="panel-head"><div><div class="eyebrow">NOUVEAU PARTENAIRE</div><h2 id="contract-form-title">Ajouter un contrat</h2></div></div>
+        <form id="contract-form">
+          <div class="contract-fields">
+            <label>Nom de l’entreprise, famille ou groupe<input name="name" maxlength="100" placeholder="Ex. Los Santos Customs" required></label>
+            <label>Type<select name="category" required><option value="">Choisir un type</option><option value="entreprise">Entreprise</option><option value="famille">Famille</option><option value="groupe">Groupe</option></select></label>
+          </div>
+          <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Choisis une ou plusieurs prestations prévues au contrat.</p>
+            <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>
+            <label><input type="checkbox" name="services" value="impound"><span>Fourrière</span></label>
+            <label><input type="checkbox" name="services" value="displacement"><span>Déplacement</span></label>
+          </fieldset>
+          <div class="contract-form-actions"><button id="contract-cancel" class="button button-quiet" type="button" hidden>Annuler</button><button class="button" type="submit"><span id="contract-submit-label">Enregistrer le contrat</span><span aria-hidden="true">↗</span></button></div>
+        </form>
+      </section>
+      <section class="panel contract-list-panel">
+        <div class="panel-head"><div><div class="eyebrow">SUIVI DES ACCORDS</div><h2>Partenaires <span id="contract-count" class="count-pill">0</span></h2></div></div>
+        <div id="contract-list" class="contract-list" aria-live="polite"><div class="loading">Chargement des contrats…</div></div>
+      </section>
+    </main>
+    <footer><span>Harmony Repair · Contrats partenaires</span><span>Portail de direction</span></footer>
+  </body>
+</html>
