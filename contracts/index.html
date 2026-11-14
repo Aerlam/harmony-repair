@@ -33,9 +33,12 @@
           <div class="contract-fields">
             <label>Nom de l’entreprise, famille ou groupe<input name="name" maxlength="100" placeholder="Ex. Los Santos Customs" required></label>
             <label>Type<select name="category" required><option value="">Choisir un type</option><option value="entreprise">Entreprise</option><option value="famille_groupe">Famille / Groupe</option></select></label>
-            <label>Nombre de membres<input name="memberCount" type="number" min="1" max="10000" step="1" placeholder="Ex. 12" required></label>
             <label>Prix du contrat par semaine ($)<input name="weeklyPrice" type="number" min="0" max="1000000000" step="1" placeholder="Ex. 5 000" required><small>Indique 0 si le contrat est gratuit.</small></label>
           </div>
+          <section class="contract-member-limit">
+            <label class="restriction-toggle"><input id="contract-limited-members" type="checkbox"><span>Le contrat est limité à un nombre de membres</span></label>
+            <div id="contract-member-limit-fields" class="contract-limit-fields" hidden><label>Nombre maximal de membres<input id="contract-member-count" name="memberCount" type="number" min="1" max="10000" step="1" placeholder="Ex. 12" disabled></label></div>
+          </section>
           <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Choisis une ou plusieurs prestations prévues au contrat.</p>
             <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>
             <label><input type="checkbox" name="services" value="impound"><span>Fourrière</span></label>

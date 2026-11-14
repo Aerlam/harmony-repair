@@ -49,7 +49,8 @@ function renderContracts() {
     const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
     const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert à tous les membres du groupe";
     const date = contract.updatedAt || contract.createdAt;
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + contract.memberCount + ' membre' + (contract.memberCount > 1 ? 's' : '') + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    const memberLimit = Number.isInteger(contract.memberCount) && contract.memberCount > 0 ? contract.memberCount + ' membre' + (contract.memberCount > 1 ? 's' : '') : 'Sans limite de membres';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + memberLimit + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -61,6 +62,10 @@ function resetContractForm() {
   document.querySelector("#contract-restricted").checked = false;
   document.querySelector("#contract-people-fields").hidden = true;
   document.querySelector("#contract-people-list").replaceChildren();
+  document.querySelector("#contract-limited-members").checked = false;
+  document.querySelector("#contract-member-limit-fields").hidden = true;
+  document.querySelector("#contract-member-count").disabled = true;
+  document.querySelector("#contract-member-count").required = false;
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
@@ -81,7 +86,8 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   const form = event.currentTarget;
   const payload = Object.fromEntries(new FormData(form));
   payload.services = new FormData(form).getAll("services");
-  payload.memberCount = Number(payload.memberCount);
+  const hasMemberLimit = document.querySelector("#contract-limited-members").checked;
+  payload.memberCount = hasMemberLimit ? Number(payload.memberCount) : null;
   payload.weeklyPrice = Number(payload.weeklyPrice);
   payload.restrictToPeople = document.querySelector("#contract-restricted").checked;
   payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
@@ -101,6 +107,15 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   finally { button.disabled = false; }
 });
 document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
+document.querySelector("#contract-limited-members")?.addEventListener("change", (event) => {
+  const enabled = event.currentTarget.checked;
+  const fields = document.querySelector("#contract-member-limit-fields");
+  const input = document.querySelector("#contract-member-count");
+  fields.hidden = !enabled;
+  input.disabled = !enabled;
+  input.required = enabled;
+  if (!enabled) input.value = "";
+});
 function addAuthorizedPersonRow(person = {}) {
   const row = document.createElement("div");
   row.className = "contract-person-row";
@@ -132,7 +147,12 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     const form = document.querySelector("#contract-form");
     form.elements.name.value = contract.name;
     form.elements.category.value = contract.category;
-    form.elements.memberCount.value = contract.memberCount;
+    const hasMemberLimit = Number.isInteger(contract.memberCount) && contract.memberCount > 0;
+    document.querySelector("#contract-limited-members").checked = hasMemberLimit;
+    document.querySelector("#contract-member-limit-fields").hidden = !hasMemberLimit;
+    document.querySelector("#contract-member-count").disabled = !hasMemberLimit;
+    document.querySelector("#contract-member-count").required = hasMemberLimit;
+    form.elements.memberCount.value = hasMemberLimit ? contract.memberCount : "";
     form.elements.weeklyPrice.value = contract.weeklyPrice;
     for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
     const restricted = Boolean(contract.restrictToPeople);
