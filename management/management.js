@@ -49,8 +49,7 @@ function renderContracts() {
     const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
     const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert à tous les membres du groupe";
     const date = contract.updatedAt || contract.createdAt;
-    const memberLimit = Number.isInteger(contract.memberCount) && contract.memberCount > 0 ? contract.memberCount + ' membre' + (contract.memberCount > 1 ? 's' : '') : 'Sans limite de membres';
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + memberLimit + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small><small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -62,10 +61,6 @@ function resetContractForm() {
   document.querySelector("#contract-restricted").checked = false;
   document.querySelector("#contract-people-fields").hidden = true;
   document.querySelector("#contract-people-list").replaceChildren();
-  document.querySelector("#contract-limited-members").checked = false;
-  document.querySelector("#contract-member-limit-fields").hidden = true;
-  document.querySelector("#contract-member-count").disabled = true;
-  document.querySelector("#contract-member-count").required = false;
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
@@ -81,13 +76,23 @@ async function loadContracts() {
     tell("");
   } catch (error) { tell(error.message, true); document.querySelector("#contract-list")?.replaceChildren(); }
 }
+async function refreshContractsInBackground() {
+  if (document.body.dataset.page !== "contracts" || document.visibilityState !== "visible" || editingContractId) return;
+  try {
+    const result = await api("/api/management/employees?resource=contracts");
+    contracts = result.contracts;
+    renderContracts();
+  } catch { /* Keep the current list visible if a background refresh fails. */ }
+}
+window.setInterval(refreshContractsInBackground, 15000);
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") refreshContractsInBackground();
+});
 document.querySelector("#contract-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
   const form = event.currentTarget;
   const payload = Object.fromEntries(new FormData(form));
   payload.services = new FormData(form).getAll("services");
-  const hasMemberLimit = document.querySelector("#contract-limited-members").checked;
-  payload.memberCount = hasMemberLimit ? Number(payload.memberCount) : null;
   payload.weeklyPrice = Number(payload.weeklyPrice);
   payload.restrictToPeople = document.querySelector("#contract-restricted").checked;
   payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
@@ -99,23 +104,17 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   try {
     const isEditing = Boolean(editingContractId);
     const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingContractId) + "?resource=contracts" : "/api/management/employees?resource=contracts";
-    await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
+    const result = await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
+    if (result.contract) {
+      contracts = isEditing ? contracts.map((contract) => contract.id === result.contract.id ? result.contract : contract) : [...contracts, result.contract];
+      renderContracts();
+    }
     resetContractForm();
-    await loadContracts();
     tell(isEditing ? "Contrat mis à jour." : "Contrat ajouté.");
   } catch (error) { tell(error.message, true); }
   finally { button.disabled = false; }
 });
 document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
-document.querySelector("#contract-limited-members")?.addEventListener("change", (event) => {
-  const enabled = event.currentTarget.checked;
-  const fields = document.querySelector("#contract-member-limit-fields");
-  const input = document.querySelector("#contract-member-count");
-  fields.hidden = !enabled;
-  input.disabled = !enabled;
-  input.required = enabled;
-  if (!enabled) input.value = "";
-});
 function addAuthorizedPersonRow(person = {}) {
   const row = document.createElement("div");
   row.className = "contract-person-row";
@@ -147,12 +146,6 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     const form = document.querySelector("#contract-form");
     form.elements.name.value = contract.name;
     form.elements.category.value = contract.category;
-    const hasMemberLimit = Number.isInteger(contract.memberCount) && contract.memberCount > 0;
-    document.querySelector("#contract-limited-members").checked = hasMemberLimit;
-    document.querySelector("#contract-member-limit-fields").hidden = !hasMemberLimit;
-    document.querySelector("#contract-member-count").disabled = !hasMemberLimit;
-    document.querySelector("#contract-member-count").required = hasMemberLimit;
-    form.elements.memberCount.value = hasMemberLimit ? contract.memberCount : "";
     form.elements.weeklyPrice.value = contract.weeklyPrice;
     for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
     const restricted = Boolean(contract.restrictToPeople);
@@ -171,7 +164,7 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
   }
   if (button.dataset.action === "delete-contract") {
     if (!confirm("Supprimer le contrat de « " + contract.name + " » ?")) return;
-    try { await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "DELETE" }); await loadContracts(); tell("Contrat supprimé."); }
+    try { await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "DELETE" }); contracts = contracts.filter((item) => item.id !== contract.id); renderContracts(); tell("Contrat supprimé."); }
     catch (error) { tell(error.message, true); }
   }
 });
