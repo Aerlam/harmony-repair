@@ -45,6 +45,11 @@
       <label>Formule tarifaire<select name="pricingMode" id="contract-pricing-mode"><option value="flat">Forfait par semaine</option><option value="per_member">Tarif par membre et par semaine</option></select></label>
       <label>Date de prise d’effet<input name="startDate" type="date"></label>
     </div></details>
+    <section class="contract-roster">
+      <div class="contract-roster-heading"><div><strong>Membres du partenaire</strong><small>Nom, prénom et ID unique affichés dans la recherche des prestations.</small></div><button id="contract-add-member" class="file-button" type="button">＋ Ajouter un membre</button></div>
+      <div id="contract-members-list" class="contract-members-list"></div>
+      <p class="contract-roster-empty" id="contract-members-empty">Aucun membre enregistré. Les prestations ne pourront pas être attribuées à un membre avant d’ajouter la liste.</p>
+    </section>
     <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Vérifie les prestations prévues au contrat.</p>
       <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>
       <label><input type="checkbox" name="services" value="impound"><span>Fourrière</span></label>

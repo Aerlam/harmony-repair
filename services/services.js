@@ -25,7 +25,9 @@ async function api(url, options = {}) {
   const data = await response.json().catch(() => ({}));
   const errors = {
     employee_access_required: "Ton compte Discord n’est pas encore associé à une fiche employé. Demande à la direction d’ajouter ton ID Discord.",
-    member_required: "Saisis le prénom et le nom du membre pris en charge.",
+    member_required: "Choisis un membre dans la liste du partenaire.",
+    member_list_empty: "Aucun membre n’est enregistré sur la fiche de ce partenaire.",
+    member_not_found: "Ce membre n’apparaît plus dans la liste du partenaire. Relance la recherche.",
     member_not_authorized: "Ce membre n’est pas autorisé par le contrat.",
     service_not_allowed: "Cette prestation n’est pas comprise dans le contrat.",
     invalid_usage: "La prestation n’a pas pu être enregistrée.",
@@ -45,11 +47,12 @@ function renderResults(results) {
     const services = (result.services || []).filter((service) => SERVICE_LABELS[service]);
     const pills = services.map((service) => '<span class="service-pill">' + safe(SERVICE_LABELS[service]) + '</span>').join("");
     const counters = services.map((service) => '<div class="usage-counter"><small>' + safe(SERVICE_LABELS[service]) + '</small><strong>' + Number(result.counts?.[service] || 0) + '</strong></div>').join("");
-    const target = result.restricted ? '<div class="usage-target restricted-target"><span>Membre autorisé</span><strong>' + safe(result.memberName) + '</strong></div>' : result.requiresPersonSearch ? '<p class="restricted-message">Ce contrat est nominatif. Recherche le prénom et le nom du membre pour confirmer son accès.</p>' : '<div class="usage-member-inputs"><label>Prénom du membre<input name="memberFirstName" maxlength="60" placeholder="Prénom" required></label><label>Nom du membre<input name="memberLastName" maxlength="60" placeholder="Nom" required></label></div>';
-    const actions = result.requiresPersonSearch ? "" : services.map((service) => '<button class="button usage-add" type="button" data-service="' + service + '" data-result-index="' + index + '">+ ' + safe(SERVICE_LABELS[service]) + '</button>').join("");
-    const recent = (result.recent || []).length ? '<div class="usage-history"><h3>Enregistré cette semaine</h3><ul>' + result.recent.map((event) => '<li><strong>' + safe(event.memberName) + '</strong><span>' + safe(result.name) + ' · ' + safe(SERVICE_LABELS[event.service] || event.service) + '</span><small>' + safe(new Date(event.createdAt).toLocaleString("fr-FR")) + ' · saisi par ' + safe(event.actorName) + '</small></li>').join("") + '</ul></div>' : '';
-    const searchName = result.restricted ? result.memberName + ' · ' + result.name : result.name;
-    return '<article class="service-result-card" data-contract-id="' + safe(result.id) + '"><div class="service-result-heading"><div><div class="contract-kind">' + safe(result.category === "entreprise" ? "Entreprise" : "Famille / Groupe") + '</div><h3>' + safe(searchName) + '</h3></div><span class="usage-week-tag">' + safe(document.querySelector("#usage-week").textContent) + '</span></div><div class="contract-services">' + pills + '</div><p class="service-result-intro">Prestations prévues au contrat</p>' + target + '<div class="usage-counters">' + counters + '</div><div class="usage-actions">' + actions + '</div>' + recent + '</article>';
+    const members = Array.isArray(result.members) ? result.members : [];
+    const options = members.map((member) => '<option value="' + safe(member.employeeNumber) + '"' + (result.preselectedMemberNumber === member.employeeNumber ? ' selected' : '') + '>' + safe(member.lastName + ' ' + member.firstName + ' · ID ' + member.employeeNumber) + '</option>').join("");
+    const target = members.length ? '<div class="usage-target"><label>Membre concerné<select name="memberNumber" required><option value="">Choisir un membre</option>' + options + '</select></label></div>' : '<p class="restricted-message">Aucune liste de membres n’est enregistrée pour ce partenaire. La direction peut l’ajouter ou la compléter dans l’onglet Contrats.</p>';
+    const actions = members.length ? services.map((service) => '<button class="button usage-add" type="button" data-service="' + service + '" data-result-index="' + index + '">+ ' + safe(SERVICE_LABELS[service]) + '</button>').join("") : "";
+    const recent = (result.recent || []).length ? '<div class="usage-history"><h3>Enregistré cette semaine</h3><ul>' + result.recent.map((event) => '<li><strong>' + safe(event.memberName) + '</strong><span>' + (event.employeeNumber ? 'ID ' + safe(event.employeeNumber) + ' · ' : '') + safe(result.name) + ' · ' + safe(SERVICE_LABELS[event.service] || event.service) + '</span><small>' + safe(new Date(event.createdAt).toLocaleString("fr-FR")) + ' · saisi par ' + safe(event.actorName) + '</small></li>').join("") + '</ul></div>' : '';
+    return '<article class="service-result-card" data-contract-id="' + safe(result.id) + '"><div class="service-result-heading"><div><div class="contract-kind">' + safe(result.category === "entreprise" ? "Entreprise" : "Famille / Groupe") + '</div><h3>' + safe(result.name) + '</h3></div><span class="usage-week-tag">' + safe(document.querySelector("#usage-week").textContent) + '</span></div><div class="contract-services">' + pills + '</div><p class="service-result-intro">Prestations prévues au contrat</p>' + target + '<div class="usage-counters">' + counters + '</div><div class="usage-actions">' + actions + '</div>' + recent + '</article>';
   }).join("");
 }
 
@@ -81,13 +84,13 @@ resultsElement.addEventListener("click", async (event) => {
   const result = lastResults[Number(button.dataset.resultIndex)];
   if (!result) return;
   const card = button.closest(".service-result-card");
-  const memberFirstName = result.restricted ? result.memberFirstName : card.querySelector('[name="memberFirstName"]')?.value.trim();
-  const memberLastName = result.restricted ? result.memberLastName : card.querySelector('[name="memberLastName"]')?.value.trim();
-  if (!memberFirstName || !memberLastName) { showNotice("Saisis le prénom et le nom du membre pris en charge.", true); return; }
+  const memberNumber = card.querySelector('[name="memberNumber"]')?.value;
+  const member = result.members.find((item) => item.employeeNumber === memberNumber);
+  if (!member) { showNotice("Choisis un membre dans la liste du partenaire.", true); return; }
   button.disabled = true;
   try {
-    await api("/api/management/employees?resource=usage", { method: "POST", body: JSON.stringify({ contractId: result.id, service: button.dataset.service, memberFirstName, memberLastName }) });
-    showNotice(SERVICE_LABELS[button.dataset.service] + " enregistrée pour " + memberFirstName + " " + memberLastName + " · " + result.name + ".");
+    await api("/api/management/employees?resource=usage", { method: "POST", body: JSON.stringify({ contractId: result.id, service: button.dataset.service, memberNumber }) });
+    showNotice(SERVICE_LABELS[button.dataset.service] + " enregistrée pour " + member.firstName + " " + member.lastName + " (ID " + member.employeeNumber + ") · " + result.name + ".");
     await searchPartners();
   } catch (error) { showNotice(error.message, true); }
   finally { button.disabled = false; }

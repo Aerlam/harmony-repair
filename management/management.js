@@ -6,6 +6,7 @@ const CONTRACT_SERVICES = { repair: "Réparation", impound: "Fourrière", displa
 const notice = document.querySelector("#notice");
 let employees = [];
 let contracts = [];
+let contractsWeek = "";
 let currentRole = "director";
 let editingEmployeeId = null;
 let editingContractId = null;
@@ -50,12 +51,18 @@ function renderContracts() {
   list.innerHTML = contracts.length ? contracts.map((contract) => {
     const serviceLabels = contract.services.map((service) => CONTRACT_SERVICES[service]).filter(Boolean);
     const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
+    const serviceManager = '<details class="contract-service-manager"><summary>Ajouter / enlever des prestations</summary><form class="contract-services-form" data-id="' + safe(contract.id) + '"><div>' + Object.entries(CONTRACT_SERVICES).map(([key, label]) => '<label><input type="checkbox" name="services" value="' + key + '"' + (contract.services.includes(key) ? ' checked' : '') + '><span>' + safe(label) + '</span></label>').join("") + '</div><button class="file-button" type="submit">Enregistrer</button></form></details>';
     const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert à tous les membres du groupe";
     const date = contract.updatedAt || contract.createdAt;
     const file = contract.contractFile ? '<div class="contract-attached"><span>Contrat signé : ' + safe(contract.contractFile.filename || "contrat.pdf") + '</span><button class="file-button" type="button" data-action="open-contract-file" data-id="' + safe(contract.id) + '">Ouvrir</button><button class="remove-link" type="button" data-action="remove-contract-file" data-id="' + safe(contract.id) + '">Retirer</button></div>' : '<small class="contract-no-file">Aucun contrat signé joint</small>';
     const declaredMembers = Number.isInteger(contract.declaredMembers) && contract.declaredMembers > 0 ? contract.declaredMembers + ' membre' + (contract.declaredMembers > 1 ? 's' : '') + ' déclarés' : 'Effectif déclaré non renseigné';
     const priceUnit = contract.pricingMode === "per_member" ? ' $ / membre / semaine' : ' $ / semaine';
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + priceUnit + '</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    const weeklyUsage = contract.weeklyUsage || { counts: {} };
+    const weeklyCounts = Object.entries(CONTRACT_SERVICES).map(([key, label]) => '<span>' + safe(label) + ' <strong>' + Number(weeklyUsage.counts?.[key] || 0) + '</strong></span>').join("");
+    const memberCount = Array.isArray(contract.members) ? contract.members.length : 0;
+    const members = memberCount ? '<details class="contract-member-summary"><summary>Membres enregistrés (' + memberCount + ')</summary><ul>' + contract.members.map((member) => '<li>' + safe(member.firstName + ' ' + member.lastName) + ' <small>ID ' + safe(member.employeeNumber) + '</small></li>').join("") + '</ul></details>' : '<small class="contract-no-members">Aucune liste de membres enregistrée</small>';
+    const usageMembers = Array.isArray(weeklyUsage.members) && weeklyUsage.members.length ? '<details class="contract-member-summary"><summary>Détail des prestations par membre</summary><ul>' + weeklyUsage.members.map((member) => '<li>' + safe([member.firstName, member.lastName].filter(Boolean).join(" ") || member.employeeNumber || "Membre") + (member.employeeNumber ? ' <small>ID ' + safe(member.employeeNumber) + '</small>' : '') + ' — Réparation ' + Number(member.counts.repair || 0) + ', dépannage ' + Number(member.counts.impound || 0) + ', déplacement ' + Number(member.counts.displacement || 0) + '</li>').join("") + '</ul></details>' : '';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + priceUnit + '</span></div><div class="contract-services">' + services + '</div>' + serviceManager + '<div class="weekly-contract-usage"><small>Prestations cette semaine (' + safe(contractsWeek || "") + ')</small><div>' + weeklyCounts + '</div></div>' + members + usageMembers + '<small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -69,6 +76,8 @@ function resetContractForm() {
   document.querySelector("#contract-restricted").checked = false;
   document.querySelector("#contract-people-fields").hidden = true;
   document.querySelector("#contract-people-list").replaceChildren();
+  document.querySelector("#contract-members-list").replaceChildren();
+  updateContractMemberEmptyState();
   document.querySelector("#contract-file-current").replaceChildren();
   document.querySelector("#contract-file-current").hidden = true;
   document.querySelector("#contract-extra-fields").open = false;
@@ -86,6 +95,7 @@ async function loadContracts() {
   try {
     const result = await api("/api/management/employees?resource=contracts");
     contracts = result.contracts;
+    contractsWeek = result.week || "";
     currentRole = result.role;
     document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
     document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
@@ -98,6 +108,7 @@ async function refreshContractsInBackground() {
   try {
     const result = await api("/api/management/employees?resource=contracts");
     contracts = result.contracts;
+    contractsWeek = result.week || "";
     renderContracts();
   } catch { /* Keep the current list visible if a background refresh fails. */ }
 }
@@ -156,7 +167,13 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
     firstName: row.querySelector('[name="authorizedFirstName"]').value.trim(),
     lastName: row.querySelector('[name="authorizedLastName"]').value.trim(),
+    employeeNumber: row.querySelector('[name="authorizedEmployeeNumber"]').value.trim(),
   })) : [];
+  payload.members = [...document.querySelectorAll(".contract-member-row")].map((row) => ({
+    firstName: row.querySelector('[name="memberFirstName"]').value.trim(),
+    lastName: row.querySelector('[name="memberLastName"]').value.trim(),
+    employeeNumber: row.querySelector('[name="memberEmployeeNumber"]').value.trim(),
+  })).filter((member) => member.firstName || member.lastName || member.employeeNumber);
   const button = form.querySelector('[type="submit"]');
   const fileInput = document.querySelector("#contract-file-input");
   const selectedFile = fileInput.files?.[0];
@@ -201,12 +218,35 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
   finally { button.disabled = false; }
 });
 document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
+function updateContractMemberEmptyState() {
+  const list = document.querySelector("#contract-members-list");
+  const empty = document.querySelector("#contract-members-empty");
+  if (list && empty) empty.hidden = list.querySelectorAll(".contract-member-row").length > 0;
+}
+function addContractMemberRow(member = {}) {
+  const row = document.createElement("div");
+  row.className = "contract-member-row";
+  row.innerHTML = '<label>Prénom<input name="memberFirstName" maxlength="60" autocomplete="given-name" required></label><label>Nom<input name="memberLastName" maxlength="60" autocomplete="family-name" required></label><label>ID unique<input name="memberEmployeeNumber" maxlength="24" pattern="[A-Za-zÀ-ž0-9_-]{2,24}" placeholder="Ex. HR-024" required></label><button class="icon-button" type="button" data-action="remove-contract-member" aria-label="Retirer ce membre">×</button>';
+  row.querySelector('[name="memberFirstName"]').value = member.firstName || "";
+  row.querySelector('[name="memberLastName"]').value = member.lastName || "";
+  row.querySelector('[name="memberEmployeeNumber"]').value = member.employeeNumber || "";
+  document.querySelector("#contract-members-list").append(row);
+  updateContractMemberEmptyState();
+}
+document.querySelector("#contract-add-member")?.addEventListener("click", () => addContractMemberRow());
+document.querySelector("#contract-members-list")?.addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="remove-contract-member"]');
+  if (!button) return;
+  button.closest(".contract-member-row").remove();
+  updateContractMemberEmptyState();
+});
 function addAuthorizedPersonRow(person = {}) {
   const row = document.createElement("div");
   row.className = "contract-person-row";
-  row.innerHTML = '<label>Prénom<input name="authorizedFirstName" maxlength="60" autocomplete="given-name"></label><label>Nom<input name="authorizedLastName" maxlength="60" autocomplete="family-name"></label><button class="icon-button" type="button" data-action="remove-authorized-person" aria-label="Retirer cette personne">×</button>';
+  row.innerHTML = '<label>Prénom<input name="authorizedFirstName" maxlength="60" autocomplete="given-name"></label><label>Nom<input name="authorizedLastName" maxlength="60" autocomplete="family-name"></label><label>ID unique<input name="authorizedEmployeeNumber" maxlength="24" pattern="[A-Za-zÀ-ž0-9_-]{2,24}" placeholder="ID du membre"></label><button class="icon-button" type="button" data-action="remove-authorized-person" aria-label="Retirer cette personne">×</button>';
   row.querySelector('[name="authorizedFirstName"]').value = person.firstName || "";
   row.querySelector('[name="authorizedLastName"]').value = person.lastName || "";
+  row.querySelector('[name="authorizedEmployeeNumber"]').value = person.employeeNumber || "";
   for (const input of row.querySelectorAll("input")) input.required = document.querySelector("#contract-restricted").checked;
   document.querySelector("#contract-people-list").append(row);
 }
@@ -270,6 +310,10 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     peopleList.replaceChildren();
     if (restricted) (contract.authorizedPeople.length ? contract.authorizedPeople : [{}]).forEach(addAuthorizedPersonRow);
     for (const input of peopleList.querySelectorAll("input")) input.required = restricted;
+    const membersList = document.querySelector("#contract-members-list");
+    membersList.replaceChildren();
+    (contract.members || []).forEach(addContractMemberRow);
+    updateContractMemberEmptyState();
     document.querySelector("#contract-form-title").textContent = "Modifier le contrat";
     document.querySelector("#contract-submit-label").textContent = "Enregistrer les changements";
     document.querySelector("#contract-cancel").hidden = false;
@@ -282,6 +326,22 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     try { await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "DELETE" }); contracts = contracts.filter((item) => item.id !== contract.id); renderContracts(); tell("Contrat supprimé."); }
     catch (error) { tell(error.message, true); }
   }
+});
+document.querySelector("#contract-list")?.addEventListener("submit", async (event) => {
+  const form = event.target.closest(".contract-services-form");
+  if (!form) return;
+  event.preventDefault();
+  const contract = contracts.find((item) => item.id === form.dataset.id);
+  const services = new FormData(form).getAll("services");
+  if (!contract || !services.length) { tell("Garde au moins une prestation autorisée.", true); return; }
+  const button = form.querySelector('[type="submit"]');
+  button.disabled = true;
+  try {
+    const result = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "PATCH", body: JSON.stringify({ ...contract, services }) });
+    contracts = contracts.map((item) => item.id === contract.id ? { ...result.contract, weeklyUsage: item.weeklyUsage } : item);
+    renderContracts();
+    tell("Prestations autorisées mises à jour pour « " + contract.name + " ». ");
+  } catch (error) { tell(error.message, true); button.disabled = false; }
 });
 function docCell(employee, type) {
   if (type === "diploma") {
