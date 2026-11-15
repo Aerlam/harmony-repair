@@ -54,10 +54,8 @@ function renderContracts() {
     const date = contract.updatedAt || contract.createdAt;
     const file = contract.contractFile ? '<div class="contract-attached"><span>Contrat signé : ' + safe(contract.contractFile.filename || "contrat.pdf") + '</span><button class="file-button" type="button" data-action="open-contract-file" data-id="' + safe(contract.id) + '">Ouvrir</button><button class="remove-link" type="button" data-action="remove-contract-file" data-id="' + safe(contract.id) + '">Retirer</button></div>' : '<small class="contract-no-file">Aucun contrat signé joint</small>';
     const declaredMembers = Number.isInteger(contract.declaredMembers) && contract.declaredMembers > 0 ? contract.declaredMembers + ' membre' + (contract.declaredMembers > 1 ? 's' : '') + ' déclarés' : 'Effectif déclaré non renseigné';
-    const price = Number(contract.weeklyPrice).toLocaleString("fr-FR") + (contract.pricingMode === "per_member" ? ' $ / membre / semaine (' + (Number(contract.weeklyPrice) * Number(contract.declaredMembers)).toLocaleString("fr-FR") + ' $ estimés au total)' : ' $ / semaine');
-    const contact = [contract.responsibleName ? 'Responsable : ' + safe(contract.responsibleName) : '', contract.contactName && contract.contactName !== contract.responsibleName ? 'Contact : ' + safe(contract.contactName) : ''].filter(Boolean).join(' · ');
-    const startDate = contract.startDate ? new Date(contract.startDate + "T00:00:00").toLocaleDateString("fr-FR") : "";
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + price + '</span></div>' + (contact ? '<small class="contract-people">' + contact + '</small>' : '') + '<div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + (startDate ? '<small class="contract-date">Prise d’effet : ' + startDate + '</small>' : '') + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    const priceUnit = contract.pricingMode === "per_member" ? ' $ / membre / semaine' : ' $ / semaine';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + priceUnit + '</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -73,6 +71,7 @@ function resetContractForm() {
   document.querySelector("#contract-people-list").replaceChildren();
   document.querySelector("#contract-file-current").replaceChildren();
   document.querySelector("#contract-file-current").hidden = true;
+  document.querySelector("#contract-extra-fields").open = false;
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
@@ -139,6 +138,7 @@ document.querySelector("#contract-file-input")?.addEventListener("change", async
       for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = extracted.services.includes(checkbox.value);
       detected.push("prestations");
     }
+    if (["responsable", "contact", "formule tarifaire", "date d’effet"].some((field) => detected.includes(field))) document.querySelector("#contract-extra-fields").open = true;
     syncContractPriceLabel();
     tell(detected.length ? "Champs préremplis depuis le PDF : " + detected.join(", ") + ". Vérifie-les et complète ce qui manque avant d’enregistrer." : "Aucun champ reconnu dans ce PDF. Tu peux le joindre et remplir la fiche manuellement.");
   } catch (error) {
@@ -255,6 +255,7 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
     form.elements.pricingMode.value = contract.pricingMode || "flat";
     form.elements.weeklyPrice.value = contract.weeklyPrice;
     form.elements.startDate.value = contract.startDate || "";
+    document.querySelector("#contract-extra-fields").open = Boolean(contract.responsibleName || contract.contactName || contract.startDate || contract.pricingMode === "per_member");
     syncContractPriceLabel();
     const currentFile = document.querySelector("#contract-file-current");
     if (contract.contractFile) {
