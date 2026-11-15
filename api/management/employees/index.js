@@ -1,12 +1,12 @@
 import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, listEmployees, newEmployee, saveEmployee } from "../../../lib/server/employees.js";
-import { handleContractCollection, handleContractImport } from "../../../lib/server/contracts-api.js";
+import { handleContractCollection } from "../../../lib/server/contracts-api.js";
 
 export const config = { api: { bodyParser: { sizeLimit: "5mb" } } };
 
 export default async function handler(request, response) {
-  if (request.query?.resource === "contract-import") return handleContractImport(request, response);
+  if (request.query?.resource === "contract-import") return (await import("../../../lib/server/contract-import.js")).handleContractImport(request, response);
   if (request.query?.resource === "contracts") return handleContractCollection(request, response);
   if (request.query?.resource === "bulk") return (await import("../../../lib/server/employees-api.js")).handleEmployeeBulk(request, response);
   if (request.query?.resource === "usage") return (await import("../../../lib/server/contract-usage.js")).handleContractUsage(request, response);
