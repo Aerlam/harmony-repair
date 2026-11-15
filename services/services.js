@@ -124,4 +124,9 @@ resultsElement.addEventListener("submit", async (event) => {
   } catch (error) { showNotice(error.message, true); button.disabled = false; }
 });
 
+window.addEventListener("harmony:refresh", () => {
+  if (document.visibilityState !== "visible") return;
+  if (document.querySelector("#service-search").value.trim().length >= 2) searchPartners();
+});
+
 searchPartners();

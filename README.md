@@ -32,3 +32,6 @@ Si un secret Discord a été partagé dans une conversation, régénère-le dans
 ## Protection Vercel
 
 La protection Vercel Authentication est indépendante de la connexion Discord et peut exiger un compte Vercel avant de montrer la page. Elle est conservée tant qu’un administrateur n’a pas demandé explicitement de l’enlever pour la production.
+# Automatic site synchronization
+
+All management pages load `assets/site-sync.js`. It broadcasts successful mutations to other open tabs and dispatches `harmony:refresh` after mutations, tab focus, and periodic synchronization. Pages that display API-backed records should subscribe to that event and reload their data, while skipping refreshes when a form or modal has unsaved input. Add the same script to future management tabs and register their page-specific refresh handler.

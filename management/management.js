@@ -11,6 +11,7 @@ let currentRole = "director";
 let editingEmployeeId = null;
 let editingContractId = null;
 let pendingContractPdfData = "";
+let contractFormDirty = false;
 function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
 async function api(url, options = {}) {
   const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
@@ -72,6 +73,7 @@ function resetContractForm() {
   if (!form) return;
   editingContractId = null;
   pendingContractPdfData = "";
+  contractFormDirty = false;
   form.reset();
   syncContractPriceLabel();
   document.querySelector("#contract-restricted").checked = false;
@@ -104,19 +106,8 @@ async function loadContracts() {
     tell("");
   } catch (error) { tell(error.message, true); document.querySelector("#contract-list")?.replaceChildren(); }
 }
-async function refreshContractsInBackground() {
-  if (document.body.dataset.page !== "contracts" || document.visibilityState !== "visible" || editingContractId) return;
-  try {
-    const result = await api("/api/management/employees?resource=contracts");
-    contracts = result.contracts;
-    contractsWeek = result.week || "";
-    renderContracts();
-  } catch { /* Keep the current list visible if a background refresh fails. */ }
-}
-window.setInterval(refreshContractsInBackground, 15000);
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") refreshContractsInBackground();
-});
+document.querySelector("#contract-form")?.addEventListener("input", () => { contractFormDirty = true; });
+document.querySelector("#contract-form")?.addEventListener("change", () => { contractFormDirty = true; });
 document.querySelector("#contract-pricing-mode")?.addEventListener("change", syncContractPriceLabel);
 document.querySelector("#contract-file-input")?.addEventListener("change", async (event) => {
   const file = event.currentTarget.files?.[0];
@@ -604,6 +595,15 @@ document.querySelector("#director-rows")?.addEventListener("click", async (event
   try { await api("/api/management/directors/" + button.dataset.id, { method: "DELETE" }); tell("Accès retiré."); await loadDirectors(); }
   catch (error) { tell(error.message, true); }
 });
+
+window.addEventListener("harmony:refresh", () => {
+  if (document.visibilityState !== "visible" || document.querySelector("dialog[open]")) return;
+  const page = document.body.dataset.page;
+  if (page === "contracts" && (editingContractId || contractFormDirty || pendingContractPdfData)) return;
+  if (page === "directors") { loadDirectors(); return; }
+  load();
+});
+
 load();
 
 
