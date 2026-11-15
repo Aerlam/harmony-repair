@@ -4,7 +4,7 @@ const notice = document.querySelector("#service-notice");
 let lastResults = [];
 let searchTimer;
 let manageableContracts = new Map();
-const contractAccessPromise = api("/api/management/contracts").then((data) => {
+const contractAccessPromise = api("/api/management/employees?resource=contracts").then((data) => {
   manageableContracts = new Map((data.contracts || []).map((contract) => [contract.id, contract]));
   return true;
 }).catch(() => false);
@@ -36,7 +36,7 @@ async function api(url, options = {}) {
     member_not_authorized: "Ce membre n’est pas autorisé par le contrat.",
     service_not_allowed: "Cette prestation n’est pas comprise dans le contrat.",
     invalid_usage: "La prestation n’a pas pu être enregistrée.",
-    invalid_services: "Choisis au moins une prestation autorisée.",
+    invalid_contract: "Vérifie qu’au moins une prestation est autorisée pour ce contrat.",
     contract_not_found: "Ce contrat n’existe plus. Relance la recherche.",
     storage_unavailable: "Le stockage est momentanément indisponible.",
   };
@@ -116,7 +116,7 @@ resultsElement.addEventListener("submit", async (event) => {
   if (!contract || !services.length) { showNotice("Garde au moins une prestation autorisée.", true); return; }
   button.disabled = true;
   try {
-    const data = await api("/api/management/contracts/" + encodeURIComponent(contract.id), { method: "PATCH", body: JSON.stringify({ services }) });
+    const data = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "PATCH", body: JSON.stringify({ ...contract, services }) });
     manageableContracts.set(contract.id, data.contract);
     lastResults = lastResults.map((result) => result.id === contract.id ? { ...result, services: data.contract.services } : result);
     renderResults(lastResults);
