@@ -1,4 +1,5 @@
 import { requireSiteTab } from "../../../lib/server/site-access.js";
+import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, listEmployees, newEmployee, saveEmployee } from "../../../lib/server/employees.js";
 import { handleContractCollection } from "../../../lib/server/contracts-api.js";
@@ -34,16 +35,19 @@ export default async function handler(request, response) {
         })),
         role: actor.kind === "employee" ? actor.garageRole : actor.role,
         name: actor.name,
+        kind: actor.kind,
       });
     } catch { return json(response, 503, { error: "storage_unavailable" }); }
   }
-  const actor = await requireSiteTab(request, response, "employees");
+  if (!["GET", "POST"].includes(request.method)) return methodNotAllowed(response, ["GET", "POST"]);
+  const actor = request.method === "GET"
+    ? await requireSiteTab(request, response, "employees")
+    : await requireDirector(request, response);
   if (!actor) return;
   if (request.method === "GET") {
-    try { return json(response, 200, { employees: await listEmployees(), role: actor.role, name: actor.name }); }
+    try { return json(response, 200, { employees: await listEmployees(), role: actor.role, name: actor.name, kind: actor.kind || (actor.role === "admin" ? "admin" : "director") }); }
     catch { return json(response, 503, { error: "storage_unavailable" }); }
   }
-  if (request.method !== "POST") return methodNotAllowed(response, ["GET", "POST"]);
   if (!isSameOrigin(request)) return json(response, 403, { error: "invalid_origin" });
   const { firstName, lastName, employeeNumber, discordId, garageRole } = request.body || {};
   const clean = (value) => typeof value === "string" ? value.trim() : "";

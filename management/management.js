@@ -8,6 +8,7 @@ let employees = [];
 let contracts = [];
 let contractsWeek = "";
 let currentRole = "director";
+let currentKind = "director";
 let editingEmployeeId = null;
 let editingContractId = null;
 let pendingContractPdfData = "";
@@ -34,10 +35,10 @@ async function load() {
   if (document.body.dataset.page === "contracts") { await loadContracts(); return; }
   try {
     const page = document.body.dataset.page;
-    const result = await api(page === "dashboard" ? "/api/management/employees?resource=dashboard" : "/api/management/employees"); employees = result.employees; currentRole = result.role;
+    const result = await api(page === "dashboard" ? "/api/management/employees?resource=dashboard" : "/api/management/employees"); employees = result.employees; currentRole = result.role; currentKind = result.kind || "director";
     document.querySelectorAll("#director-name").forEach((el) => { el.textContent = result.name || (result.role === "admin" || result.role === "director" ? "Direction connectée" : result.role); });
     document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
-    if (document.body.dataset.page === "dashboard") renderDashboard(); else if (document.body.dataset.page === "employees") renderEmployees(); else await loadDirectors();
+    if (document.body.dataset.page === "dashboard") renderDashboard(); else if (document.body.dataset.page === "employees") { renderEmployees(); applyEmployeeReadOnly(); } else await loadDirectors();
     tell("");
   } catch (error) { tell(error.message, true); document.querySelector("#employee-list")?.replaceChildren(); }
 }
@@ -68,6 +69,10 @@ function renderContracts() {
     return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + priceUnit + '</span></div><div class="contract-services">' + services + '</div>' + serviceManager + '<div class="weekly-contract-usage"><small>Prestations cette semaine (' + safe(contractsWeek || "") + ')</small><div>' + weeklyCounts + '</div></div>' + members + usageMembers + '<small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
+  if (currentKind === "employee") {
+    document.querySelectorAll('#contract-list [data-action]:not([data-action="open-contract-file"])').forEach((control) => { control.hidden = true; });
+    document.querySelectorAll("#contract-list .contract-service-manager").forEach((control) => { control.hidden = true; });
+  }
 }
 function resetContractForm() {
   const form = document.querySelector("#contract-form");
@@ -101,7 +106,9 @@ async function loadContracts() {
     contracts = result.contracts;
     contractsWeek = result.week || "";
     currentRole = result.role;
-    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
+    currentKind = result.kind || "director";
+    document.querySelectorAll("#add-contract, #contract-form, .contract-editor").forEach((element) => { element.hidden = currentKind === "employee"; });
+    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = result.name || (currentKind === "employee" ? currentRole : "Direction connectée"); });
     document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
     renderContracts();
     tell("");
@@ -367,6 +374,13 @@ function renderEmployees() {
     return '<details class="employee-card" data-id="' + employee.id + '"' + expanded + '><summary class="employee-summary"><span class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><span class="employee-name-block"><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>ID unique · ' + safe(employee.employeeNumber) + '</small></span></span><span class="employee-summary-role"><small>Grade</small><strong class="role-pill">' + safe(roleLabel) + '</strong></span><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' : "Dossier complet") + '</span><span class="employee-chevron" aria-hidden="true">⌄</span></summary><div class="employee-details"><div class="employee-detail-bar"><span class="employee-subtitle">Ajouté le ' + date + '</span><div class="employee-head-actions"><button class="edit-link" type="button" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" type="button" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></div><div class="employee-meta"><div><span>ID unique</span><strong>' + safe(employee.employeeNumber) + '</strong></div><div><span>ID Discord</span><strong>' + safe(employee.discordId || "À renseigner") + '</strong></div><div><span>Rôle dans la société</span><strong class="role-pill">' + safe(roleLabel) + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section><section class="employee-document"><h4>Contrat</h4>' + docCell(employee, "contract") + '</section></div></div></details>';
   }).join("") : '<div class="empty-row">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</div>";
 }
+function applyEmployeeReadOnly() {
+  if (currentKind !== "employee") return;
+  document.querySelectorAll("#add-employee, #add-employees-paste").forEach((button) => { button.hidden = true; });
+  document.querySelectorAll('#employee-list [data-action="edit-employee"], #employee-list [data-action="delete-employee"], #employee-list [data-action="remove-doc"]').forEach((button) => { button.hidden = true; });
+  document.querySelectorAll('#employee-list input[data-action="upload"]').forEach((input) => { if (input.closest("label")) input.closest("label").hidden = true; });
+  document.querySelectorAll("#employee-list .employee-head-actions").forEach((actions) => { actions.hidden = true; });
+}
 function parseEmployeePaste() {
   const lines = (document.querySelector("#employee-bulk-rows")?.value || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
   const rows = [];
@@ -426,7 +440,7 @@ document.querySelector("#employee-bulk-form")?.addEventListener("submit", async 
   }
   finally { button.disabled = false; }
 });
-document.querySelector("#search")?.addEventListener("input", renderEmployees);
+document.querySelector("#search")?.addEventListener("input", () => { renderEmployees(); applyEmployeeReadOnly(); });
 const dialog = document.querySelector("#employee-dialog");
 const employeeForm = document.querySelector("#employee-form");
 const employeeSubmitLabel = document.querySelector("#employee-submit-label");

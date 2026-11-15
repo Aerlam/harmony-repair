@@ -3,12 +3,6 @@ const resultsElement = document.querySelector("#service-results");
 const notice = document.querySelector("#service-notice");
 let lastResults = [];
 let searchTimer;
-let manageableContracts = new Map();
-const contractAccessPromise = api("/api/management/employees?resource=contracts").then((data) => {
-  manageableContracts = new Map((data.contracts || []).map((contract) => [contract.id, contract]));
-  return true;
-}).catch(() => false);
-
 function safe(value) {
   const element = document.createElement("span");
   element.textContent = value || "";
@@ -58,8 +52,7 @@ function renderResults(results) {
     const options = members.map((member) => '<option value="' + safe(member.employeeNumber) + '"' + (result.preselectedMemberNumber === member.employeeNumber ? ' selected' : '') + '>' + safe(member.lastName + ' ' + member.firstName + ' · ID ' + member.employeeNumber) + '</option>').join("");
     const target = members.length ? '<div class="usage-target"><label>Membre concerné<select name="memberNumber" required><option value="">Choisir un membre</option>' + options + '</select></label></div>' : '<p class="restricted-message">Aucune liste de membres n’est enregistrée pour ce partenaire. La direction peut l’ajouter ou la compléter dans l’onglet Contrats.</p>';
     const actions = members.length ? services.map((service) => '<button class="button usage-add" type="button" data-service="' + service + '" data-result-index="' + index + '">+ ' + safe(SERVICE_LABELS[service]) + '</button>').join("") : "";
-    const managed = manageableContracts.get(result.id);
-    const serviceEditor = managed ? '<details class="partner-service-manager"><summary>Ajouter / enlever des prestations</summary><form class="partner-service-form" data-id="' + safe(result.id) + '"><div>' + Object.entries(SERVICE_LABELS).map(([key, label]) => '<label><input type="checkbox" name="services" value="' + key + '"' + (services.includes(key) ? ' checked' : '') + '><span>' + safe(label) + '</span></label>').join("") + '</div><button class="file-button" type="submit">Enregistrer</button></form></details>' : "";
+    const serviceEditor = '<details class="partner-service-manager"><summary>Ajouter / enlever des prestations</summary><form class="partner-service-form" data-id="' + safe(result.id) + '"><div>' + Object.entries(SERVICE_LABELS).map(([key, label]) => '<label><input type="checkbox" name="services" value="' + key + '"' + (services.includes(key) ? ' checked' : '') + '><span>' + safe(label) + '</span></label>').join("") + '</div><button class="file-button" type="submit">Enregistrer</button></form></details>';
     const recent = (result.recent || []).length ? '<div class="usage-history"><h3>Enregistré cette semaine</h3><ul>' + result.recent.map((event) => '<li><strong>' + safe(event.memberName) + '</strong><span>' + (event.employeeNumber ? 'ID ' + safe(event.employeeNumber) + ' · ' : '') + safe(result.name) + ' · ' + safe(SERVICE_LABELS[event.service] || event.service) + '</span><small>' + safe(new Date(event.createdAt).toLocaleString("fr-FR")) + ' · saisi par ' + safe(event.actorName) + '</small></li>').join("") + '</ul></div>' : '';
     return '<article class="service-result-card" data-contract-id="' + safe(result.id) + '"><div class="service-result-heading"><div><div class="contract-kind">' + safe(result.category === "entreprise" ? "Entreprise" : "Famille / Groupe") + '</div><h3>' + safe(result.name) + '</h3></div><span class="usage-week-tag">' + safe(document.querySelector("#usage-week").textContent) + '</span></div><div class="contract-services">' + pills + '</div><p class="service-result-intro">Prestations prévues au contrat</p>' + serviceEditor + target + '<div class="usage-counters">' + counters + '</div><div class="usage-actions">' + actions + '</div>' + recent + '</article>';
   }).join("");
@@ -72,10 +65,9 @@ async function searchPartners() {
     resultsElement.innerHTML = '<div class="empty-row">Saisis au moins deux caractères pour rechercher un partenaire.</div>';
     return;
   }
-  resultsElement.innerHTML = '<div class="loading">Recherche des contrats…</div>';
+    resultsElement.innerHTML = '<div class="loading">Recherche des contrats…</div>';
   try {
     const data = await api("/api/management/employees?resource=usage&q=" + encodeURIComponent(query));
-    await contractAccessPromise;
     document.querySelector("#garage-employee-name").textContent = data.employee.firstName + " " + data.employee.lastName;
     document.querySelector("#usage-week").textContent = data.week;
     renderResults(data.results);
@@ -111,13 +103,12 @@ resultsElement.addEventListener("submit", async (event) => {
   if (!form) return;
   event.preventDefault();
   const button = form.querySelector('button[type="submit"]');
-  const contract = manageableContracts.get(form.dataset.id);
+  const contract = lastResults.find((result) => result.id === form.dataset.id);
   const services = [...form.querySelectorAll('input[name="services"]:checked')].map((input) => input.value);
   if (!contract || !services.length) { showNotice("Garde au moins une prestation autorisée.", true); return; }
   button.disabled = true;
   try {
-    const data = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "PATCH", body: JSON.stringify({ ...contract, services }) });
-    manageableContracts.set(contract.id, data.contract);
+    const data = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=service-options", { method: "PATCH", body: JSON.stringify({ services }) });
     lastResults = lastResults.map((result) => result.id === contract.id ? { ...result, services: data.contract.services } : result);
     renderResults(lastResults);
     showNotice("Prestations autorisées mises à jour pour " + data.contract.name + ".");

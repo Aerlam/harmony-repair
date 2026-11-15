@@ -3,6 +3,7 @@ import { Readable } from "node:stream";
 import { randomUUID } from "node:crypto";
 import { DOC_TYPES, loadEmployee, saveEmployee } from "../../../lib/server/employees.js";
 import { requireSiteTab } from "../../../lib/server/site-access.js";
+import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 
 const MAX_BYTES = 4 * 1024 * 1024;
@@ -35,7 +36,11 @@ async function readLimited(request) {
 }
 
 export default async function handler(request, response) {
-  if (!await requireSiteTab(request, response, "employees")) return;
+  if (!["GET", "PUT", "DELETE"].includes(request.method)) return methodNotAllowed(response, ["GET", "PUT", "DELETE"]);
+  const actor = request.method === "GET"
+    ? await requireSiteTab(request, response, "employees")
+    : await requireDirector(request, response);
+  if (!actor) return;
   const id = String(request.query?.id || "");
   const type = String(request.query?.type || "");
   const documentId = String(request.query?.documentId || "");
