@@ -2,16 +2,14 @@ import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, listEmployees, newEmployee, saveEmployee } from "../../../lib/server/employees.js";
 import { handleContractCollection, handleContractImport } from "../../../lib/server/contracts-api.js";
-import { handleEmployeeBulk } from "../../../lib/server/employees-api.js";
-import { handleContractUsage } from "../../../lib/server/contract-usage.js";
 
 export const config = { api: { bodyParser: { sizeLimit: "5mb" } } };
 
 export default async function handler(request, response) {
   if (request.query?.resource === "contract-import") return handleContractImport(request, response);
   if (request.query?.resource === "contracts") return handleContractCollection(request, response);
-  if (request.query?.resource === "bulk") return handleEmployeeBulk(request, response);
-  if (request.query?.resource === "usage") return handleContractUsage(request, response);
+  if (request.query?.resource === "bulk") return (await import("../../../lib/server/employees-api.js")).handleEmployeeBulk(request, response);
+  if (request.query?.resource === "usage") return (await import("../../../lib/server/contract-usage.js")).handleContractUsage(request, response);
   const actor = await requireDirector(request, response);
   if (!actor) return;
   if (request.method === "GET") {
