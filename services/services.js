@@ -129,4 +129,6 @@ window.addEventListener("harmony:refresh", () => {
   if (document.querySelector("#service-search").value.trim().length >= 2) searchPartners();
 });
 
-searchPartners();
+Promise.resolve(window.siteAccessReady).then((access) => {
+  if (access?.tabs?.includes("services")) searchPartners();
+});

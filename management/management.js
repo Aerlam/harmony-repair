@@ -21,7 +21,7 @@ async function api(url, options = {}) {
   const batchErrors = { invalid_employee_batch: "Vérifie les lignes : Nom, Prénom et ID unique, puis choisis un rôle pour le lot.", employee_number_duplicate_in_batch: "Un ID unique apparaît plusieurs fois dans le copier-coller.", employee_number_exists: "Un des ID uniques du lot est déjà utilisé.", bulk_creation_failed: "L’ajout du lot a échoué. Recharge la liste avant de réessayer." };
   if (!response.ok && batchErrors[data.error]) throw new Error(batchErrors[data.error]);
   if (!response.ok && data.error === "contract_file_upload_failed") throw new Error("La fiche est enregistrée, mais le PDF n’a pas pu être stocké. Réessaie l’ajout du fichier.");
-  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", contract_pdf_unreadable: "Aucun texte exploitable n’a été trouvé. Tu peux toujours joindre le PDF et remplir la fiche manuellement.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_role_permissions: "Chaque rôle doit conserver au moins un onglet accessible.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", contract_pdf_unreadable: "Aucun texte exploitable n’a été trouvé. Tu peux toujours joindre le PDF et remplir la fiche manuellement.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -33,8 +33,9 @@ function safe(text) { const el = document.createElement("span"); el.textContent 
 async function load() {
   if (document.body.dataset.page === "contracts") { await loadContracts(); return; }
   try {
-    const result = await api("/api/management/employees"); employees = result.employees; currentRole = result.role;
-    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = "Direction connectée"; });
+    const page = document.body.dataset.page;
+    const result = await api(page === "dashboard" ? "/api/management/employees?resource=dashboard" : "/api/management/employees"); employees = result.employees; currentRole = result.role;
+    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = result.name || (result.role === "admin" || result.role === "director" ? "Direction connectée" : result.role); });
     document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
     if (document.body.dataset.page === "dashboard") renderDashboard(); else if (document.body.dataset.page === "employees") renderEmployees(); else await loadDirectors();
     tell("");
@@ -580,8 +581,35 @@ async function loadDirectors() {
     const data = await api("/api/management/directors");
     const tbody = document.querySelector("#director-rows");
     tbody.innerHTML = data.directors.length ? data.directors.map((director) => '<tr><td><div class="person-name">' + safe(director.name || "Directeur") + (director.role === "admin" ? ' <span class="admin-badge">ADMIN</span>' : "") + '</div><div class="person-id">' + safe(director.discordId) + '</div></td><td>' + (director.addedAt ? new Date(director.addedAt).toLocaleDateString("fr-FR") : "Compte principal") + '</td><td>' + (director.role === "admin" ? '<span class="doc-status">Protégé</span>' : '<button class="remove-link" data-action="remove-director" data-id="' + safe(director.discordId) + '">Retirer l’accès</button>') + '</td></tr>').join("") : '<tr class="empty-row"><td colspan="3">Aucun directeur secondaire. Tu peux ajouter un compte ci-dessus.</td></tr>';
+    await loadRolePermissions();
   } catch (error) { tell(error.message, true); }
 }
+
+async function loadRolePermissions() {
+  const panel = document.querySelector("#role-permissions-panel");
+  if (!panel) return;
+  const data = await api("/api/management/employees?resource=permissions");
+  const tbody = document.querySelector("#role-permission-rows");
+  const tabLabels = Object.fromEntries(data.tabs.map((tab) => [tab.key, tab.label]));
+  const tabs = data.tabs.map((tab) => tab.key);
+  tbody.innerHTML = data.roles.map((role) => '<tr><th scope="row">' + safe(ROLE_LABELS[role] || role) + '</th>' + tabs.map((tab) => '<td><label class="permission-toggle"><input type="checkbox" data-role="' + safe(role) + '" data-tab="' + safe(tab) + '" ' + (data.permissions[role][tab] ? "checked" : "") + '><span class="sr-only">' + safe(tabLabels[tab] + " pour " + (ROLE_LABELS[role] || role)) + '</span></label></td>').join("") + '</tr>').join("");
+  panel.hidden = false;
+}
+
+document.querySelector("#save-role-permissions")?.addEventListener("click", async (event) => {
+  const button = event.currentTarget;
+  button.disabled = true;
+  try {
+    const permissions = {};
+    document.querySelectorAll("#role-permission-rows input[data-role]").forEach((input) => {
+      permissions[input.dataset.role] ||= {};
+      permissions[input.dataset.role][input.dataset.tab] = input.checked;
+    });
+    await api("/api/management/employees?resource=permissions", { method: "PUT", body: JSON.stringify({ permissions }) });
+    tell("Les permissions des rôles ont été enregistrées.");
+  } catch (error) { tell(error.message, true); }
+  finally { button.disabled = false; }
+});
 
 document.querySelector("#director-form")?.addEventListener("submit", async (event) => {
   event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
@@ -604,6 +632,6 @@ window.addEventListener("harmony:refresh", () => {
   load();
 });
 
-load();
+Promise.resolve(window.siteAccessReady).then((access) => { if (access) load(); });
 
 

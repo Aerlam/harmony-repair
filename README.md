@@ -35,6 +35,10 @@ Les variables Production attendues dans Vercel :
 
 L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les documents, contrats et listes d’accès sont stockés dans le Blob privé harmony-rp-private-documents. Vercel fournit BLOB_READ_WRITE_TOKEN lorsque le magasin est connecté au projet.
 
+## Rôles et permissions
+
+Un employé dont la fiche contient son identifiant Discord peut se connecter avec Discord sans être ajouté une deuxième fois dans la liste des directeurs. Ses onglets et droits API sont déterminés par son rôle dans le garage. L’admin principal configure la matrice depuis l’onglet Accès; les changements sont stockés dans le Blob privé. Par défaut, les rôles Patron, Co-patron, DRH, RH et Chef d’atelier ont accès au tableau de bord, aux employés, aux contrats et aux partenaires. Mécano confirmé, Mécano apprenti et Stagiaire ont accès à Partenaires. L’onglet Accès est réservé à l’admin principal.
+
 ## Accès et documents
 
 L’API vérifie la session Discord et le rôle sur le serveur avant chaque opération. Les écritures vérifient l’origine de la requête. Les documents sont vérifiés par signature de fichier, limités à 4 Mo par document, stockés en privé et téléchargés en pièce jointe. Formats acceptés : PDF, JPG, PNG et WebP.

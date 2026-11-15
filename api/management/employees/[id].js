@@ -1,5 +1,5 @@
 import { del } from "@vercel/blob";
-import { requireDirector } from "../../../lib/server/director.js";
+import { requireSiteTab } from "../../../lib/server/site-access.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, loadEmployee, saveEmployee } from "../../../lib/server/employees.js";
 import { handleContractItem } from "../../../lib/server/contracts-api.js";
@@ -8,7 +8,7 @@ export const config = { api: { bodyParser: { sizeLimit: "5mb" } } };
 
 export default async function handler(request, response) {
   if (["contracts", "contract-file"].includes(request.query?.resource)) return handleContractItem(request, response);
-  if (!await requireDirector(request, response)) return;
+  if (!await requireSiteTab(request, response, "employees")) return;
   const id = String(request.query?.id || "");
   if (["PATCH", "DELETE"].includes(request.method) && !isSameOrigin(request)) return json(response, 403, { error: "invalid_origin" });
   try {
