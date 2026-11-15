@@ -19,6 +19,7 @@ async function api(url, options = {}) {
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
   const batchErrors = { invalid_employee_batch: "Vérifie les lignes : Nom, Prénom et ID unique, puis choisis un rôle pour le lot.", employee_number_duplicate_in_batch: "Un ID unique apparaît plusieurs fois dans le copier-coller.", employee_number_exists: "Un des ID uniques du lot est déjà utilisé.", bulk_creation_failed: "L’ajout du lot a échoué. Recharge la liste avant de réessayer." };
   if (!response.ok && batchErrors[data.error]) throw new Error(batchErrors[data.error]);
+  if (!response.ok && data.error === "contract_file_upload_failed") throw new Error("La fiche est enregistrée, mais le PDF n’a pas pu être stocké. Réessaie l’ajout du fichier.");
   if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", contract_pdf_unreadable: "Aucun texte exploitable n’a été trouvé. Tu peux toujours joindre le PDF et remplir la fiche manuellement.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
@@ -131,7 +132,7 @@ document.querySelector("#contract-file-input")?.addEventListener("change", async
     let binary = "";
     for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
     pendingContractPdfData = btoa(binary);
-    tell("Lecture du contrat en cours…");
+    tell("Lecture du contrat en cours… Le PDF sera joint à la fiche après son enregistrement.");
     const result = await api("/api/management/employees?resource=contract-import", { method: "POST", body: JSON.stringify({ fileName: file.name, data: pendingContractPdfData }) });
     const extracted = result.extracted || {};
     const form = document.querySelector("#contract-form");
