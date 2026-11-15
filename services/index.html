@@ -9,16 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/management/management.css">
+    <script src="/assets/navigation.js" defer></script>
     <script src="/services/services.js" defer></script>
   </head>
   <body data-page="services">
     <header class="topbar">
       <a class="brand" href="/services/"><img class="brand-mark" src="/assets/harmony-logo.png" alt=""><span>harmony<span class="brand-light">repair</span></span></a>
-      <nav class="nav">
-        <a class="active" href="/services/">Partenaires</a>
-        <a href="/login/?next=%2Fmanagement%2F">Direction</a>
-        <a href="/login/?next=%2Fservices%2F">Compte Discord ↗</a>
-      </nav>
+      <nav class="nav" data-site-navigation aria-label="Navigation principale"></nav>
       <div class="account"><span id="garage-employee-name">Connexion requise</span></div>
     </header>
     <main class="shell">

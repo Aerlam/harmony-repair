@@ -9,18 +9,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/management/management.css">
+    <script src="/assets/navigation.js" defer></script>
     <script src="/management/management.js" defer></script>
   </head>
   <body data-page="contracts">
     <header class="topbar">
       <a class="brand" href="/management/"><img class="brand-mark" src="/assets/harmony-logo.png" alt=""><span>harmony<span class="brand-light">repair</span></span></a>
-      <nav class="nav">
-        <a href="/management/">Vue d’ensemble</a>
-        <a href="/employees/">Employés</a>
-        <a class="active" href="/contracts/">Contrats</a>
-        <a href="/services/">Partenaires</a>
-        <a class="admin-link" href="/directors/" hidden>Accès</a>
-      </nav>
+      <nav class="nav" data-site-navigation aria-label="Navigation principale"></nav>
       <div class="account"><span id="director-name">Direction</span><a href="/login/">Compte Discord ↗</a></div>
     </header>
     <main class="shell">
