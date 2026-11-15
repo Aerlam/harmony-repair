@@ -9,13 +9,16 @@ let contracts = [];
 let currentRole = "director";
 let editingEmployeeId = null;
 let editingContractId = null;
+let pendingContractPdfData = "";
 function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
 async function api(url, options = {}) {
   const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
   if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
   if (response.status === 403) throw new Error("Accès refusé. Seuls les comptes autorisés par l’admin peuvent ouvrir cette page.");
   const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
+  const batchErrors = { invalid_employee_batch: "Vérifie les lignes : Nom, Prénom et ID unique, puis choisis un rôle pour le lot.", employee_number_duplicate_in_batch: "Un ID unique apparaît plusieurs fois dans le copier-coller.", employee_number_exists: "Un des ID uniques du lot est déjà utilisé.", bulk_creation_failed: "L’ajout du lot a échoué. Recharge la liste avant de réessayer." };
+  if (!response.ok && batchErrors[data.error]) throw new Error(batchErrors[data.error]);
+  if (!response.ok) throw new Error(({ invalid_employee: "Vérifie les informations saisies, notamment l’ID Discord et le rôle.", employee_number_exists: "Cet ID unique est déjà utilisé.", employee_discord_id_exists: "Cet ID Discord est déjà associé à un autre employé.", invalid_contract: "Vérifie le nom, le type, le nombre de membres déclarés, le prix et les prestations. Si le contrat est limité à certaines personnes, complète leurs prénoms et noms.", contract_exists: "Un contrat de cette catégorie porte déjà ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit être un PDF valide.", contract_file_too_large: "Le PDF dépasse la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat n’est enregistré.", contract_pdf_unreadable: "Aucun texte exploitable n’a été trouvé. Tu peux toujours joindre le PDF et remplir la fiche manuellement.", unsupported_file_type: "Format refusé : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dépasse la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanément indisponible." })[data.error] || "Une erreur est survenue. Réessaie.");
   return data;
 }
 function hasDocument(employee, type) {
@@ -51,7 +54,10 @@ function renderContracts() {
     const date = contract.updatedAt || contract.createdAt;
     const file = contract.contractFile ? '<div class="contract-attached"><span>Contrat signé : ' + safe(contract.contractFile.filename || "contrat.pdf") + '</span><button class="file-button" type="button" data-action="open-contract-file" data-id="' + safe(contract.id) + '">Ouvrir</button><button class="remove-link" type="button" data-action="remove-contract-file" data-id="' + safe(contract.id) + '">Retirer</button></div>' : '<small class="contract-no-file">Aucun contrat signé joint</small>';
     const declaredMembers = Number.isInteger(contract.declaredMembers) && contract.declaredMembers > 0 ? contract.declaredMembers + ' membre' + (contract.declaredMembers > 1 ? 's' : '') + ' déclarés' : 'Effectif déclaré non renseigné';
-    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + ' $ / semaine</span></div><div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+    const price = Number(contract.weeklyPrice).toLocaleString("fr-FR") + (contract.pricingMode === "per_member" ? ' $ / membre / semaine (' + (Number(contract.weeklyPrice) * Number(contract.declaredMembers)).toLocaleString("fr-FR") + ' $ estimés au total)' : ' $ / semaine');
+    const contact = [contract.responsibleName ? 'Responsable : ' + safe(contract.responsibleName) : '', contract.contactName && contract.contactName !== contract.responsibleName ? 'Contact : ' + safe(contract.contactName) : ''].filter(Boolean).join(' · ');
+    const startDate = contract.startDate ? new Date(contract.startDate + "T00:00:00").toLocaleDateString("fr-FR") : "";
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + price + '</span></div>' + (contact ? '<small class="contract-people">' + contact + '</small>' : '') + '<div class="contract-services">' + services + '</div><small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisées : " : "Accès : ") + people + '</small>' + file + (startDate ? '<small class="contract-date">Prise d’effet : ' + startDate + '</small>' : '') + '<small class="contract-date">Mis à jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "—") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
   }).join("") : '<div class="empty-row">Aucun contrat enregistré. Ajoute le premier groupe ci-dessus.</div>';
   document.querySelector("#contract-count").textContent = contracts.length;
 }
@@ -59,7 +65,9 @@ function resetContractForm() {
   const form = document.querySelector("#contract-form");
   if (!form) return;
   editingContractId = null;
+  pendingContractPdfData = "";
   form.reset();
+  syncContractPriceLabel();
   document.querySelector("#contract-restricted").checked = false;
   document.querySelector("#contract-people-fields").hidden = true;
   document.querySelector("#contract-people-list").replaceChildren();
@@ -68,6 +76,12 @@ function resetContractForm() {
   document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
   document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
   document.querySelector("#contract-cancel").hidden = true;
+}
+function syncContractPriceLabel() {
+  const perMember = document.querySelector("#contract-pricing-mode")?.value === "per_member";
+  document.querySelector("#contract-weekly-price-title").textContent = perMember ? "Tarif par membre et par semaine ($)" : "Prix du forfait par semaine ($)";
+  document.querySelector('[name="weeklyPrice"]').placeholder = perMember ? "Ex. 2 000" : "Ex. 35 000";
+  document.querySelector("#contract-price-help").textContent = perMember ? "Le total hebdomadaire estimé dépendra du nombre de membres déclarés." : "Indique 0 si le contrat est gratuit.";
 }
 async function loadContracts() {
   try {
@@ -91,6 +105,45 @@ async function refreshContractsInBackground() {
 window.setInterval(refreshContractsInBackground, 15000);
 document.addEventListener("visibilitychange", () => {
   if (document.visibilityState === "visible") refreshContractsInBackground();
+});
+document.querySelector("#contract-pricing-mode")?.addEventListener("change", syncContractPriceLabel);
+document.querySelector("#contract-file-input")?.addEventListener("change", async (event) => {
+  const file = event.currentTarget.files?.[0];
+  pendingContractPdfData = "";
+  if (!file) return;
+  if (!file.name.toLowerCase().endsWith(".pdf") || file.size > 3 * 1024 * 1024) {
+    tell(file.size > 3 * 1024 * 1024 ? "Le PDF dépasse la limite de 3 Mo." : "Choisis un fichier PDF.", true);
+    event.currentTarget.value = "";
+    return;
+  }
+  try {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    let binary = "";
+    for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+    pendingContractPdfData = btoa(binary);
+    tell("Lecture du contrat en cours…");
+    const result = await api("/api/management/employees?resource=contract-import", { method: "POST", body: JSON.stringify({ fileName: file.name, data: pendingContractPdfData }) });
+    const extracted = result.extracted || {};
+    const form = document.querySelector("#contract-form");
+    const detected = [];
+    const fill = (field, value, label) => { if (value !== null && value !== undefined && value !== "") { form.elements[field].value = value; detected.push(label); } };
+    fill("name", extracted.name, "nom");
+    fill("category", extracted.category, "type");
+    fill("responsibleName", extracted.responsibleName, "responsable");
+    fill("declaredMembers", extracted.declaredMembers, "effectif déclaré");
+    fill("contactName", extracted.contactName, "contact");
+    fill("pricingMode", extracted.pricingMode, "formule tarifaire");
+    if (extracted.weeklyPrice !== null && extracted.weeklyPrice !== undefined) fill("weeklyPrice", extracted.weeklyPrice, "tarif");
+    fill("startDate", extracted.startDate, "date d’effet");
+    if (Array.isArray(extracted.services) && extracted.services.length) {
+      for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = extracted.services.includes(checkbox.value);
+      detected.push("prestations");
+    }
+    syncContractPriceLabel();
+    tell(detected.length ? "Champs préremplis depuis le PDF : " + detected.join(", ") + ". Vérifie-les et complète ce qui manque avant d’enregistrer." : "Aucun champ reconnu dans ce PDF. Tu peux le joindre et remplir la fiche manuellement.");
+  } catch (error) {
+    tell(error.message + " Tu peux quand même remplir les champs manuellement et joindre le PDF.", true);
+  }
 });
 document.querySelector("#contract-form")?.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -123,10 +176,13 @@ document.querySelector("#contract-form")?.addEventListener("submit", async (even
     }
     if (savedContract && selectedFile) {
       try {
-        const bytes = new Uint8Array(await selectedFile.arrayBuffer());
-        let binary = "";
-        for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
-        const uploaded = await api("/api/management/employees/" + encodeURIComponent(savedContract.id) + "?resource=contract-file", { method: "PUT", body: JSON.stringify({ fileName: selectedFile.name, data: btoa(binary) }) });
+        if (!pendingContractPdfData) {
+          const bytes = new Uint8Array(await selectedFile.arrayBuffer());
+          let binary = "";
+          for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+          pendingContractPdfData = btoa(binary);
+        }
+        const uploaded = await api("/api/management/employees/" + encodeURIComponent(savedContract.id) + "?resource=contract-file", { method: "PUT", body: JSON.stringify({ fileName: selectedFile.name, data: pendingContractPdfData }) });
         savedContract = uploaded.contract;
         contracts = contracts.map((contract) => contract.id === savedContract.id ? savedContract : contract);
         renderContracts();
@@ -188,11 +244,18 @@ document.querySelector("#contract-list")?.addEventListener("click", async (event
   }
   if (button.dataset.action === "edit-contract") {
     editingContractId = contract.id;
+    pendingContractPdfData = "";
     const form = document.querySelector("#contract-form");
+    document.querySelector("#contract-file-input").value = "";
     form.elements.name.value = contract.name;
     form.elements.category.value = contract.category;
-    form.elements.declaredMembers.value = contract.declaredMembers;
+    form.elements.responsibleName.value = contract.responsibleName || "";
+    form.elements.declaredMembers.value = contract.declaredMembers ?? "";
+    form.elements.contactName.value = contract.contactName || "";
+    form.elements.pricingMode.value = contract.pricingMode || "flat";
     form.elements.weeklyPrice.value = contract.weeklyPrice;
+    form.elements.startDate.value = contract.startDate || "";
+    syncContractPriceLabel();
     const currentFile = document.querySelector("#contract-file-current");
     if (contract.contractFile) {
       currentFile.innerHTML = 'PDF actuel : <strong>' + safe(contract.contractFile.filename || "contrat.pdf") + '</strong>. Sélectionne un autre PDF pour le remplacer.';
@@ -250,6 +313,65 @@ function renderEmployees() {
     return '<details class="employee-card" data-id="' + employee.id + '"' + expanded + '><summary class="employee-summary"><span class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><span class="employee-name-block"><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>ID unique · ' + safe(employee.employeeNumber) + '</small></span></span><span class="employee-summary-role"><small>Grade</small><strong class="role-pill">' + safe(roleLabel) + '</strong></span><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' pièce' + (miss.length > 1 ? "s" : "") + ' à compléter' : "Dossier complet") + '</span><span class="employee-chevron" aria-hidden="true">⌄</span></summary><div class="employee-details"><div class="employee-detail-bar"><span class="employee-subtitle">Ajouté le ' + date + '</span><div class="employee-head-actions"><button class="edit-link" type="button" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" type="button" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></div><div class="employee-meta"><div><span>ID unique</span><strong>' + safe(employee.employeeNumber) + '</strong></div><div><span>ID Discord</span><strong>' + safe(employee.discordId || "À renseigner") + '</strong></div><div><span>Rôle dans la société</span><strong class="role-pill">' + safe(roleLabel) + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte d’identité</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document"><h4>Diplômes</h4>' + docCell(employee, "diploma") + '</section><section class="employee-document"><h4>Contrat</h4>' + docCell(employee, "contract") + '</section></div></div></details>';
   }).join("") : '<div class="empty-row">' + (employees.length ? "Aucun résultat pour cette recherche." : "Aucun employé pour le moment. Ajoute le premier dossier.") + "</div>";
 }
+function parseEmployeePaste() {
+  const lines = (document.querySelector("#employee-bulk-rows")?.value || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const rows = [];
+  let malformed = 0;
+  for (const [index, line] of lines.entries()) {
+    if (index === 0 && /nom/i.test(line) && /pr[eé]nom/i.test(line) && /id/i.test(line)) continue;
+    let columns;
+    if (line.includes("\t")) columns = line.split("\t");
+    else if (line.includes(";")) columns = line.split(";");
+    else if (line.includes("|")) columns = line.split("|");
+    else if (line.includes(",")) columns = line.split(",");
+    else {
+      const match = line.match(/^(.+?)\s+([^\s]+)\s+([\p{L}\p{N}_-]{2,24})$/u);
+      columns = match ? [match[1], match[2], match[3]] : [];
+    }
+    if (columns.length !== 3) { malformed += 1; continue; }
+    const [lastName, firstName, employeeNumber] = columns.map((value) => value.trim().replace(/^\s*["']|["']\s*$/g, ""));
+    if (!lastName || !firstName || !/^[\p{L}\p{N}_-]{2,24}$/u.test(employeeNumber)) { malformed += 1; continue; }
+    rows.push({ lastName, firstName, employeeNumber });
+  }
+  const seen = new Set();
+  const duplicates = rows.filter((row) => { const key = row.employeeNumber.toLocaleLowerCase("fr"); if (seen.has(key)) return true; seen.add(key); return false; });
+  return { rows, malformed, duplicates };
+}
+function updateEmployeeBulkPreview() {
+  const { rows, malformed, duplicates } = parseEmployeePaste();
+  const preview = document.querySelector("#employee-bulk-preview");
+  if (!preview) return;
+  preview.classList.toggle("error", Boolean(malformed || duplicates.length));
+  const sample = rows.slice(0, 5).map((row) => row.lastName + " " + row.firstName + " · " + row.employeeNumber).join("\n");
+  preview.textContent = rows.length + " ligne(s) reconnue(s)" + (malformed ? " · " + malformed + " ligne(s) à corriger" : "") + (duplicates.length ? " · " + duplicates.length + " ID(s) en double" : "") + (sample ? "\n" + sample : "");
+}
+const employeeBulkDialog = document.querySelector("#employee-bulk-dialog");
+document.querySelector("#add-employees-paste")?.addEventListener("click", () => { updateEmployeeBulkPreview(); document.querySelector("#employee-bulk-notice").hidden = true; employeeBulkDialog.showModal(); });
+document.querySelector("#employee-bulk-rows")?.addEventListener("input", updateEmployeeBulkPreview);
+document.querySelector("#bulk-dialog-close")?.addEventListener("click", () => employeeBulkDialog.close());
+document.querySelector("#bulk-dialog-cancel")?.addEventListener("click", () => employeeBulkDialog.close());
+document.querySelector("#employee-bulk-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const { rows, malformed, duplicates } = parseEmployeePaste();
+  if (!rows.length || malformed || duplicates.length) { updateEmployeeBulkPreview(); return; }
+  const button = event.currentTarget.querySelector('[type="submit"]');
+  button.disabled = true;
+  try {
+    const result = await api("/api/management/employees?resource=bulk", { method: "POST", body: JSON.stringify({ rows, garageRole: document.querySelector("#employee-bulk-role").value }) });
+    employees = [...employees, ...result.employees];
+    renderEmployees();
+    employeeBulkDialog.close();
+    event.currentTarget.reset();
+    document.querySelector("#employee-bulk-preview").textContent = "Aucune ligne prête.";
+    tell(result.employees.length + " employé(s) ajouté(s). Ajoute leur ID Discord en modifiant les fiches au besoin.");
+  } catch (error) {
+    const formNotice = document.querySelector("#employee-bulk-notice");
+    formNotice.textContent = error.message;
+    formNotice.hidden = false;
+    formNotice.focus();
+  }
+  finally { button.disabled = false; }
+});
 document.querySelector("#search")?.addEventListener("input", renderEmployees);
 const dialog = document.querySelector("#employee-dialog");
 const employeeForm = document.querySelector("#employee-form");

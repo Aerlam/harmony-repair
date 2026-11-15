@@ -1,10 +1,17 @@
 import { requireDirector } from "../../../lib/server/director.js";
 import { isSameOrigin, json, methodNotAllowed } from "../../../lib/server/http.js";
 import { isValidDiscordId, isValidGarageRole, listEmployees, newEmployee, saveEmployee } from "../../../lib/server/employees.js";
-import { handleContractCollection } from "../../../lib/server/contracts-api.js";
+import { handleContractCollection, handleContractImport } from "../../../lib/server/contracts-api.js";
+import { handleEmployeeBulk } from "../../../lib/server/employees-api.js";
+import { handleContractUsage } from "../../../lib/server/contract-usage.js";
+
+export const config = { api: { bodyParser: { sizeLimit: "5mb" } } };
 
 export default async function handler(request, response) {
+  if (request.query?.resource === "contract-import") return handleContractImport(request, response);
   if (request.query?.resource === "contracts") return handleContractCollection(request, response);
+  if (request.query?.resource === "bulk") return handleEmployeeBulk(request, response);
+  if (request.query?.resource === "usage") return handleContractUsage(request, response);
   const actor = await requireDirector(request, response);
   if (!actor) return;
   if (request.method === "GET") {
@@ -16,7 +23,7 @@ export default async function handler(request, response) {
   const { firstName, lastName, employeeNumber, discordId, garageRole } = request.body || {};
   const clean = (value) => typeof value === "string" ? value.trim() : "";
   const first = clean(firstName), last = clean(lastName), number = clean(employeeNumber), discord = clean(discordId), role = clean(garageRole);
-  if (first.length < 1 || first.length > 60 || last.length < 1 || last.length > 60 || !/^[\p{L}\p{N}_-]{2,24}$/u.test(number) || !isValidDiscordId(discord) || !isValidGarageRole(role)) {
+  if (first.length < 1 || first.length > 60 || last.length < 1 || last.length > 60 || !/^[\p{L}\p{N}_-]{2,24}$/u.test(number) || (discord && !isValidDiscordId(discord)) || !isValidGarageRole(role)) {
     return json(response, 400, { error: "invalid_employee" });
   }
   try {
@@ -24,7 +31,7 @@ export default async function handler(request, response) {
     if (employees.some((employee) => employee.employeeNumber.toLowerCase() === number.toLowerCase())) {
       return json(response, 409, { error: "employee_number_exists" });
     }
-    if (employees.some((employee) => employee.discordId === discord)) {
+    if (discord && employees.some((employee) => employee.discordId === discord)) {
       return json(response, 409, { error: "employee_discord_id_exists" });
     }
     const employee = await saveEmployee(newEmployee(first, last, number, discord, role));

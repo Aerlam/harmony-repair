@@ -33,10 +33,14 @@
           <div class="contract-fields">
             <label>Nom de l’entreprise, famille ou groupe<input name="name" maxlength="100" placeholder="Ex. Los Santos Customs" required></label>
             <label>Type<select name="category" required><option value="">Choisir un type</option><option value="entreprise">Entreprise</option><option value="famille_groupe">Famille / Groupe</option></select></label>
+            <label>Responsable / patron<input name="responsibleName" maxlength="100" placeholder="Nom du responsable"></label>
             <label>Nombre de membres déclarés par le responsable<input name="declaredMembers" type="number" min="1" max="10000" step="1" placeholder="Ex. 15" required></label>
-            <label>Prix du contrat par semaine ($)<input name="weeklyPrice" type="number" min="0" max="1000000000" step="1" placeholder="Ex. 5 000" required><small>Indique 0 si le contrat est gratuit.</small></label>
+            <label>Contact de référence<input name="contactName" maxlength="100" placeholder="Nom du contact"></label>
+            <label>Formule tarifaire<select name="pricingMode" id="contract-pricing-mode" required><option value="flat">Forfait par semaine</option><option value="per_member">Tarif par membre et par semaine</option></select></label>
+            <label id="contract-weekly-price-label"><span id="contract-weekly-price-title">Prix du forfait par semaine ($)</span><input name="weeklyPrice" type="number" min="0" max="1000000000" step="1" placeholder="Ex. 35 000" required><small id="contract-price-help">Indique 0 si le contrat est gratuit.</small></label>
+            <label>Date de prise d’effet<input name="startDate" type="date"></label>
           </div>
-          <label class="contract-file-field">Contrat signé (PDF)<input id="contract-file-input" type="file" accept="application/pdf,.pdf"><small>PDF uniquement, 3 Mo maximum. Tu peux l’ajouter maintenant ou le déposer plus tard en modifiant le contrat.</small></label>
+          <label class="contract-file-field">Contrat signé (PDF)<input id="contract-file-input" type="file" accept="application/pdf,.pdf"><small>Le PDF préremplit les champs dont le texte est lisible. Tu peux tout corriger ou saisir manuellement. PDF de 3 Mo maximum.</small></label>
           <div id="contract-file-current" class="contract-file-current" hidden></div>
           <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Choisis une ou plusieurs prestations prévues au contrat.</p>
             <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>

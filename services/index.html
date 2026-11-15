@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#070b11">
+    <title>Recherche partenaires — Harmony Repair</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/management/management.css">
+    <script src="/services/services.js" defer></script>
+  </head>
+  <body data-page="services">
+    <header class="topbar">
+      <a class="brand" href="/services/"><img class="brand-mark" src="/assets/harmony-logo.png" alt=""><span>harmony<span class="brand-light">repair</span></span></a>
+      <nav class="nav">
+        <a class="active" href="/services/">Partenaires</a>
+        <a href="/login/?next=%2Fmanagement%2F">Direction</a>
+        <a href="/login/?next=%2Fservices%2F">Compte Discord ↗</a>
+      </nav>
+      <div class="account"><span id="garage-employee-name">Connexion requise</span></div>
+    </header>
+    <main class="shell">
+      <section class="welcome">
+        <div><div class="eyebrow"><i></i> INTERVENTIONS DU GARAGE</div><h1>Contrats <em>partenaires.</em></h1><p>Recherche un groupe ou un membre autorisé, puis enregistre les prestations prises cette semaine.</p></div>
+      </section>
+      <div id="service-notice" class="notice" role="status" hidden></div>
+      <section class="panel service-search-panel">
+        <form id="service-search-form" class="service-search-form">
+          <label for="service-search">Nom de l’entreprise, du groupe ou du membre</label>
+          <div><input id="service-search" type="search" minlength="2" autocomplete="off" placeholder="Ex. White Hacker ou Delavga Tyrelle"><button class="button" type="submit">Rechercher <span aria-hidden="true">⌕</span></button></div>
+          <small>Les contrats nominatifs ne montrent que le membre correspondant à ta recherche.</small>
+        </form>
+      </section>
+      <section class="panel service-results-panel">
+        <div class="panel-head"><div><div class="eyebrow">PRESTATIONS AUTORISÉES</div><h2>Résultats <span id="usage-week" class="count-pill">Cette semaine</span></h2></div></div>
+        <div id="service-results" class="service-results" aria-live="polite"><div class="loading">Connecte-toi avec le compte Discord lié à ta fiche employé.</div></div>
+      </section>
+      <p class="privacy-note">Les compteurs sont propres à la semaine en cours. Chaque ajout garde une trace de l’employé qui l’a enregistré.</p>
+    </main>
+    <footer><span>Harmony Repair · Recherche des contrats</span><span>Accès réservé aux employés enregistrés</span></footer>
+  </body>
+</html>

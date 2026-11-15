@@ -17,9 +17,9 @@
       </a>
 
       <section class="login-card" aria-labelledby="login-title">
-        <div class="eyebrow"><span></span> ESPACE DE DIRECTION</div>
+        <div class="eyebrow"><span></span> CONNEXION HARMONY REPAIR</div>
         <h1 id="login-title">Accès à votre<br><em>atelier.</em></h1>
-        <p class="intro">Connectez-vous avec votre compte Discord autorisé pour ouvrir l’espace de gestion Harmony Repair.</p>
+        <p class="intro">Connecte-toi avec Discord pour accéder à l’espace Harmony Repair correspondant à ton compte.</p>
 
         <div class="status-panel" id="auth-status" role="status" aria-live="polite">Vérification de la connexion…</div>
 
@@ -36,7 +36,7 @@
         <section class="signed-in" id="signed-in" hidden>
           <img class="avatar" id="user-avatar" alt="">
           <div class="user-copy"><strong id="user-name"></strong><span>Vous êtes connecté à Harmony Repair.</span></div>
-          <a class="signout-button" href="/management/">Ouvrir le tableau de bord</a>
+          <a class="signout-button" id="continue-link" href="/management/"><span id="continue-label">Continuer</span></a>
           <form action="/api/auth/signout" method="post" id="signout-form">
             <input type="hidden" name="csrfToken" id="csrf-token">
             <input type="hidden" name="callbackUrl" value="/login/">

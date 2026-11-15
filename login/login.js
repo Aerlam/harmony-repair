@@ -2,6 +2,10 @@ const statusPanel = document.querySelector("#auth-status");
 const signInButton = document.querySelector("#discord-signin");
 const signedInPanel = document.querySelector("#signed-in");
 const signOutForm = document.querySelector("#signout-form");
+const requestedNext = new URLSearchParams(window.location.search).get("next");
+const nextPath = ["/services/", "/management/", "/employees/", "/contracts/", "/directors/"].find((path) => requestedNext === path) || "/management/";
+document.querySelector('[name="callbackUrl"]').value = nextPath;
+document.querySelector("#continue-link").href = nextPath;
 
 function showStatus(message, state = "info") {
   statusPanel.textContent = message;
@@ -37,6 +41,7 @@ async function loadLoginState() {
       signInButton.hidden = true;
       signedInPanel.hidden = false;
       document.querySelector("#user-name").textContent = user.name || "Compte Discord";
+      document.querySelector("#continue-label").textContent = nextPath === "/services/" ? "Ouvrir l’espace des prestations" : "Ouvrir le tableau de bord";
       const avatar = document.querySelector("#user-avatar");
       if (user.image) {
         avatar.src = user.image;
