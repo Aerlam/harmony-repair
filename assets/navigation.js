@@ -54,5 +54,5 @@ async function loadSiteAccess() {
 
 window.siteAccessReady = loadSiteAccess();
 window.addEventListener("harmony:refresh", (event) => {
-  if (["local-change", "another-tab", "tab-visible"].includes(event.detail?.source)) loadSiteAccess();
+  if (["local-change", "another-tab", "tab-visible", "periodic-sync"].includes(event.detail?.source)) loadSiteAccess();
 });
