@@ -2,9 +2,25 @@
 
 Portail de direction pour le garage Harmony Repair, sur serveur GTA V RP. Le tableau de bord donne l’effectif et les rappels des dossiers. La page Employés centralise les informations et pièces du personnel. L’onglet Contrats suit les entreprises, familles et groupes ainsi que leurs prestations autorisées. L’onglet Accès permet à l’admin principal d’autoriser ou retirer des comptes Discord.
 
-## Organisation
+## Organisation du projet
 
-Les pages statiques sont réparties dans management/, employees/, contracts/, directors/ et login/. Les routes API sont dans api/ et la logique serveur partagée dans lib/server/. Les secrets restent dans les variables d’environnement Vercel.
+```text
+/
+├── index.html, styles.css          Accueil et styles partagés
+├── assets/                         Logo, navigation et synchronisation du site
+├── login/                          Connexion Discord
+├── management/                     Tableau de bord et gestion du personnel
+├── employees/                      Registre des employés
+├── contracts/                      Contrats partenaires et recherche de prestations
+├── services/                       Déclaration des prestations utilisées
+├── directors/                      Gestion des accès administrateurs
+├── api/
+│   ├── auth/                       Début/retour de session Discord
+│   └── management/                 Routes API protégées par domaine
+└── lib/server/                     Auth, règles métier, stockage privé et validations
+```
+
+Les pages sont séparées par fonction, l’API porte les frontières d’accès, et `lib/server/` regroupe les traitements partagés. Les secrets et fichiers de configuration locaux sont exclus du dépôt par `.gitignore`; les secrets de production restent dans les variables d’environnement Vercel.
 
 ## Configuration Discord
 
@@ -21,7 +37,7 @@ L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les
 
 ## Accès et documents
 
-L’API vérifie la session Discord et le rôle sur le serveur avant chaque opération. Les changements doivent avoir la même origine que le site. Les documents sont vérifiés par signature de fichier, limités à 4 Mo par document, stockés en privé et téléchargés en pièce jointe. Formats acceptés : PDF, JPG, PNG et WebP.
+L’API vérifie la session Discord et le rôle sur le serveur avant chaque opération. Les écritures vérifient l’origine de la requête. Les documents sont vérifiés par signature de fichier, limités à 4 Mo par document, stockés en privé et téléchargés en pièce jointe. Formats acceptés : PDF, JPG, PNG et WebP.
 
 Ces dossiers sont prévus pour des documents fictifs de personnages RP. Évite d’y déposer de vrais documents personnels.
 
