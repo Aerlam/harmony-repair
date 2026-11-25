@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/management/management.css">
-    <script src="/assets/navigation.js" defer></script><script src="/assets/site-sync.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/dist/tesseract.min.js" integrity="sha384-2BQ3U3OdKOb0Uczxqr41I9UvZkzr4V9Hv8uSzMMZAlmhsFClvdZX5wi5fDCzG+tM" crossorigin="anonymous" defer></script>
+    <script src="/assets/navigation.js" defer></script><script src="/assets/site-sync.js" defer></script><script src="/assets/contract-roster.js" defer></script>
     <script src="/management/management.js" defer></script>
   </head>
   <body data-page="contracts">
@@ -44,6 +45,19 @@
       <div class="contract-roster-heading"><div><strong>Membres du partenaire</strong><small>Nom, prénom et ID unique affichés dans la recherche des prestations.</small></div><button id="contract-add-member" class="file-button" type="button">＋ Ajouter un membre</button></div>
       <div id="contract-members-list" class="contract-members-list"></div>
       <p class="contract-roster-empty" id="contract-members-empty">Aucun membre enregistré. Les prestations ne pourront pas être attribuées à un membre avant d’ajouter la liste.</p>
+      <details class="contract-roster-import">
+        <summary>Ajouter une liste de membres</summary>
+        <label for="contract-members-screens">Importer une ou plusieurs captures d’écran (ID unique et nom)</label>
+        <input id="contract-members-screens" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+        <div class="contract-roster-import-actions"><small>Les images sont lues dans ton navigateur et ne sont pas envoyées au serveur. Vérifie les lignes reconnues avant d’enregistrer.</small><button id="contract-read-screens" class="file-button" type="button">Lire les captures</button></div>
+        <details class="contract-roster-paste">
+          <summary>Ou coller une liste de membres</summary>
+          <label for="contract-members-paste">Colle une ligne par membre : Nom, Prénom, ID unique</label>
+          <textarea id="contract-members-paste" rows="5" placeholder="Tannous&#9;Elie&#9;156560&#10;Walker&#9;Jake&#9;HR-024"></textarea>
+          <div class="contract-roster-import-actions"><small>Les colonnes d’un tableur, les points-virgules et les virgules sont acceptés.</small><button id="contract-import-members" class="file-button" type="button">Ajouter la liste collée</button></div>
+        </details>
+        <p id="contract-roster-import-notice" class="contract-roster-import-notice" role="status" aria-live="polite"></p>
+      </details>
     </section>
     <fieldset class="service-options"><legend>Prestations autorisées</legend><p>Vérifie les prestations prévues au contrat.</p>
       <label><input type="checkbox" name="services" value="repair"><span>Réparation</span></label>
@@ -64,3 +78,4 @@
     <footer><span>Harmony Repair · Contrats partenaires</span><span>Portail de direction</span></footer>
   </body>
 </html>
+
