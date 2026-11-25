@@ -42,14 +42,14 @@
       <label>Date de prise d’effet<input name="startDate" type="date"></label>
     </div></details>
     <section class="contract-roster">
-      <div class="contract-roster-heading"><div><strong>Membres du partenaire</strong><small>Nom, prénom et ID unique affichés dans la recherche des prestations.</small></div><button id="contract-add-member" class="file-button" type="button">＋ Ajouter un membre</button></div>
+      <div class="contract-roster-heading"><div><strong>Membres du partenaire</strong><small>Facultatif : tu peux enregistrer le contrat sans liste et ajouter les membres plus tard. Les noms et ID servent à la recherche des prestations.</small></div><button id="contract-add-member" class="file-button" type="button">＋ Ajouter un membre</button></div>
       <div id="contract-members-list" class="contract-members-list"></div>
       <p class="contract-roster-empty" id="contract-members-empty">Aucun membre enregistré. Les prestations ne pourront pas être attribuées à un membre avant d’ajouter la liste.</p>
       <details class="contract-roster-import">
         <summary>Ajouter une liste de membres</summary>
         <label for="contract-members-screens">Importer une ou plusieurs captures d’écran (ID unique et nom)</label>
         <input id="contract-members-screens" type="file" accept="image/png,image/jpeg,image/webp" multiple>
-        <div class="contract-roster-import-actions"><small>Les images sont lues dans ton navigateur et ne sont pas envoyées au serveur. Vérifie les lignes reconnues avant d’enregistrer.</small><button id="contract-read-screens" class="file-button" type="button">Lire les captures</button></div>
+        <div class="contract-roster-import-actions"><small>Ajout facultatif. Les images sont lues dans ton navigateur et ne sont pas envoyées au serveur. Vérifie les lignes reconnues avant d’enregistrer.</small><button id="contract-read-screens" class="file-button" type="button">Lire les captures</button></div>
         <details class="contract-roster-paste">
           <summary>Ou coller une liste de membres</summary>
           <label for="contract-members-paste">Colle une ligne par membre : Nom, Prénom, ID unique</label>
