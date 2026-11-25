@@ -37,7 +37,7 @@ L’admin principal peut ensuite ajouter les autres comptes via /directors/. Les
 
 ## Rôles et permissions
 
-Un employé dont la fiche contient son identifiant Discord peut se connecter avec Discord sans être ajouté une deuxième fois dans la liste des directeurs. Ses onglets et droits API de consultation sont déterminés par son rôle dans le garage. L’admin principal configure la matrice depuis l’onglet Accès; les changements sont stockés dans le Blob privé. Par défaut, les rôles Patron, Co-patron, DRH, RH et Chef d’atelier ont accès au tableau de bord, aux employés, aux contrats et aux partenaires. Mécano confirmé, Mécano apprenti et Stagiaire ont accès à Partenaires. La modification des fiches, des contrats et des documents reste réservée à la direction; la saisie des prestations est ouverte aux employés autorisés. L’onglet Accès est réservé à l’admin principal.
+Un employé dont la fiche contient son identifiant Discord peut se connecter avec Discord sans être ajouté une deuxième fois dans la liste des directeurs. Ses onglets et droits API de consultation sont déterminés par son rôle dans le garage. L’admin principal configure la matrice depuis l’onglet Accès; les changements sont stockés dans le Blob privé. Par défaut, les rôles Patron, Co-patron, DRH, RH et Chef d’atelier ont accès au tableau de bord, aux employés, aux contrats et aux partenaires. Mécano confirmé, Mécano, Apprenti, Stagiaire et Apprenti CP ont accès à Partenaires. La modification des fiches, des contrats et des documents reste réservée à la direction; la saisie des prestations est ouverte aux employés autorisés. L’onglet Accès est réservé à l’admin principal.
 
 ## Accès et documents
 
