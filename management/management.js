@@ -1,323 +1,652 @@
-YªçŠx-®éÜj×¢ëiºÚ+Š§j[h‘éÜ¢éí×¾}Õ:-jZ.¶›­–)Ş³V6öç7BDô52Ò²–FVçF—G“¢$6'FRN(	––FVçF—L:’"ÂÆ–6Vç6S¢%W&Ö—2FR6öæGV—&R"ÂF—ÆöÖ¢$F—Ì;FÖR"Â6öçG&7C¢$6öçG&B"Ó°¦6öç7B$ôÄUôÄ$TÅ2Ò²G&öã¢%G&öâ"Â$6ò×G&öâ#¢$6ò×G&öææR"ÂE$ƒ¢$E$‚"Â$ƒ¢%$‚"Â$6†VbN(	–FVÆ–W"#¢$6†VffRN(	–FVÆ–W""Â$Ü:–6æò6öæf—&Ü:’#¢$Ü:–6æò6öæf—&Ü:’"Â$Ü:–6æò#¢$Ü:–6æò"Â$Ü:–6æò&VçF’#¢$&VçF’"Â7Fv–—&S¢%7Fv–—&R"Â$&VçF’5#¢$&VçF’5"Ó°¦6öç7B$ôÄUôõ$DU"Ò²%G&öâ"Â$6ò×G&öâ"Â$E$‚"Â%$‚"Â$6†VbN(	–FVÆ–W""Â$Ü:–6æò6öæf—&Ü:’"Â$Ü:–6æò"Â$Ü:–6æò&VçF’"Â%7Fv–—&R"Â$&VçF’5%Ó°¦6öç7B4ôåE$5Eô4DTtõ$”U2Ò²VçG&W&—6S¢$VçG&W&—6R"ÂfÖ–ÆÆUöw&÷WS¢$fÖ–ÆÆRòw&÷WR"Ó°¦6öç7B4ôåE$5Eõ4U%d”4U2Ò²&W—#¢%,:—&F–öâ"Â–×÷VæC¢$f÷W'&œ:‡&R"ÂF—7Æ6VÖVçC¢$L:—Æ6VÖVçB"Ó°¦6öç7Bæ÷F–6RÒFö7VÖVçBçVW'•6VÆV7F÷"‚"6æ÷F–6R"“°¦ÆWBV×Æ÷–VW2ÒµÓ°¦ÆWB6öçG&7G2ÒµÓ°¦ÆWB6öçG&7G5vVV²Ò"#°¦ÆWB7W'&VçE&öÆRÒ&F—&V7F÷"#°¦ÆWB7W'&VçD¶–æBÒ&F—&V7F÷"#°¦ÆWBVF—F–ætV×Æ÷–VT–BÒçVÆÃ°¦ÆWBVF—F–æt6öçG&7D–BÒçVÆÃ°¦ÆWBVæF–æt6öçG&7EFdFFÒ"#°¦ÆWB6öçG&7Df÷&ÔF—'G’ÒfÇ6S°¦gVæ7F–öâFVÆÂ†ÖW76vRÂW'&÷"ÒfÇ6R’²æ÷F–6RçFW‡D6öçFVçBÒÖW76vS²æ÷F–6Ræ6Æ74Æ—7BçFövvÆR‚&W'&÷""ÂW'&÷"“²æ÷F–6Ræ†–FFVâÒÖW76vS²Ğ¦7–æ2gVæ7F–öâ’‡W&ÂÂ÷F–öç2Ò·Ò’°¢6öç7B&W7öç6RÒv—BfWF6‚‡W&ÂÂ²7&VFVçF–Ç3¢'6ÖRÖ÷&–v–â"Â66†S¢&æò×7F÷&R"Âââæ÷F–öç2Â†VFW'3¢²66WC¢&Æ–6F–öâö§6öâ"Ââââ†÷F–öç2æ&öG’ò²$6öçFVçBÕG—R#¢&Æ–6F–öâö§6öâ"Ò¢·Ò’Ââââ†÷F–öç2æ†VFW'2ÇÂ·Ò’ÒÒ“°¢–b‡&W7öç6Rç7FGW2ÓÓÒC’²v–æF÷ræÆö6F–öâæ76–vâ‚"öÆöv–âóöæW‡CÒ"²Væ6öFUU$”6ö×öæVçB†Æö6F–öâçF†æÖR’“²F‡&÷ræWrW'&÷"‚$6öææW†–öâF—66÷&B&WV—6Râ"“²Ğ¢–b‡&W7öç6Rç7FGW2ÓÓÒC2’F‡&÷ræWrW'&÷"‚$6<:‡2&VgW<:’â6WVÇ2ÆW26ö×FW2WF÷&—<:—2"Î(	–FÖ–âWWfVçB÷Wg&—"6WGFRvRâ"“°¢6öç7BFFÒ&W7öç6Rç7FGW2ÓÓÒ#Bò·Ò¢v—B&W7öç6Ræ§6öâ‚’æ6F6‚‚‚’Óâ‡·Ò’“°¢6öç7B&F6„W'&÷'2Ò²–çfÆ–EöV×Æ÷–VUö&F6ƒ¢%l:—&–f–RÆW2Æ–væW2¢æöÒÂ,:–æöÒWB”BVæ—VRÂV—26†ö—6—2Vâ,;FÆR÷W"ÆRÆ÷Bâ"ÂV×Æ÷–VUöçVÖ&W%öGWÆ–6FUö–åö&F6ƒ¢%Vâ”BVæ—VR&:çBÇW6–WW'2fö—2Fç2ÆR6÷–W"Ö6öÆÆW"â"ÂV×Æ÷–VUöçVÖ&W%öW†—7G3¢%VâFW2”BVæ—VW2GRÆ÷BW7BL:–¬:WF–Æ—<:’â"Â'VÆµö7&VF–öåöf–ÆVC¢$Î(	–¦÷WBGRÆ÷B:–6†÷\:’â&V6†&vRÆÆ—7FRfçBFR,:–W76–W"â"Ó°¢–b‚&W7öç6Ræö²bb&F6„W'&÷'5¶FFæW'&÷%Ò’F‡&÷ræWrW'&÷"†&F6„W'&÷'5¶FFæW'&÷%Ò“°¢–b‚&W7öç6Ræö²bbFFæW'&÷"ÓÓÒ&6öçG&7Eöf–ÆU÷WÆöEöf–ÆVB"’F‡&÷ræWrW'&÷"‚$Æf–6†RW7BVç&Vv—7G,:–RÂÖ—2ÆRDbî(	–2R:§G&R7Fö6¼:’â,:–W76–RÎ(	–¦÷WBGRf–6†–W"â"“°¢–b‚&W7öç6Ræö²’F‡&÷ræWrW'&÷"‚‡²–çfÆ–EöV×Æ÷–VS¢%l:—&–f–RÆW2–æf÷&ÖF–öç26—6–W2Âæ÷FÖÖVçBÎ(	””BF—66÷&BWBÆR,;FÆRâ"ÂV×Æ÷–VUöçVÖ&W%öW†—7G3¢$6WB”BVæ—VRW7BL:–¬:WF–Æ—<:’â"ÂV×Æ÷–VUöF—66÷&Eö–EöW†—7G3¢$6WB”BF—66÷&BW7BL:–¬:76ö6œ:’:VâWG&RV×Æ÷œ:’â"Â–çfÆ–E÷&öÆU÷W&Ö—76–öç3¢$6†VR,;FÆRFö—B6öç6W'fW"RÖö–ç2VâöævÆWB66W76–&ÆRâ"Â–çfÆ–Eö6öçG&7C¢%l:—&–f–RÆRæöÒÂÆRG—RÂÆRæöÖ'&RFRÖVÖ'&W2L:–6Æ,:—2ÂÆR&—‚WBÆW2&W7FF–öç2â6’ÆR6öçG&BW7BÆ–Ö—L:’:6W'F–æW2W'6öææW2Â6ö×Ì:‡FRÆWW'2,:–æö×2WBæö×2â"Â6öçG&7EöW†—7G3¢%Vâ6öçG&BFR6WGFR6L:–v÷&–R÷'FRL:–¬:6RæöÒâ"Â–çfÆ–Eö6öçG&7Eöf–ÆS¢$ÆRf–6†–W"GR6öçG&BW7B–çfÆ–FRâ"ÂVç7W÷'FVEö6öçG&7Eöf–ÆS¢$ÆRf–6†–W"Fö—B:§G&RVâDbfÆ–FRâ"Â6öçG&7Eöf–ÆU÷FöõöÆ&vS¢$ÆRDbL:—76RÆÆ–Ö—FRFR2Öòâ"Â6öçG&7Eöf–ÆUöæ÷Eöf÷VæC¢$V7VâDbFR6öçG&Bî(	–W7BVç&Vv—7G,:’â"Â6öçG&7E÷Fe÷Vç&VF&ÆS¢$V7VâFW‡FRW‡Æö—F&ÆRî(	–:—L:’G&÷Wl:’âGRWW‚F÷V¦÷W'2¦ö–æG&RÆRDbWB&V×Æ—"Æf–6†RÖçVVÆÆVÖVçBâ"ÂVç7W÷'FVEöf–ÆU÷G—S¢$f÷&ÖB&VgW<:’¢DbÂ¥rÂär÷RvV%Væ—VVÖVçBâ"Âf–ÆU÷FöõöÆ&vS¢$ÆRf–6†–W"L:—76RÆÆ–Ö—FRFRBÖòâ"Â7F÷&vU÷Væf–Æ&ÆS¢$ÆR7Fö6¶vRW7BÖöÖVçFì:–ÖVçB–æF—7öæ–&ÆRâ"Ò•¶FFæW'&÷%ÒÇÂ%VæRW'&WW"W7B7W'fVçVRâ,:–W76–Râ"“°¢&WGW&âFF°§Ğ¦gVæ7F–öâ†4Fö7VÖVçB†V×Æ÷–VRÂG—R’°¢–b‡G—RÓÓÒ&F—ÆöÖ"’&WGW&â'&’æ—4'&’†V×Æ÷–VRæFö7VÖVçG3òæF—ÆöÖ2’òV×Æ÷–VRæFö7VÖVçG2æF—ÆöÖ2æÆVæwF‚â¢&ööÆVâ†V×Æ÷–VRæFö7VÖVçG3òæF—ÆöÖ“°¢&WGW&â&ööÆVâ†V×Æ÷–VRæFö7VÖVçG3òå·G—UÒ“°§Ğ¦gVæ7F–öâÖ—76–ær†V×Æ÷–VR’²&WGW&âö&¦V7Bæ¶W—2„Dô52’æf–ÇFW"‚†¶W’’Óâ†4Fö7VÖVçB†V×Æ÷–VRÂ¶W’’“²Ğ¦gVæ7F–öâ6fR‡FW‡B’²6öç7BVÂÒFö7VÖVçBæ7&VFTVÆVÖVçB‚'7â"“²VÂçFW‡D6öçFVçBÒFW‡BÇÂ"#²&WGW&âVÂæ–ææW$…DÔÃ²Ğ¦7–æ2gVæ7F–öâÆöB‚’°¢–b†Fö7VÖVçBæ&öG’æFF6WBçvRÓÓÒ&6öçG&7G2"’²v—BÆöD6öçG&7G2‚“²&WGW&ã²Ğ¢G'’°¢6öç7BvRÒFö7VÖVçBæ&öG’æFF6WBçvS°¢6öç7B&W7VÇBÒv—B’‡vRÓÓÒ&F6†&ö&B"ò"ö’öÖævVÖVçBöV×Æ÷–VW3÷&W6÷W&6SÖF6†&ö&B"¢"ö’öÖævVÖVçBöV×Æ÷–VW2"“²V×Æ÷–VW2Ò&W7VÇBæV×Æ÷–VW3²7W'&VçE&öÆRÒ&W7VÇBç&öÆS²7W'&VçD¶–æBÒ&W7VÇBæ¶–æBÇÂ&F—&V7F÷"#°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"6F—&V7F÷"ÖæÖR"’æf÷$V6‚‚†VÂ’Óâ²VÂçFW‡D6öçFVçBÒ&W7VÇBææÖRÇÂ‡&W7VÇBç&öÆRÓÓÒ&FÖ–â"ÇÂ&W7VÇBç&öÆRÓÓÒ&F—&V7F÷""ò$F—&V7F–öâ6öææV7L:–R"¢&W7VÇBç&öÆR“²Ò“°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"æFÖ–âÖÆ–æ²"’æf÷$V6‚‚†Æ–æ²’Óâ²Æ–æ²æ†–FFVâÒ7W'&VçE&öÆRÓÒ&FÖ–â#²Ò“°¢–b†Fö7VÖVçBæ&öG’æFF6WBçvRÓÓÒ&F6†&ö&B"’&VæFW$F6†&ö&B‚“²VÇ6R–b†Fö7VÖVçBæ&öG’æFF6WBçvRÓÓÒ&V×Æ÷–VW2"’²&VæFW$V×Æ÷–VW2‚“²Ç”V×Æ÷–VU&VDöæÇ’‚“²ÒVÇ6Rv—BÆöDF—&V7F÷'2‚“°¢FVÆÂ‚""“°¢Ò6F6‚†W'&÷"’²FVÆÂ†W'&÷"æÖW76vRÂG'VR“²Fö7VÖVçBçVW'•6VÆV7F÷"‚"6V×Æ÷–VRÖÆ—7B"“òç&WÆ6T6†–ÆG&Vâ‚“²Ğ§Ğ¦gVæ7F–öâ&VæFW$F6†&ö&B‚’°¢6öç7B–æ6ö×ÆWFRÒV×Æ÷–VW2æf–ÇFW"‚†V×Æ÷–VR’ÓâÖ—76–ær†V×Æ÷–VR’æÆVæwF‚“°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"7F÷FÂÖ6÷VçB"’çFW‡D6öçFVçBÒV×Æ÷–VW2æÆVæwFƒ°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66ö×ÆWFRÖ6÷VçB"’çFW‡D6öçFVçBÒV×Æ÷–VW2æÆVæwF‚Ò–æ6ö×ÆWFRæÆVæwFƒ°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"6–æ6ö×ÆWFRÖ6÷VçB"’çFW‡D6öçFVçBÒ–æ6ö×ÆWFRæÆVæwFƒ°¢6öç7BÆ—7BÒFö7VÖVçBçVW'•6VÆV7F÷"‚"7&VÖ–æFW'2"“°¢Æ—7Bæ–ææW$…DÔÂÒ–æ6ö×ÆWFRæÆVæwF‚ò–æ6ö×ÆWFRç6Æ–6RƒÂ‚’æÖ‚†V×Æ÷–VR’ÓâsÆ'F–6ÆR6Æ73Ò'&VÖ–æFW"#ãÆ’6Æ73Ò'&VÖ–æFW"ÖF÷B#ãÂö“ãÆF—cãÇ7G&öæsâr²6fR†V×Æ÷–VRæf—'7DæÖR’²rr²6fR†V×Æ÷–VRæÆ7DæÖR’²sÂ÷7G&öæsãÇ6ÖÆÃì8¦÷WFW"¢r²Ö—76–ær†V×Æ÷–VR’æÖ‚†¶W’’ÓâDô55¶¶W•Ò’æ¦ö–â‚"Â"’²sÂ÷6ÖÆÃãÂöF—cãÆ‡&VcÒ"öV×Æ÷–VW2ò#ä÷Wg&—"ÆRF÷76–W"(isÂöãÂö'F–6ÆSâr’æ¦ö–â‚""’¢sÆ'F–6ÆR6Æ73Ò'&VÖ–æFW"ö²#ãÆ’6Æ73Ò'&VÖ–æFW"ÖF÷B#ãÂö“ãÆF—cãÇ7G&öæsâr²†V×Æ÷–VW2æÆVæwF‚ò%F÷W2ÆW2F÷76–W'26öçB6ö×ÆWG2â"¢$V7VâV×Æ÷œ:’Vç&Vv—7G,:’â"’²sÂ÷7G&öæsãÇ6ÖÆÃâr²†V×Æ÷–VW2æÆVæwF‚ò%F÷WFW2ÆW2œ:†6W2&WV—6W26öçB,:—6VçFW2÷W"6†VRÖVÖ'&Râ"¢$¦÷WFRÆR&VÖ–W"V×Æ÷œ:’÷W"6öÖÖVæ6W"ÆR7V—f’â"’²sÂ÷6ÖÆÃãÂöF—cãÆ‡&VcÒ"öV×Æ÷–VW2ò#âr²†V×Æ÷–VW2æÆVæwF‚ò%fö—"ÆW2F÷76–W'2"¢$¦÷WFW"VâV×Æ÷œ:’"’²r(isÂöãÂö'F–6ÆSâs°§Ğ¦gVæ7F–öâ&VæFW$6öçG&7G2‚’°¢6öç7BÆ—7BÒFö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖÆ—7B"“°¢Æ—7Bæ–ææW$…DÔÂÒ6öçG&7G2æÆVæwF‚ò6öçG&7G2æÖ‚†6öçG&7B’Óâ°¢6öç7B6W'f–6TÆ&VÇ2Ò6öçG&7Bç6W'f–6W2æÖ‚‡6W'f–6R’Óâ4ôåE$5Eõ4U%d”4U5·6W'f–6UÒ’æf–ÇFW"„&ööÆVâ“°¢6öç7B6W'f–6W2Ò6W'f–6TÆ&VÇ2æÖ‚†Æ&VÂ’ÓâsÇ7â6Æ73Ò'6W'f–6R×–ÆÂ#âr²6fR†Æ&VÂ’²sÂ÷7ãâr’æ¦ö–â‚""“°¢6öç7B6W'f–6TÖævW"ÒsÆFWF–Ç26Æ73Ò&6öçG&7B×6W'f–6RÖÖævW"#ãÇ7VÖÖ'“ä¦÷WFW"òVæÆWfW"FW2&W7FF–öç3Â÷7VÖÖ'“ãÆf÷&Ò6Æ73Ò&6öçG&7B×6W'f–6W2Öf÷&Ò"FFÖ–CÒ"r²6fR†6öçG&7Bæ–B’²r#ãÆF—câr²ö&¦V7BæVçG&–W2„4ôåE$5Eõ4U%d”4U2’æÖ‚…¶¶W’ÂÆ&VÅÒ’ÓâsÆÆ&VÃãÆ–çWBG—SÒ&6†V6¶&÷‚"æÖSÒ'6W'f–6W2"fÇVSÒ"r²¶W’²r"r²†6öçG&7Bç6W'f–6W2æ–æ6ÇVFW2†¶W’’òr6†V6¶VBr¢rr’²sãÇ7ãâr²6fR†Æ&VÂ’²sÂ÷7ããÂöÆ&VÃâr’æ¦ö–â‚""’²sÂöF—cãÆ'WGFöâ6Æ73Ò&f–ÆRÖ'WGFöâ"G—SÒ'7V&Ö—B#äVç&Vv—7G&W#Âö'WGFöããÂöf÷&ÓãÂöFWF–Ç3âs°¢6öç7BV÷ÆRÒ6öçG&7Bç&W7G&–7EFõV÷ÆRò6öçG&7BæWF†÷&—¦VEV÷ÆRæÖ‚‡W'6öâ’Óâ6fR‡W'6öâæf—'7DæÖR²""²W'6öâæÆ7DæÖR’’æ¦ö–â‚"Â"’¢$÷WfW'B:F÷W2ÆW2ÖVÖ'&W2GRw&÷WR#°¢6öç7BFFRÒ6öçG&7BçWFFVDBÇÂ6öçG&7Bæ7&VFVDC°¢6öç7Bf–ÆRÒ6öçG&7Bæ6öçG&7Df–ÆRòsÆF—b6Æ73Ò&6öçG&7BÖGF6†VB#ãÇ7ãä6öçG&B6–vì:’¢r²6fR†6öçG&7Bæ6öçG&7Df–ÆRæf–ÆVæÖRÇÂ&6öçG&BçFb"’²sÂ÷7ããÆ'WGFöâ6Æ73Ò&f–ÆRÖ'WGFöâ"G—SÒ&'WGFöâ"FFÖ7F–öãÒ&÷VâÖ6öçG&7BÖf–ÆR"FFÖ–CÒ"r²6fR†6öçG&7Bæ–B’²r#ä÷Wg&—#Âö'WGFöããÆ'WGFöâ6Æ73Ò'&VÖ÷fRÖÆ–æ²"G—SÒ&'WGFöâ"FFÖ7F–öãÒ'&VÖ÷fRÖ6öçG&7BÖf–ÆR"FFÖ–CÒ"r²6fR†6öçG&7Bæ–B’²r#å&WF—&W#Âö'WGFöããÂöF—câr¢sÇ6ÖÆÂ6Æ73Ò&6öçG&7BÖæòÖf–ÆR#äV7Vâ6öçG&B6–vì:’¦ö–çCÂ÷6ÖÆÃâs°¢6öç7BFV6Æ&VDÖVÖ&W'2ÒçVÖ&W"æ—4–çFVvW"†6öçG&7BæFV6Æ&VDÖVÖ&W'2’bb6öçG&7BæFV6Æ&VDÖVÖ&W'2âò6öçG&7BæFV6Æ&VDÖVÖ&W'2²rÖVÖ'&Rr²†6öçG&7BæFV6Æ&VDÖVÖ&W'2âòw2r¢rr’²rL:–6Æ,:—2r¢tVffV7F–bL:–6Æ,:’æöâ&Vç6V–vì:’s°¢6öç7B&–6UVæ—BÒ6öçG&7Bç&–6–ætÖöFRÓÓÒ'W%öÖVÖ&W""òrBòÖVÖ'&Rò6VÖ–æRr¢rBò6VÖ–æRs°¢6öç7BvVV¶Ç•W6vRÒ6öçG&7BçvVV¶Ç•W6vRÇÂ²6÷VçG3¢·ÒÓ°¢6öç7BvVV¶Ç”6÷VçG2Òö&¦V7BæVçG&–W2„4ôåE$5Eõ4U%d”4U2’æÖ‚…¶¶W’ÂÆ&VÅÒ’ÓâsÇ7ãâr²6fR†Æ&VÂ’²rÇ7G&öæsâr²çVÖ&W"‡vVV¶Ç•W6vRæ6÷VçG3òå¶¶W•ÒÇÂ’²sÂ÷7G&öæsãÂ÷7ãâr’æ¦ö–â‚""“°¢6öç7BÖVÖ&W$6÷VçBÒ'&’æ—4'&’†6öçG&7BæÖVÖ&W'2’ò6öçG&7BæÖVÖ&W'2æÆVæwF‚¢°¢6öç7BÖVÖ&W'2ÒÖVÖ&W$6÷VçBòsÆFWF–Ç26Æ73Ò&6öçG&7BÖÖVÖ&W"×7VÖÖ'’#ãÇ7VÖÖ'“äÖVÖ'&W2Vç&Vv—7G,:—2‚r²ÖVÖ&W$6÷VçB²r“Â÷7VÖÖ'“ãÇVÃâr²6öçG&7BæÖVÖ&W'2æÖ‚†ÖVÖ&W"’ÓâsÆÆ“âr²6fR†ÖVÖ&W"æf—'7DæÖR²rr²ÖVÖ&W"æÆ7DæÖR’²rÇ6ÖÆÃä”Br²6fR†ÖVÖ&W"æV×Æ÷–VTçVÖ&W"’²sÂ÷6ÖÆÃãÂöÆ“âr’æ¦ö–â‚""’²sÂ÷VÃãÂöFWF–Ç3âr¢sÇ6ÖÆÂ6Æ73Ò&6öçG&7BÖæòÖÖVÖ&W'2#äV7VæRÆ—7FRFRÖVÖ'&W2Vç&Vv—7G,:–SÂ÷6ÖÆÃâs°¢6öç7BW6vTÖVÖ&W'2Ò'&’æ—4'&’‡vVV¶Ç•W6vRæÖVÖ&W'2’bbvVV¶Ç•W6vRæÖVÖ&W'2æÆVæwF‚òsÆFWF–Ç26Æ73Ò&6öçG&7BÖÖVÖ&W"×7VÖÖ'’#ãÇ7VÖÖ'“äL:—F–ÂFW2&W7FF–öç2"ÖVÖ'&SÂ÷7VÖÖ'“ãÇVÃâr²vVV¶Ç•W6vRæÖVÖ&W'2æÖ‚†ÖVÖ&W"’ÓâsÆÆ“âr²6fR…¶ÖVÖ&W"æf—'7DæÖRÂÖVÖ&W"æÆ7DæÖUÒæf–ÇFW"„&ööÆVâ’æ¦ö–â‚""’ÇÂÖVÖ&W"æV×Æ÷–VTçVÖ&W"ÇÂ$ÖVÖ'&R"’²†ÖVÖ&W"æV×Æ÷–VTçVÖ&W"òrÇ6ÖÆÃä”Br²6fR†ÖVÖ&W"æV×Æ÷–VTçVÖ&W"’²sÂ÷6ÖÆÃâr¢rr’²r(	B,:—&F–öâr²çVÖ&W"†ÖVÖ&W"æ6÷VçG2ç&W—"ÇÂ’²rÂL:—æævRr²çVÖ&W"†ÖVÖ&W"æ6÷VçG2æ–×÷VæBÇÂ’²rÂL:—Æ6VÖVçBr²çVÖ&W"†ÖVÖ&W"æ6÷VçG2æF—7Æ6VÖVçBÇÂ’²sÂöÆ“âr’æ¦ö–â‚""’²sÂ÷VÃãÂöFWF–Ç3âr¢rs°¢&WGW&âsÆ'F–6ÆR6Æ73Ò&6öçG&7BÖ6&B#ãÆF—b6Æ73Ò&6öçG&7BÖ6&BÖÖ–â#ãÆF—b6Æ73Ò&6öçG&7BÖ¶–æB#âr²6fR„4ôåE$5Eô4DTtõ$”U5¶6öçG&7Bæ6FVv÷'•ÒÇÂ$w&÷WR"’²sÂöF—cãÆƒ3âr²6fR†6öçG&7BææÖR’²sÂöƒ3ãÆF—b6Æ73Ò&6öçG&7BÖÖWF#ãÇ7ãâr²FV6Æ&VDÖVÖ&W'2²sÂ÷7ããÇ7ãâr²çVÖ&W"†6öçG&7BçvVV¶Ç•&–6R’çFôÆö6ÆU7G&–ær‚&g"Ôe""’²&–6UVæ—B²sÂ÷7ããÂöF—cãÆF—b6Æ73Ò&6öçG&7B×6W'f–6W2#âr²6W'f–6W2²sÂöF—câr²6W'f–6TÖævW"²sÆF—b6Æ73Ò'vVV¶Ç’Ö6öçG&7B×W6vR#ãÇ6ÖÆÃå&W7FF–öç26WGFR6VÖ–æR‚r²6fR†6öçG&7G5vVV²ÇÂ""’²r“Â÷6ÖÆÃãÆF—câr²vVV¶Ç”6÷VçG2²sÂöF—cãÂöF—câr²ÖVÖ&W'2²W6vTÖVÖ&W'2²sÇ6ÖÆÂ6Æ73Ò&6öçG&7B×V÷ÆR#âr²†6öçG&7Bç&W7G&–7EFõV÷ÆRò%W'6öææW2WF÷&—<:–W2¢"¢$6<:‡2¢"’²V÷ÆR²sÂ÷6ÖÆÃâr²f–ÆR²sÇ6ÖÆÂ6Æ73Ò&6öçG&7BÖFFR#äÖ—2:¦÷W"ÆRr²†FFRòæWrFFR†FFR’çFôÆö6ÆTFFU7G&–ær‚&g"Ôe""’¢.(	B"’²sÂ÷6ÖÆÃãÂöF—cãÆF—b6Æ73Ò&6öçG&7BÖ7F–öç2#ãÆ'WGFöâ6Æ73Ò&VF—BÖÆ–æ²"G—SÒ&'WGFöâ"FFÖ7F–öãÒ&VF—BÖ6öçG&7B"FFÖ–CÒ"r²6fR†6öçG&7Bæ–B’²r#äÖöF–f–W#Âö'WGFöããÆ'WGFöâ6Æ73Ò'&VÖ÷fRÖÆ–æ²"G—SÒ&'WGFöâ"FFÖ7F–öãÒ&FVÆWFRÖ6öçG&7B"FFÖ–CÒ"r²6fR†6öçG&7Bæ–B’²r#å7W&–ÖW#Âö'WGFöããÂöF—cãÂö'F–6ÆSâs°¢Ò’æ¦ö–â‚""’¢sÆF—b6Æ73Ò&V×G’×&÷r#äV7Vâ6öçG&BVç&Vv—7G,:’â¦÷WFRÆR&VÖ–W"w&÷WR6’ÖFW77W2ãÂöF—câs°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖ6÷VçB"’çFW‡D6öçFVçBÒ6öçG&7G2æÆVæwFƒ°¢–b†7W'&VçD¶–æBÓÓÒ&V×Æ÷–VR"’°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚r66öçG&7BÖÆ—7B¶FFÖ7F–öåÓ¦æ÷B…¶FFÖ7F–öãÒ&÷VâÖ6öçG&7BÖf–ÆR%Ò’r’æf÷$V6‚‚†6öçG&öÂ’Óâ²6öçG&öÂæ†–FFVâÒG'VS²Ò“°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"66öçG&7BÖÆ—7Bæ6öçG&7B×6W'f–6RÖÖævW""’æf÷$V6‚‚†6öçG&öÂ’Óâ²6öçG&öÂæ†–FFVâÒG'VS²Ò“°¢Ğ§Ğ¦gVæ7F–öâ&W6WD6öçG&7Df÷&Ò‚’°¢6öç7Bf÷&ÒÒFö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf÷&Ò"“°¢–b‚f÷&Ò’&WGW&ã°¢VF—F–æt6öçG&7D–BÒçVÆÃ°¢VæF–æt6öçG&7EFdFFÒ"#°¢6öçG&7Df÷&ÔF—'G’ÒfÇ6S°¢f÷&Òç&W6WB‚“°¢7–æ46öçG&7E&–6TÆ&VÂ‚“°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×&W7G&–7FVB"’æ6†V6¶VBÒfÇ6S°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×V÷ÆRÖf–VÆG2"’æ†–FFVâÒG'VS°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×V÷ÆRÖÆ—7B"’ç&WÆ6T6†–ÆG&Vâ‚“°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖÖVÖ&W'2ÖÆ—7B"’ç&WÆ6T6†–ÆG&Vâ‚“°¢WFFT6öçG&7DÖVÖ&W$V×G•7FFR‚“°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf–ÆRÖ7W'&VçB"’ç&WÆ6T6†–ÆG&Vâ‚“°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf–ÆRÖ7W'&VçB"’æ†–FFVâÒG'VS°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖW‡G&Öf–VÆG2"’æ÷VâÒfÇ6S°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf÷&Ò×F—FÆR"’çFW‡D6öçFVçBÒ$¦÷WFW"Vâ6öçG&B#°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×7V&Ö—BÖÆ&VÂ"’çFW‡D6öçFVçBÒ$Vç&Vv—7G&W"ÆR6öçG&B#°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖ6æ6VÂ"’æ†–FFVâÒG'VS°§Ğ¦gVæ7F–öâ7–æ46öçG&7E&–6TÆ&VÂ‚’°¢6öç7BW$ÖVÖ&W"ÒFö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×&–6–ærÖÖöFR"“òçfÇVRÓÓÒ'W%öÖVÖ&W"#°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×vVV¶Ç’×&–6R×F—FÆR"’çFW‡D6öçFVçBÒW$ÖVÖ&W"ò%F&–b"ÖVÖ'&RWB"6VÖ–æR‚B’"¢%&—‚GRf÷&f—B"6VÖ–æR‚B’#°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚u¶æÖSÒ'vVV¶Ç•&–6R%Òr’çÆ6V†öÆFW"ÒW$ÖVÖ&W"ò$W‚â""¢$W‚â3R#°¢Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×&–6RÖ†VÇ"’çFW‡D6öçFVçBÒW$ÖVÖ&W"ò$ÆRF÷FÂ†V&FöÖF—&RW7F–Ü:’L:—VæG&GRæöÖ'&RFRÖVÖ'&W2L:–6Æ,:—2â"¢$–æF—VR6’ÆR6öçG&BW7Bw&GV—Bâ#°§Ğ¦7–æ2gVæ7F–öâÆöD6öçG&7G2‚’°¢G'’°¢6öç7B&W7VÇBÒv—B’‚"ö’öÖævVÖVçBöV×Æ÷–VW3÷&W6÷W&6SÖ6öçG&7G2"“°¢6öçG&7G2Ò&W7VÇBæ6öçG&7G3°¢6öçG&7G5vVV²Ò&W7VÇBçvVV²ÇÂ"#°¢7W'&VçE&öÆRÒ&W7VÇBç&öÆS°¢7W'&VçD¶–æBÒ&W7VÇBæ¶–æBÇÂ&F—&V7F÷"#°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"6FBÖ6öçG&7BÂ66öçG&7BÖf÷&ÒÂæ6öçG&7BÖVF—F÷""’æf÷$V6‚‚†VÆVÖVçB’Óâ²VÆVÖVçBæ†–FFVâÒ7W'&VçD¶–æBÓÓÒ&V×Æ÷–VR#²Ò“°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"6F—&V7F÷"ÖæÖR"’æf÷$V6‚‚†VÂ’Óâ²VÂçFW‡D6öçFVçBÒ&W7VÇBææÖRÇÂ†7W'&VçD¶–æBÓÓÒ&V×Æ÷–VR"ò7W'&VçE&öÆR¢$F—&V7F–öâ6öææV7L:–R"“²Ò“°¢Fö7VÖVçBçVW'•6VÆV7F÷$ÆÂ‚"æFÖ–âÖÆ–æ²"’æf÷$V6‚‚†Æ–æ²’Óâ²Æ–æ²æ†–FFVâÒ7W'&VçE&öÆRÓÒ&FÖ–â#²Ò“°¢&VæFW$6öçG&7G2‚“°¢FVÆÂ‚""“°¢Ò6F6‚†W'&÷"’²FVÆÂ†W'&÷"æÖW76vRÂG'VR“²Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖÆ—7B"“òç&WÆ6T6†–ÆG&Vâ‚“²Ğ§Ğ¦Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf÷&Ò"“òæFDWfVçDÆ—7FVæW"‚&–çWB"Â‚’Óâ²6öçG&7Df÷&ÔF—'G’ÒG'VS²Ò“°¦Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf÷&Ò"“òæFDWfVçDÆ—7FVæW"‚&6†ævR"Â‚’Óâ²6öçG&7Df÷&ÔF—'G’ÒG'VS²Ò“°¦Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7B×&–6–ærÖÖöFR"“òæFDWfVçDÆ—7FVæW"‚&6†ævR"Â7–æ46öçG&7E&–6TÆ&VÂ“°¦Fö7VÖVçBçVW'•6VÆV7F÷"‚"66öçG&7BÖf–ÆRÖ–çWB"“òæFDWfVçDÆ—7FVæW"‚&6†ævR"Â7–æ2†WfVçB’Óâ°¢6öç7Bf–ÆRÒWfVçBæ7W'&VçEF&vWBæf–ÆW3òå³Ó°¢VæF–æt6öçG&7EFdFFÒ"#°¢–b‚f–ÆR’&WGW&ã°¢–b‚f–ÆRææÖRçFôÆ÷vW$66R‚’æVæG5v—F‚‚"çFb"’ÇÂf–ÆRç6—¦Râ2¢#B¢#B’°¢FVÆÂ†f–ÆRç6—¦Râ2¢#B¢#Bò$ÆRDbL:—76RÆÆ–Ö—FRFR2Öòâ"¢$6†ö—6—2Vâf–6†–W"Dbâ"ÂG'VR“°¢WfVçBæ7W'&VçEF&vWBçfÇVRÒ"#°¢&WGW&ã°¢Ğ¢G'’°¢6öç7B'—FW2ÒæWrV–çC„'&’†v—Bf–ÆRæ'&”'VffW"‚’“°¢ÆWB&–æ'’Ò"#°¢f÷"†ÆWBöfg6WBÒ²öfg6WBÂ'—FW2æÆVæwFù÷[h‘éì¶»§q«^wÙÙÛJ™\œ›Üˆ‹›ÛÛX[ŠX[›Ü›YY\XØ]\Ë›[™İ
-JNÂˆÛÛœİØ[\HH›İÜËœÛXÙJJK›X\
+const DOCS = { identity: "Carte dâ€™identitÃ©", license: "Permis de conduire", diploma: "DiplÃ´me", contract: "Contrat" };
+const ROLE_LABELS = { Patron: "Patron", "Co-patron": "Co-patronne", DRH: "DRH", RH: "RH", "Chef dâ€™atelier": "Cheffe dâ€™atelier", "MÃ©cano confirmÃ©": "MÃ©cano confirmÃ©", "MÃ©cano": "MÃ©cano", "MÃ©cano apprenti": "Apprenti", Stagiaire: "Stagiaire", "Apprenti CP": "Apprenti CP" };
+const ROLE_ORDER = ["Patron", "Co-patron", "DRH", "RH", "Chef dâ€™atelier", "MÃ©cano confirmÃ©", "MÃ©cano", "MÃ©cano apprenti", "Stagiaire", "Apprenti CP"];
+const CONTRACT_CATEGORIES = { entreprise: "Entreprise", famille_groupe: "Famille / Groupe" };
+const CONTRACT_SERVICES = { repair: "RÃ©paration", impound: "FourriÃ¨re", displacement: "DÃ©placement" };
+const notice = document.querySelector("#notice");
+let employees = [];
+let contracts = [];
+let contractsWeek = "";
+let currentRole = "director";
+let currentKind = "director";
+let editingEmployeeId = null;
+let editingContractId = null;
+let pendingContractPdfData = "";
+let contractFormDirty = false;
+function tell(message, error = false) { notice.textContent = message; notice.classList.toggle("error", error); notice.hidden = !message; }
+async function api(url, options = {}) {
+  const response = await fetch(url, { credentials: "same-origin", cache: "no-store", ...options, headers: { Accept: "application/json", ...(options.body ? { "Content-Type": "application/json" } : {}), ...(options.headers || {}) } });
+  if (response.status === 401) { window.location.assign("/login/?next=" + encodeURIComponent(location.pathname)); throw new Error("Connexion Discord requise."); }
+  if (response.status === 403) throw new Error("AccÃ¨s refusÃ©. Seuls les comptes autorisÃ©s par lâ€™admin peuvent ouvrir cette page.");
+  const data = response.status === 204 ? {} : await response.json().catch(() => ({}));
+  const batchErrors = { invalid_employee_batch: "VÃ©rifie les lignes : Nom, PrÃ©nom et ID unique, puis choisis un rÃ´le pour le lot.", employee_number_duplicate_in_batch: "Un ID unique apparaÃ®t plusieurs fois dans le copier-coller.", employee_number_exists: "Un des ID uniques du lot est dÃ©jÃ  utilisÃ©.", bulk_creation_failed: "Lâ€™ajout du lot a Ã©chouÃ©. Recharge la liste avant de rÃ©essayer." };
+  if (!response.ok && batchErrors[data.error]) throw new Error(batchErrors[data.error]);
+  if (!response.ok && data.error === "contract_file_upload_failed") throw new Error("La fiche est enregistrÃ©e, mais le PDF nâ€™a pas pu Ãªtre stockÃ©. RÃ©essaie lâ€™ajout du fichier.");
+  if (!response.ok) throw new Error(({ invalid_employee: "VÃ©rifie les informations saisies, notamment lâ€™ID Discord et le rÃ´le.", employee_number_exists: "Cet ID unique est dÃ©jÃ  utilisÃ©.", employee_discord_id_exists: "Cet ID Discord est dÃ©jÃ  associÃ© Ã  un autre employÃ©.", invalid_role_permissions: "Chaque rÃ´le doit conserver au moins un onglet accessible.", invalid_contract: "VÃ©rifie le nom, le type, le nombre de membres dÃ©clarÃ©s, le prix et les prestations. Si le contrat est limitÃ© Ã  certaines personnes, complÃ¨te leurs prÃ©noms et noms.", contract_exists: "Un contrat de cette catÃ©gorie porte dÃ©jÃ  ce nom.", invalid_contract_file: "Le fichier du contrat est invalide.", unsupported_contract_file: "Le fichier doit Ãªtre un PDF valide.", contract_file_too_large: "Le PDF dÃ©passe la limite de 3 Mo.", contract_file_not_found: "Aucun PDF de contrat nâ€™est enregistrÃ©.", contract_pdf_unreadable: "Aucun texte exploitable nâ€™a Ã©tÃ© trouvÃ©. Tu peux toujours joindre le PDF et remplir la fiche manuellement.", unsupported_file_type: "Format refusÃ© : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dÃ©passe la limite de 4 Mo.", storage_unavailable: "Le stockage est momentanÃ©ment indisponible." })[data.error] || "Une erreur est survenue. RÃ©essaie.");
+  return data;
+}
+function hasDocument(employee, type) {
+  if (type === "diploma") return Array.isArray(employee.documents?.diplomas) ? employee.documents.diplomas.length > 0 : Boolean(employee.documents?.diploma);
+  return Boolean(employee.documents?.[type]);
+}
+function missing(employee) { return Object.keys(DOCS).filter((key) => !hasDocument(employee, key)); }
+function safe(text) { const el = document.createElement("span"); el.textContent = text || ""; return el.innerHTML; }
+async function load() {
+  if (document.body.dataset.page === "contracts") { await loadContracts(); return; }
+  try {
+    const page = document.body.dataset.page;
+    const result = await api(page === "dashboard" ? "/api/management/employees?resource=dashboard" : "/api/management/employees"); employees = result.employees; currentRole = result.role; currentKind = result.kind || "director";
+    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = result.name || (result.role === "admin" || result.role === "director" ? "Direction connectÃ©e" : result.role); });
+    document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
+    if (document.body.dataset.page === "dashboard") renderDashboard(); else if (document.body.dataset.page === "employees") { renderEmployees(); applyEmployeeReadOnly(); } else await loadDirectors();
+    tell("");
+  } catch (error) { tell(error.message, true); document.querySelector("#employee-list")?.replaceChildren(); }
+}
+function renderDashboard() {
+  const incomplete = employees.filter((employee) => missing(employee).length);
+  document.querySelector("#total-count").textContent = employees.length;
+  document.querySelector("#complete-count").textContent = employees.length - incomplete.length;
+  document.querySelector("#incomplete-count").textContent = incomplete.length;
+  const list = document.querySelector("#reminders");
+  list.innerHTML = incomplete.length ? incomplete.slice(0, 8).map((employee) => '<article class="reminder"><i class="reminder-dot"></i><div><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>Ã€ ajouter : ' + missing(employee).map((key) => DOCS[key]).join(", ") + '</small></div><a href="/employees/">Ouvrir le dossier â†—</a></article>').join("") : '<article class="reminder ok"><i class="reminder-dot"></i><div><strong>' + (employees.length ? "Tous les dossiers sont complets." : "Aucun employÃ© enregistrÃ©.") + '</strong><small>' + (employees.length ? "Toutes les piÃ¨ces requises sont prÃ©sentes pour chaque membre." : "Ajoute le premier employÃ© pour commencer le suivi.") + '</small></div><a href="/employees/">' + (employees.length ? "Voir les dossiers" : "Ajouter un employÃ©") + ' â†—</a></article>';
+}
+function renderContracts() {
+  const list = document.querySelector("#contract-list");
+  list.innerHTML = contracts.length ? contracts.map((contract) => {
+    const serviceLabels = contract.services.map((service) => CONTRACT_SERVICES[service]).filter(Boolean);
+    const services = serviceLabels.map((label) => '<span class="service-pill">' + safe(label) + '</span>').join("");
+    const serviceManager = '<details class="contract-service-manager"><summary>Ajouter / enlever des prestations</summary><form class="contract-services-form" data-id="' + safe(contract.id) + '"><div>' + Object.entries(CONTRACT_SERVICES).map(([key, label]) => '<label><input type="checkbox" name="services" value="' + key + '"' + (contract.services.includes(key) ? ' checked' : '') + '><span>' + safe(label) + '</span></label>').join("") + '</div><button class="file-button" type="submit">Enregistrer</button></form></details>';
+    const people = contract.restrictToPeople ? contract.authorizedPeople.map((person) => safe(person.firstName + " " + person.lastName)).join(", ") : "Ouvert Ã  tous les membres du groupe";
+    const date = contract.updatedAt || contract.createdAt;
+    const file = contract.contractFile ? '<div class="contract-attached"><span>Contrat signÃ© : ' + safe(contract.contractFile.filename || "contrat.pdf") + '</span><button class="file-button" type="button" data-action="open-contract-file" data-id="' + safe(contract.id) + '">Ouvrir</button><button class="remove-link" type="button" data-action="remove-contract-file" data-id="' + safe(contract.id) + '">Retirer</button></div>' : '<small class="contract-no-file">Aucun contrat signÃ© joint</small>';
+    const declaredMembers = Number.isInteger(contract.declaredMembers) && contract.declaredMembers > 0 ? contract.declaredMembers + ' membre' + (contract.declaredMembers > 1 ? 's' : '') + ' dÃ©clarÃ©s' : 'Effectif dÃ©clarÃ© non renseignÃ©';
+    const priceUnit = contract.pricingMode === "per_member" ? ' $ / membre / semaine' : ' $ / semaine';
+    const weeklyUsage = contract.weeklyUsage || { counts: {} };
+    const weeklyCounts = Object.entries(CONTRACT_SERVICES).map(([key, label]) => '<span>' + safe(label) + ' <strong>' + Number(weeklyUsage.counts?.[key] || 0) + '</strong></span>').join("");
+    const memberCount = Array.isArray(contract.members) ? contract.members.length : 0;
+    const members = memberCount ? '<details class="contract-member-summary"><summary>Membres enregistrÃ©s (' + memberCount + ')</summary><ul>' + contract.members.map((member) => '<li>' + safe(member.firstName + ' ' + member.lastName) + ' <small>ID ' + safe(member.employeeNumber) + '</small></li>').join("") + '</ul></details>' : '<small class="contract-no-members">Aucune liste de membres enregistrÃ©e</small>';
+    const usageMembers = Array.isArray(weeklyUsage.members) && weeklyUsage.members.length ? '<details class="contract-member-summary"><summary>DÃ©tail des prestations par membre</summary><ul>' + weeklyUsage.members.map((member) => '<li>' + safe([member.firstName, member.lastName].filter(Boolean).join(" ") || member.employeeNumber || "Membre") + (member.employeeNumber ? ' <small>ID ' + safe(member.employeeNumber) + '</small>' : '') + ' â€” RÃ©paration ' + Number(member.counts.repair || 0) + ', dÃ©pannage ' + Number(member.counts.impound || 0) + ', dÃ©placement ' + Number(member.counts.displacement || 0) + '</li>').join("") + '</ul></details>' : '';
+    return '<article class="contract-card"><div class="contract-card-main"><div class="contract-kind">' + safe(CONTRACT_CATEGORIES[contract.category] || "Groupe") + '</div><h3>' + safe(contract.name) + '</h3><div class="contract-meta"><span>' + declaredMembers + '</span><span>' + Number(contract.weeklyPrice).toLocaleString("fr-FR") + priceUnit + '</span></div><div class="contract-services">' + services + '</div>' + serviceManager + '<div class="weekly-contract-usage"><small>Prestations cette semaine (' + safe(contractsWeek || "") + ')</small><div>' + weeklyCounts + '</div></div>' + members + usageMembers + '<small class="contract-people">' + (contract.restrictToPeople ? "Personnes autorisÃ©es : " : "AccÃ¨s : ") + people + '</small>' + file + '<small class="contract-date">Mis Ã  jour le ' + (date ? new Date(date).toLocaleDateString("fr-FR") : "â€”") + '</small></div><div class="contract-actions"><button class="edit-link" type="button" data-action="edit-contract" data-id="' + safe(contract.id) + '">Modifier</button><button class="remove-link" type="button" data-action="delete-contract" data-id="' + safe(contract.id) + '">Supprimer</button></div></article>';
+  }).join("") : '<div class="empty-row">Aucun contrat enregistrÃ©. Ajoute le premier groupe ci-dessus.</div>';
+  document.querySelector("#contract-count").textContent = contracts.length;
+  if (currentKind === "employee") {
+    document.querySelectorAll('#contract-list [data-action]:not([data-action="open-contract-file"])').forEach((control) => { control.hidden = true; });
+    document.querySelectorAll("#contract-list .contract-service-manager").forEach((control) => { control.hidden = true; });
+  }
+}
+function resetContractForm() {
+  const form = document.querySelector("#contract-form");
+  if (!form) return;
+  editingContractId = null;
+  pendingContractPdfData = "";
+  contractFormDirty = false;
+  form.reset();
+  syncContractPriceLabel();
+  document.querySelector("#contract-restricted").checked = false;
+  document.querySelector("#contract-people-fields").hidden = true;
+  document.querySelector("#contract-people-list").replaceChildren();
+  document.querySelector("#contract-members-list").replaceChildren();
+  updateContractMemberEmptyState();
+  document.querySelector("#contract-file-current").replaceChildren();
+  document.querySelector("#contract-file-current").hidden = true;
+  document.querySelector("#contract-extra-fields").open = false;
+  document.querySelector("#contract-form-title").textContent = "Ajouter un contrat";
+  document.querySelector("#contract-submit-label").textContent = "Enregistrer le contrat";
+  document.querySelector("#contract-cancel").hidden = true;
+}
+function syncContractPriceLabel() {
+  const perMember = document.querySelector("#contract-pricing-mode")?.value === "per_member";
+  document.querySelector("#contract-weekly-price-title").textContent = perMember ? "Tarif par membre et par semaine ($)" : "Prix du forfait par semaine ($)";
+  document.querySelector('[name="weeklyPrice"]').placeholder = perMember ? "Ex. 2 000" : "Ex. 35 000";
+  document.querySelector("#contract-price-help").textContent = perMember ? "Le total hebdomadaire estimÃ© dÃ©pendra du nombre de membres dÃ©clarÃ©s." : "Indique 0 si le contrat est gratuit.";
+}
+async function loadContracts() {
+  try {
+    const result = await api("/api/management/employees?resource=contracts");
+    contracts = result.contracts;
+    contractsWeek = result.week || "";
+    currentRole = result.role;
+    currentKind = result.kind || "director";
+    document.querySelectorAll("#add-contract, #contract-form, .contract-editor").forEach((element) => { element.hidden = currentKind === "employee"; });
+    document.querySelectorAll("#director-name").forEach((el) => { el.textContent = result.name || (currentKind === "employee" ? currentRole : "Direction connectÃ©e"); });
+    document.querySelectorAll(".admin-link").forEach((link) => { link.hidden = currentRole !== "admin"; });
+    renderContracts();
+    tell("");
+  } catch (error) { tell(error.message, true); document.querySelector("#contract-list")?.replaceChildren(); }
+}
+document.querySelector("#contract-form")?.addEventListener("input", () => { contractFormDirty = true; });
+document.querySelector("#contract-form")?.addEventListener("change", () => { contractFormDirty = true; });
+document.querySelector("#contract-pricing-mode")?.addEventListener("change", syncContractPriceLabel);
+document.querySelector("#contract-file-input")?.addEventListener("change", async (event) => {
+  const file = event.currentTarget.files?.[0];
+  pendingContractPdfData = "";
+  if (!file) return;
+  if (!file.name.toLowerCase().endsWith(".pdf") || file.size > 3 * 1024 * 1024) {
+    tell(file.size > 3 * 1024 * 1024 ? "Le PDF dÃ©passe la limite de 3 Mo." : "Choisis un fichier PDF.", true);
+    event.currentTarget.value = "";
+    return;
+  }
+  try {
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    let binary = "";
+    for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+    pendingContractPdfData = btoa(binary);
+    tell("Lecture du contrat en coursâ€¦ Le PDF sera joint Ã  la fiche aprÃ¨s son enregistrement.");
+    const result = await api("/api/management/employees?resource=contract-import", { method: "POST", body: JSON.stringify({ fileName: file.name, data: pendingContractPdfData }) });
+    const extracted = result.extracted || {};
+    const form = document.querySelector("#contract-form");
+    const detected = [];
+    const fill = (field, value, label) => { if (value !== null && value !== undefined && value !== "") { form.elements[field].value = value; detected.push(label); } };
+    fill("name", extracted.name, "nom");
+    fill("category", extracted.category, "type");
+    fill("responsibleName", extracted.responsibleName, "responsable");
+    fill("declaredMembers", extracted.declaredMembers, "effectif dÃ©clarÃ©");
+    fill("contactName", extracted.contactName, "contact");
+    fill("pricingMode", extracted.pricingMode, "formule tarifaire");
+    if (extracted.weeklyPrice !== null && extracted.weeklyPrice !== undefined) fill("weeklyPrice", extracted.weeklyPrice, "tarif");
+    fill("startDate", extracted.startDate, "date dâ€™effet");
+    if (Array.isArray(extracted.services) && extracted.services.length) {
+      for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = extracted.services.includes(checkbox.value);
+      detected.push("prestations");
+    }
+    if (["responsable", "contact", "formule tarifaire", "date dâ€™effet"].some((field) => detected.includes(field))) document.querySelector("#contract-extra-fields").open = true;
+    syncContractPriceLabel();
+    tell(detected.length ? "Champs prÃ©remplis depuis le PDF : " + detected.join(", ") + ". VÃ©rifie-les et complÃ¨te ce qui manque avant dâ€™enregistrer." : "Aucun champ reconnu dans ce PDF. Tu peux le joindre et remplir la fiche manuellement.");
+  } catch (error) {
+    tell(error.message + " Tu peux quand mÃªme remplir les champs manuellement et joindre le PDF.", true);
+  }
+});
+document.querySelector("#contract-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const payload = Object.fromEntries(new FormData(form));
+  payload.services = new FormData(form).getAll("services");
+  payload.declaredMembers = Number(payload.declaredMembers);
+  payload.weeklyPrice = Number(payload.weeklyPrice);
+  payload.restrictToPeople = document.querySelector("#contract-restricted").checked;
+  payload.authorizedPeople = payload.restrictToPeople ? [...document.querySelectorAll(".contract-person-row")].map((row) => ({
+    firstName: row.querySelector('[name="authorizedFirstName"]').value.trim(),
+    lastName: row.querySelector('[name="authorizedLastName"]').value.trim(),
+    employeeNumber: row.querySelector('[name="authorizedEmployeeNumber"]').value.trim(),
+  })) : [];
+  payload.members = [...document.querySelectorAll(".contract-member-row")].map((row) => ({
+    firstName: row.querySelector('[name="memberFirstName"]').value.trim(),
+    lastName: row.querySelector('[name="memberLastName"]').value.trim(),
+    employeeNumber: row.querySelector('[name="memberEmployeeNumber"]').value.trim(),
+  })).filter((member) => member.firstName || member.lastName || member.employeeNumber);
+  const button = form.querySelector('[type="submit"]');
+  const fileInput = document.querySelector("#contract-file-input");
+  const selectedFile = fileInput.files?.[0];
+  if (selectedFile && (!selectedFile.name.toLowerCase().endsWith(".pdf") || selectedFile.size > 3 * 1024 * 1024)) {
+    tell(selectedFile.size > 3 * 1024 * 1024 ? "Le PDF dÃ©passe la limite de 3 Mo." : "Le fichier du contrat doit Ãªtre un PDF.", true);
+    return;
+  }
+  button.disabled = true;
+  try {
+    const isEditing = Boolean(editingContractId);
+    const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingContractId) + "?resource=contracts" : "/api/management/employees?resource=contracts";
+    const result = await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(payload) });
+    let savedContract = result.contract;
+    if (savedContract) {
+      contracts = isEditing ? contracts.map((contract) => contract.id === savedContract.id ? savedContract : contract) : [...contracts, savedContract];
+      renderContracts();
+    }
+    if (savedContract && selectedFile) {
+      try {
+        if (!pendingContractPdfData) {
+          const bytes = new Uint8Array(await selectedFile.arrayBuffer());
+          let binary = "";
+          for (let offset = 0; offset < bytes.length; offset += 0x8000) binary += String.fromCharCode(...bytes.subarray(offset, offset + 0x8000));
+          pendingContractPdfData = btoa(binary);
+        }
+        const uploaded = await api("/api/management/employees/" + encodeURIComponent(savedContract.id) + "?resource=contract-file", { method: "PUT", body: JSON.stringify({ fileName: selectedFile.name, data: pendingContractPdfData }) });
+        savedContract = uploaded.contract;
+        contracts = contracts.map((contract) => contract.id === savedContract.id ? savedContract : contract);
+        renderContracts();
+      } catch (error) {
+        editingContractId = savedContract.id;
+        document.querySelector("#contract-form-title").textContent = "Contrat crÃ©Ã© â€” fichier Ã  ajouter";
+        document.querySelector("#contract-submit-label").textContent = "RÃ©essayer lâ€™ajout du PDF";
+        document.querySelector("#contract-cancel").hidden = false;
+        tell("La fiche partenaire est enregistrÃ©e, mais le PDF nâ€™a pas Ã©tÃ© ajoutÃ© : " + error.message, true);
+        return;
+      }
+    }
+    resetContractForm();
+    tell(isEditing ? "Contrat mis Ã  jour." : "Contrat ajoutÃ©.");
+  } catch (error) { tell(error.message, true); }
+  finally { button.disabled = false; }
+});
+document.querySelector("#contract-cancel")?.addEventListener("click", resetContractForm);
+function updateContractMemberEmptyState() {
+  const list = document.querySelector("#contract-members-list");
+  const empty = document.querySelector("#contract-members-empty");
+  if (list && empty) empty.hidden = list.querySelectorAll(".contract-member-row").length > 0;
+}
+function addContractMemberRow(member = {}) {
+  const row = document.createElement("div");
+  row.className = "contract-member-row";
+  row.innerHTML = '<label>PrÃ©nom<input name="memberFirstName" maxlength="60" autocomplete="given-name" required></label><label>Nom<input name="memberLastName" maxlength="60" autocomplete="family-name" required></label><label>ID unique<input name="memberEmployeeNumber" maxlength="24" pattern="[A-Za-zÃ€-Å¾0-9_-]{2,24}" placeholder="Ex. HR-024" required></label><button class="icon-button" type="button" data-action="remove-contract-member" aria-label="Retirer ce membre">Ã—</button>';
+  row.querySelector('[name="memberFirstName"]').value = member.firstName || "";
+  row.querySelector('[name="memberLastName"]').value = member.lastName || "";
+  row.querySelector('[name="memberEmployeeNumber"]').value = member.employeeNumber || "";
+  document.querySelector("#contract-members-list").append(row);
+  updateContractMemberEmptyState();
+}
+document.querySelector("#contract-add-member")?.addEventListener("click", () => addContractMemberRow());
+document.querySelector("#contract-members-list")?.addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="remove-contract-member"]');
+  if (!button) return;
+  button.closest(".contract-member-row").remove();
+  updateContractMemberEmptyState();
+});
+function addAuthorizedPersonRow(person = {}) {
+  const row = document.createElement("div");
+  row.className = "contract-person-row";
+  row.innerHTML = '<label>PrÃ©nom<input name="authorizedFirstName" maxlength="60" autocomplete="given-name"></label><label>Nom<input name="authorizedLastName" maxlength="60" autocomplete="family-name"></label><label>ID unique<input name="authorizedEmployeeNumber" maxlength="24" pattern="[A-Za-zÃ€-Å¾0-9_-]{2,24}" placeholder="ID du membre"></label><button class="icon-button" type="button" data-action="remove-authorized-person" aria-label="Retirer cette personne">Ã—</button>';
+  row.querySelector('[name="authorizedFirstName"]').value = person.firstName || "";
+  row.querySelector('[name="authorizedLastName"]').value = person.lastName || "";
+  row.querySelector('[name="authorizedEmployeeNumber"]').value = person.employeeNumber || "";
+  for (const input of row.querySelectorAll("input")) input.required = document.querySelector("#contract-restricted").checked;
+  document.querySelector("#contract-people-list").append(row);
+}
+document.querySelector("#contract-restricted")?.addEventListener("change", (event) => {
+  const enabled = event.currentTarget.checked;
+  document.querySelector("#contract-people-fields").hidden = !enabled;
+  for (const input of document.querySelectorAll(".contract-person-row input")) input.required = enabled;
+  if (enabled && !document.querySelector(".contract-person-row")) addAuthorizedPersonRow();
+});
+document.querySelector("#contract-add-person")?.addEventListener("click", () => addAuthorizedPersonRow());
+document.querySelector("#contract-people-list")?.addEventListener("click", (event) => {
+  const button = event.target.closest('[data-action="remove-authorized-person"]');
+  if (!button) return;
+  button.closest(".contract-person-row").remove();
+});
+document.querySelector("#contract-list")?.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-action]");
+  if (!button) return;
+  const contract = contracts.find((item) => item.id === button.dataset.id);
+  if (!contract) return;
+  if (button.dataset.action === "open-contract-file") {
+    window.open("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contract-file", "_blank", "noopener");
+    return;
+  }
+  if (button.dataset.action === "remove-contract-file") {
+    if (!confirm("Retirer le PDF du contrat Â« " + contract.name + " Â» ?")) return;
+    try {
+      const result = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contract-file", { method: "DELETE" });
+      contracts = contracts.map((item) => item.id === contract.id ? result.contract : item);
+      renderContracts();
+      if (editingContractId === contract.id) { const currentFile = document.querySelector("#contract-file-current"); currentFile.replaceChildren(); currentFile.hidden = true; }
+      tell("PDF du contrat retirÃ©.");
+    } catch (error) { tell(error.message, true); }
+    return;
+  }
+  if (button.dataset.action === "edit-contract") {
+    editingContractId = contract.id;
+    pendingContractPdfData = "";
+    const form = document.querySelector("#contract-form");
+    document.querySelector("#contract-file-input").value = "";
+    form.elements.name.value = contract.name;
+    form.elements.category.value = contract.category;
+    form.elements.responsibleName.value = contract.responsibleName || "";
+    form.elements.declaredMembers.value = contract.declaredMembers ?? "";
+    form.elements.contactName.value = contract.contactName || "";
+    form.elements.pricingMode.value = contract.pricingMode || "flat";
+    form.elements.weeklyPrice.value = contract.weeklyPrice;
+    form.elements.startDate.value = contract.startDate || "";
+    document.querySelector("#contract-extra-fields").open = Boolean(contract.responsibleName || contract.contactName || contract.startDate || contract.pricingMode === "per_member");
+    syncContractPriceLabel();
+    const currentFile = document.querySelector("#contract-file-current");
+    if (contract.contractFile) {
+      currentFile.innerHTML = 'PDF actuel : <strong>' + safe(contract.contractFile.filename || "contrat.pdf") + '</strong>. SÃ©lectionne un autre PDF pour le remplacer.';
+      currentFile.hidden = false;
+    } else { currentFile.replaceChildren(); currentFile.hidden = true; }
+    for (const checkbox of form.querySelectorAll('input[name="services"]')) checkbox.checked = contract.services.includes(checkbox.value);
+    const restricted = Boolean(contract.restrictToPeople);
+    document.querySelector("#contract-restricted").checked = restricted;
+    document.querySelector("#contract-people-fields").hidden = !restricted;
+    const peopleList = document.querySelector("#contract-people-list");
+    peopleList.replaceChildren();
+    if (restricted) (contract.authorizedPeople.length ? contract.authorizedPeople : [{}]).forEach(addAuthorizedPersonRow);
+    for (const input of peopleList.querySelectorAll("input")) input.required = restricted;
+    const membersList = document.querySelector("#contract-members-list");
+    membersList.replaceChildren();
+    (contract.members || []).forEach(addContractMemberRow);
+    updateContractMemberEmptyState();
+    document.querySelector("#contract-form-title").textContent = "Modifier le contrat";
+    document.querySelector("#contract-submit-label").textContent = "Enregistrer les changements";
+    document.querySelector("#contract-cancel").hidden = false;
+    form.scrollIntoView({ behavior: "smooth", block: "start" });
+    form.elements.name.focus();
+    return;
+  }
+  if (button.dataset.action === "delete-contract") {
+    if (!confirm("Supprimer le contrat de Â« " + contract.name + " Â» ?")) return;
+    try { await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "DELETE" }); contracts = contracts.filter((item) => item.id !== contract.id); renderContracts(); tell("Contrat supprimÃ©."); }
+    catch (error) { tell(error.message, true); }
+  }
+});
+document.querySelector("#contract-list")?.addEventListener("submit", async (event) => {
+  const form = event.target.closest(".contract-services-form");
+  if (!form) return;
+  event.preventDefault();
+  const contract = contracts.find((item) => item.id === form.dataset.id);
+  const services = new FormData(form).getAll("services");
+  if (!contract || !services.length) { tell("Garde au moins une prestation autorisÃ©e.", true); return; }
+  const button = form.querySelector('[type="submit"]');
+  button.disabled = true;
+  try {
+    const result = await api("/api/management/employees/" + encodeURIComponent(contract.id) + "?resource=contracts", { method: "PATCH", body: JSON.stringify({ ...contract, services }) });
+    contracts = contracts.map((item) => item.id === contract.id ? { ...result.contract, weeklyUsage: item.weeklyUsage } : item);
+    renderContracts();
+    tell("Prestations autorisÃ©es mises Ã  jour pour Â« " + contract.name + " Â». ");
+  } catch (error) { tell(error.message, true); button.disabled = false; }
+});
+function docCell(employee, type) {
+  if (type === "diploma") {
+    const docs = Array.isArray(employee.documents?.diplomas) ? employee.documents.diplomas : employee.documents?.diploma?.pathname ? [employee.documents.diploma] : [];
+    const rows = docs.map((doc, index) => {
+      const documentId = safe(doc.id || "");
+      return '<div class="doc-row"><span class="doc-status present">DiplÃ´me ' + (index + 1) + '</span><button class="file-button" type="button" data-action="preview" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">AperÃ§u</button><button class="file-button" type="button" data-action="download" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">Ouvrir â†—</button><button class="icon-button" type="button" title="Supprimer ce diplÃ´me" data-action="remove-doc" data-id="' + employee.id + '" data-type="diploma" data-document-id="' + documentId + '">Ã—</button></div>';
+    }).join("");
+  return '<div class="doc-list">' + (rows || '<span class="doc-status">Aucun diplÃ´me</span>') + '<label class="file-button">+ Ajouter diplÃ´me<input hidden type="file" data-action="upload" data-id="' + employee.id + '" data-type="diploma" accept="application/pdf,image/jpeg,image/png,image/webp"></label></div>';
+  }
+  const doc = employee.documents?.[type];
+  return '<div class="doc-control">' + (doc ? '<span class="doc-status present">PrÃ©sent</span><button class="file-button" type="button" data-action="preview" data-id="' + employee.id + '" data-type="' + type + '">AperÃ§u</button><button class="file-button" type="button" data-action="download" data-id="' + employee.id + '" data-type="' + type + '">Ouvrir â†—</button><button class="icon-button" type="button" title="Supprimer le document" data-action="remove-doc" data-id="' + employee.id + '" data-type="' + type + '">Ã—</button>' : '<span class="doc-status">Manquant</span>') + '<label class="file-button">' + (doc ? "Remplacer" : "+ Ajouter") + '<input hidden type="file" data-action="upload" data-id="' + employee.id + '" data-type="' + type + '" accept="application/pdf,image/jpeg,image/png,image/webp"></label></div>';
+}
+function renderEmployees() {
+  const query = (document.querySelector("#search")?.value || "").trim().toLocaleLowerCase("fr");
+  const visible = employees.filter((e) => (e.firstName + " " + e.lastName + " " + e.employeeNumber + " " + (e.discordId || "") + " " + (e.garageRole || "")).toLocaleLowerCase("fr").includes(query)).sort((a, b) => {
+    const rankA = ROLE_ORDER.indexOf(a.garageRole);
+    const rankB = ROLE_ORDER.indexOf(b.garageRole);
+    return (rankA < 0 ? ROLE_ORDER.length : rankA) - (rankB < 0 ? ROLE_ORDER.length : rankB) || (a.lastName || "").localeCompare(b.lastName || "", "fr") || (a.firstName || "").localeCompare(b.firstName || "", "fr");
+  });
+  document.querySelector("#employee-count").textContent = employees.length;
+  const list = document.querySelector("#employee-list");
+  const expandedIds = new Set([...list.querySelectorAll(".employee-card[open]")].map((card) => card.dataset.id));
+  list.innerHTML = visible.length ? visible.map((employee) => {
+    const miss = missing(employee);
+    const initials = safe(((employee.firstName || "")[0] || "") + ((employee.lastName || "")[0] || "")).toLocaleUpperCase("fr");
+    const date = employee.createdAt ? new Date(employee.createdAt).toLocaleDateString("fr-FR") : "â€”";
+    const expanded = expandedIds.has(employee.id) ? " open" : "";
+    const roleLabel = ROLE_LABELS[employee.garageRole] || employee.garageRole || "Ã€ dÃ©finir";
+    return '<details class="employee-card" data-id="' + employee.id + '"' + expanded + '><summary class="employee-summary"><span class="employee-identity"><span class="employee-avatar" aria-hidden="true">' + initials + '</span><span class="employee-name-block"><strong>' + safe(employee.firstName) + ' ' + safe(employee.lastName) + '</strong><small>ID unique Â· ' + safe(employee.employeeNumber) + '</small></span></span><span class="employee-summary-role"><small>Grade</small><strong class="role-pill">' + safe(roleLabel) + '</strong></span><span class="status-tag ' + (miss.length ? "incomplete" : "complete") + '">' + (miss.length ? miss.length + ' piÃ¨ce' + (miss.length > 1 ? "s" : "") + ' Ã  complÃ©ter' : "Dossier complet") + '</span><span class="employee-chevron" aria-hidden="true">âŒ„</span></summary><div class="employee-details"><div class="employee-detail-bar"><span class="employee-subtitle">AjoutÃ© le ' + date + '</span><div class="employee-head-actions"><button class="edit-link" type="button" data-action="edit-employee" data-id="' + employee.id + '">Modifier la fiche</button><button class="remove-link" type="button" data-action="delete-employee" data-id="' + employee.id + '">Supprimer</button></div></div><div class="employee-meta"><div><span>ID unique</span><strong>' + safe(employee.employeeNumber) + '</strong></div><div><span>ID Discord</span><strong>' + safe(employee.discordId || "Ã€ renseigner") + '</strong></div><div><span>RÃ´le dans la sociÃ©tÃ©</span><strong class="role-pill">' + safe(roleLabel) + '</strong></div></div><div class="employee-documents"><section class="employee-document"><h4>Carte dâ€™identitÃ©</h4>' + docCell(employee, "identity") + '</section><section class="employee-document"><h4>Permis de conduire</h4>' + docCell(employee, "license") + '</section><section class="employee-document"><h4>DiplÃ´mes</h4>' + docCell(employee, "diploma") + '</section><section class="employee-document"><h4>Contrat</h4>' + docCell(employee, "contract") + '</section></div></div></details>';
+  }).join("") : '<div class="empty-row">' + (employees.length ? "Aucun rÃ©sultat pour cette recherche." : "Aucun employÃ© pour le moment. Ajoute le premier dossier.") + "</div>";
+}
+function applyEmployeeReadOnly() {
+  if (currentKind !== "employee") return;
+  document.querySelectorAll("#add-employee, #add-employees-paste").forEach((button) => { button.hidden = true; });
+  document.querySelectorAll('#employee-list [data-action="edit-employee"], #employee-list [data-action="delete-employee"], #employee-list [data-action="remove-doc"]').forEach((button) => { button.hidden = true; });
+  document.querySelectorAll('#employee-list input[data-action="upload"]').forEach((input) => { if (input.closest("label")) input.closest("label").hidden = true; });
+  document.querySelectorAll("#employee-list .employee-head-actions").forEach((actions) => { actions.hidden = true; });
+}
+function parseEmployeePaste() {
+  const lines = (document.querySelector("#employee-bulk-rows")?.value || "").split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+  const rows = [];
+  let malformed = 0;
+  for (const [index, line] of lines.entries()) {
+    if (index === 0 && /nom/i.test(line) && /pr[eÃ©]nom/i.test(line) && /id/i.test(line)) continue;
+    let columns;
+    if (line.includes("\t")) columns = line.split("\t");
+    else if (line.includes(";")) columns = line.split(";");
+    else if (line.includes("|")) columns = line.split("|");
+    else if (line.includes(",")) columns = line.split(",");
+    else {
+      const match = line.match(/^(.+?)\s+([^\s]+)\s+([\p{L}\p{N}_-]{2,24})$/u);
+      columns = match ? [match[1], match[2], match[3]] : [];
+    }
+    if (columns.length !== 3) { malformed += 1; continue; }
+    const [lastName, firstName, employeeNumber] = columns.map((value) => value.trim().replace(/^\s*["']|["']\s*$/g, ""));
+    if (!lastName || !firstName || !/^[\p{L}\p{N}_-]{2,24}$/u.test(employeeNumber)) { malformed += 1; continue; }
+    rows.push({ lastName, firstName, employeeNumber });
+  }
+  const seen = new Set();
+  const duplicates = rows.filter((row) => { const key = row.employeeNumber.toLocaleLowerCase("fr"); if (seen.has(key)) return true; seen.add(key); return false; });
+  return { rows, malformed, duplicates };
+}
+function updateEmployeeBulkPreview() {
+  const { rows, malformed, duplicates } = parseEmployeePaste();
+  const preview = document.querySelector("#employee-bulk-preview");
+  if (!preview) return;
+  preview.classList.toggle("error", Boolean(malformed || duplicates.length));
+  const sample = rows.slice(0, 5).map((row) => row.lastName + " " + row.firstName + " Â· " + row.employeeNumber).join("\n");
+  preview.textContent = rows.length + " ligne(s) reconnue(s)" + (malformed ? " Â· " + malformed + " ligne(s) Ã  corriger" : "") + (duplicates.length ? " Â· " + duplicates.length + " ID(s) en double" : "") + (sample ? "\n" + sample : "");
+}
+const employeeBulkDialog = document.querySelector("#employee-bulk-dialog");
+document.querySelector("#add-employees-paste")?.addEventListener("click", () => { updateEmployeeBulkPreview(); document.querySelector("#employee-bulk-notice").hidden = true; employeeBulkDialog.showModal(); });
+document.querySelector("#employee-bulk-rows")?.addEventListener("input", updateEmployeeBulkPreview);
+document.querySelector("#bulk-dialog-close")?.addEventListener("click", () => employeeBulkDialog.close());
+document.querySelector("#bulk-dialog-cancel")?.addEventListener("click", () => employeeBulkDialog.close());
+document.querySelector("#employee-bulk-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const { rows, malformed, duplicates } = parseEmployeePaste();
+  if (!rows.length || malformed || duplicates.length) { updateEmployeeBulkPreview(); return; }
+  const button = event.currentTarget.querySelector('[type="submit"]');
+  button.disabled = true;
+  try {
+    const result = await api("/api/management/employees?resource=bulk", { method: "POST", body: JSON.stringify({ rows, garageRole: document.querySelector("#employee-bulk-role").value }) });
+    employees = [...employees, ...result.employees];
+    renderEmployees();
+    employeeBulkDialog.close();
+    event.currentTarget.reset();
+    document.querySelector("#employee-bulk-preview").textContent = "Aucune ligne prÃªte.";
+    tell(result.employees.length + " employÃ©(s) ajoutÃ©(s). Ajoute leur ID Discord en modifiant les fiches au besoin.");
+  } catch (error) {
+    const formNotice = document.querySelector("#employee-bulk-notice");
+    formNotice.textContent = error.message;
+    formNotice.hidden = false;
+    formNotice.focus();
+  }
+  finally { button.disabled = false; }
+});
+document.querySelector("#search")?.addEventListener("input", () => { renderEmployees(); applyEmployeeReadOnly(); });
+const dialog = document.querySelector("#employee-dialog");
+const employeeForm = document.querySelector("#employee-form");
+const employeeSubmitLabel = document.querySelector("#employee-submit-label");
+function setEmployeeFormMode(employee = null) {
+  editingEmployeeId = employee?.id || null;
+  employeeForm.reset();
+  const formNotice = document.querySelector("#employee-form-notice");
+  formNotice.textContent = "";
+  formNotice.hidden = true;
+  document.querySelector("#employee-form-eyebrow").textContent = employee ? "MODIFICATION DU DOSSIER" : "NOUVEAU DOSSIER";
+  document.querySelector("#employee-dialog-title").textContent = employee ? "Modifier la fiche" : "Ajouter un employÃ©";
+  employeeSubmitLabel.textContent = employee ? "Enregistrer les changements" : "Enregistrer";
+  if (employee) for (const key of ["firstName", "lastName", "employeeNumber", "discordId", "garageRole"]) employeeForm.elements[key].value = employee[key] || "";
+}
+document.querySelector("#add-employee")?.addEventListener("click", () => { setEmployeeFormMode(); dialog.showModal(); });
+document.querySelector(".dialog-close")?.addEventListener("click", () => dialog.close());
+document.querySelector(".dialog-cancel")?.addEventListener("click", () => dialog.close());
+dialog?.addEventListener("close", () => setEmployeeFormMode());
+document.querySelector("#employee-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
+  try {
+    const isEditing = Boolean(editingEmployeeId);
+    const endpoint = isEditing ? "/api/management/employees/" + encodeURIComponent(editingEmployeeId) : "/api/management/employees";
+    const saved = await api(endpoint, { method: isEditing ? "PATCH" : "POST", body: JSON.stringify(Object.fromEntries(form)) });
+    if (isEditing && saved.employee) {
+      employees = employees.map((employee) => employee.id === saved.employee.id ? saved.employee : employee);
+      renderEmployees();
+    } else {
+      await load();
+    }
+    dialog.close(); tell(isEditing ? "Fiche employÃ© mise Ã  jour." : "EmployÃ© ajoutÃ©.");
+  }
+  catch (error) {
+    if (dialog.open) {
+      const formNotice = document.querySelector("#employee-form-notice");
+      formNotice.textContent = error.message;
+      formNotice.hidden = false;
+      formNotice.focus?.();
+    } else tell(error.message, true);
+  } finally { button.disabled = false; }
+});
+document.querySelector("#employee-list")?.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-action]"); if (!button) return;
+  const { action, id, type, documentId } = button.dataset;
+  try {
+    const documentQuery = new URLSearchParams({ type });
+    if (documentId) documentQuery.set("documentId", documentId);
+    if (action === "edit-employee") {
+      const employee = employees.find((item) => item.id === id);
+      if (!employee) throw new Error("Fiche employÃ© introuvable. Actualise la page et rÃ©essaie.");
+      setEmployeeFormMode(employee);
+      dialog.showModal();
+      return;
+    }
+    if (action === "download") {
+      const response = await fetch("/api/management/documents/" + id + "?" + documentQuery, { credentials: "same-origin", cache: "no-store" });
+      if (!response.ok) throw new Error("TÃ©lÃ©chargement impossible ou accÃ¨s refusÃ©.");
+      const blob = await response.blob(); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "harmony-" + type; a.click(); URL.revokeObjectURL(a.href); return;
+    }
+    if (action === "remove-doc") { if (!confirm(type === "diploma" ? "Supprimer ce diplÃ´me ?" : "Supprimer " + DOCS[type].toLowerCase() + " ?")) return; await api("/api/management/documents/" + id + "?" + documentQuery, { method: "DELETE" }); tell(type === "diploma" ? "DiplÃ´me supprimÃ©." : "Document supprimÃ©."); await load(); }
+    if (action === "delete-employee") { if (!confirm("Supprimer cet employÃ© et toutes ses piÃ¨ces ? Cette action est dÃ©finitive.")) return; await api("/api/management/employees/" + id, { method: "DELETE" }); tell("Dossier employÃ© supprimÃ©."); await load(); }
+  } catch (error) { tell(error.message, true); }
+});
+const previewPanel = document.createElement("aside");
+previewPanel.className = "doc-preview";
+previewPanel.hidden = true;
+previewPanel.setAttribute("role", "status");
+previewPanel.setAttribute("aria-live", "polite");
+document.body.append(previewPanel);
+let previewToken = 0;
+let previewUrl = "";
+function hidePreview() {
+  previewToken += 1;
+  previewPanel.hidden = true;
+  previewPanel.replaceChildren();
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  previewUrl = "";
+}
+function positionPreview(button) {
+  const rect = button.getBoundingClientRect();
+  const width = Math.min(460, window.innerWidth - 24);
+  let top = rect.top - 332;
+  if (top < 12) top = Math.min(rect.bottom + 10, window.innerHeight - 332);
+  previewPanel.style.width = width + "px";
+  previewPanel.style.left = Math.min(window.innerWidth - width - 12, Math.max(12, rect.right + 10)) + "px";
+  previewPanel.style.top = Math.max(12, top) + "px";
+}
+async function showPreview(button) {
+  hidePreview();
+  const token = ++previewToken;
+  positionPreview(button);
+  previewPanel.textContent = "Chargement de lâ€™aperÃ§uâ€¦";
+  previewPanel.hidden = false;
+  const query = new URLSearchParams({ type: button.dataset.type });
+  if (button.dataset.documentId) query.set("documentId", button.dataset.documentId);
+  try {
+    const response = await fetch("/api/management/documents/" + button.dataset.id + "?" + query, { credentials: "same-origin", cache: "no-store" });
+    if (!response.ok) throw new Error("AperÃ§u indisponible.");
+    const blob = await response.blob();
+    if (token !== previewToken) return;
+    previewUrl = URL.createObjectURL(blob);
+    previewPanel.replaceChildren();
+    if (blob.type === "application/pdf") {
+      const frame = document.createElement("iframe");
+      frame.title = "AperÃ§u du document PDF";
+      frame.src = previewUrl;
+      previewPanel.append(frame);
+    } else if (blob.type.startsWith("image/")) {
+      const image = document.createElement("img");
+      image.alt = "AperÃ§u du document enregistrÃ©";
+      image.src = previewUrl;
+      previewPanel.append(image);
+    } else {
+      previewPanel.textContent = "Format dâ€™aperÃ§u non pris en charge.";
+    }
+    positionPreview(button);
+  } catch (error) {
+    if (token === previewToken) previewPanel.textContent = error.message;
+  }
+}
+window.addEventListener("scroll", hidePreview, { passive: true });
+window.addEventListener("resize", hidePreview);
+document.querySelector("#employee-list")?.addEventListener("pointerover", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button && !button.contains(event.relatedTarget)) showPreview(button);
+});
+document.querySelector("#employee-list")?.addEventListener("pointerout", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button && !button.contains(event.relatedTarget)) hidePreview();
+});
+document.querySelector("#employee-list")?.addEventListener("focusin", (event) => {
+  const button = event.target.closest('[data-action="preview"]');
+  if (button) showPreview(button);
+});
+document.querySelector("#employee-list")?.addEventListener("focusout", (event) => {
+  if (event.target.closest('[data-action="preview"]')) hidePreview();
+});
 
-›İÊHOˆ›İË›\İ˜[YH
-Èˆˆ
-È›İË™š\œİ˜[YH
-Èˆ0­Èˆ
-È›İË™[\ŞYYS[X™\ŠKš›Ú[Š—ˆŠNÂˆ™]šY]Ë^ÛÛ[H›İÜË›[™İ
-ÈˆYÛ™JÊH™XÛÛ›YJÊHˆ
-È
-X[›Ü›YYÈˆ0­Èˆ
-ÈX[›Ü›YY
-ÈˆYÛ™JÊH0èÛÜœšYÙ\ˆˆˆˆŠH
-È
-\XØ]\Ë›[™İÈˆ0­Èˆ
-È\XØ]\Ë›[™İ
-ÈˆQ
-ÊH[ˆİX›HˆˆˆŠH
-È
-Ø[\HÈ—ˆˆ
-ÈØ[\HˆˆŠNÂŸB˜ÛÛœİ[\ŞYYP[ÑX[ÙÈHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[ËYX[ÙÈŠNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆØYY[\ŞYY\Ë\\İHŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
+document.querySelector("#employee-list")?.addEventListener("change", async (event) => {
+  const input = event.target.closest('input[data-action="upload"]'); if (!input || !input.files?.[0]) return;
+  const file = input.files[0]; input.disabled = true; tell("Envoi de " + DOCS[input.dataset.type].toLowerCase() + "â€¦");
+  try {
+    const response = await fetch("/api/management/documents/" + input.dataset.id + "?type=" + input.dataset.type, { method: "PUT", credentials: "same-origin", cache: "no-store", headers: { "Content-Type": file.type || "application/octet-stream" }, body: file });
+    const data = await response.json().catch(() => ({})); if (response.status === 401) { location.assign("/login/"); return; }
+    if (!response.ok) throw new Error(({ unsupported_file_type: "Format refusÃ© : PDF, JPG, PNG ou WebP uniquement.", file_too_large: "Le fichier dÃ©passe la limite de 4 Mo." })[data.error] || "Envoi impossible.");
+    tell("PiÃ¨ce enregistrÃ©e. Actualisation du dossierâ€¦"); await load();
+  } catch (error) { tell(error.message, true); } finally { input.disabled = false; input.value = ""; }
+});
 
-HOˆÈ\]Q[\ŞYYP[Ô™]šY]Ê
-NÈØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[Ë[›İXÙHŠKšY[ˆHYNÈ[\ŞYYP[ÑX[ÙËœÚİÓ[Ù[
+async function loadDirectors() {
+  try {
+    const data = await api("/api/management/directors");
+    const tbody = document.querySelector("#director-rows");
+    tbody.innerHTML = data.directors.length ? data.directors.map((director) => '<tr><td><div class="person-name">' + safe(director.name || "Directeur") + (director.role === "admin" ? ' <span class="admin-badge">ADMIN</span>' : "") + '</div><div class="person-id">' + safe(director.discordId) + '</div></td><td>' + (director.addedAt ? new Date(director.addedAt).toLocaleDateString("fr-FR") : "Compte principal") + '</td><td>' + (director.role === "admin" ? '<span class="doc-status">ProtÃ©gÃ©</span>' : '<button class="remove-link" data-action="remove-director" data-id="' + safe(director.discordId) + '">Retirer lâ€™accÃ¨s</button>') + '</td></tr>').join("") : '<tr class="empty-row"><td colspan="3">Aucun directeur secondaire. Tu peux ajouter un compte ci-dessus.</td></tr>';
+    await loadRolePermissions();
+  } catch (error) { tell(error.message, true); }
+}
 
-NÈJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[Ë\›İÜÈŠOË˜Y]™[\İ[™\Šš[œ]‹\]Q[\ŞYYP[Ô™]šY]ÊNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆØ[ËYX[ÙËXÛÜÙHŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
+async function loadRolePermissions() {
+  const panel = document.querySelector("#role-permissions-panel");
+  if (!panel) return;
+  const data = await api("/api/management/employees?resource=permissions");
+  const tbody = document.querySelector("#role-permission-rows");
+  const tabLabels = Object.fromEntries(data.tabs.map((tab) => [tab.key, tab.label]));
+  const tabs = data.tabs.map((tab) => tab.key);
+  tbody.innerHTML = data.roles.map((role) => '<tr><th scope="row">' + safe(ROLE_LABELS[role] || role) + '</th>' + tabs.map((tab) => '<td><label class="permission-toggle"><input type="checkbox" data-role="' + safe(role) + '" data-tab="' + safe(tab) + '" ' + (data.permissions[role][tab] ? "checked" : "") + '><span class="sr-only">' + safe(tabLabels[tab] + " pour " + (ROLE_LABELS[role] || role)) + '</span></label></td>').join("") + '</tr>').join("");
+  panel.hidden = false;
+}
 
-HOˆ[\ŞYYP[ÑX[ÙË˜ÛÜÙJ
-JNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆØ[ËYX[ÙËXØ[˜Ù[ŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
+document.querySelector("#save-role-permissions")?.addEventListener("click", async (event) => {
+  const button = event.currentTarget;
+  button.disabled = true;
+  try {
+    const permissions = {};
+    document.querySelectorAll("#role-permission-rows input[data-role]").forEach((input) => {
+      permissions[input.dataset.role] ||= {};
+      permissions[input.dataset.role][input.dataset.tab] = input.checked;
+    });
+    await api("/api/management/employees?resource=permissions", { method: "PUT", body: JSON.stringify({ permissions }) });
+    tell("Les permissions des rÃ´les ont Ã©tÃ© enregistrÃ©es.");
+  } catch (error) { tell(error.message, true); }
+  finally { button.disabled = false; }
+});
 
-HOˆ[\ŞYYP[ÑX[ÙË˜ÛÜÙJ
-JNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[ËY›Ü›HŠOË˜Y]™[\İ[™\ŠœİX›Z]‹\Ş[˜È
-]™[
-HOˆÂˆ]™[œ™]™[Y˜][
+document.querySelector("#director-form")?.addEventListener("submit", async (event) => {
+  event.preventDefault(); const formElement = event.currentTarget; const form = new FormData(formElement); const button = formElement.querySelector("[type=submit]"); button.disabled = true;
+  try { await api("/api/management/directors", { method: "POST", body: JSON.stringify(Object.fromEntries(form)) }); formElement.reset(); tell("Compte autorisÃ©."); await loadDirectors(); }
+  catch (error) { tell(error.message, true); } finally { button.disabled = false; }
+});
 
-NÂˆÛÛœİÈ›İÜËX[›Ü›YY\XØ]\ÈHH\œÙQ[\ŞYYT\İJ
-NÂˆYˆ
-\›İÜË›[™İX[›Ü›YY\XØ]\Ë›[™İ
-HÈ\]Q[\ŞYYP[Ô™]šY]Ê
-NÈ™]\›ÈBˆÛÛœİ]ÛˆH]™[˜İ\œ™[\™Ù]œ]Y\TÙ[XİÜŠ	Öİ\OHœİX›Z]—IÊNÂˆ]Û‹™\ØX›YHYNÂˆHÂˆÛÛœİ™\İ[H]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ÏÜ™\Ûİ\˜ÙOX[È‹ÈY]Ùˆ”ÔÕ‹›ÙNˆ”ÓÓ‹œİš[™ÚYJÈ›İÜËØ\˜YÙT›ÛNˆØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[Ë\›ÛHŠK˜[YHJHJNÂˆ[\ŞYY\ÈHË‹‹™[\ŞYY\Ë‹‹œ™\İ[™[\ŞYY\×NÂˆ™[™\‘[\ŞYY\Ê
-NÂˆ[\ŞYYP[ÑX[ÙË˜ÛÜÙJ
-NÂˆ]™[˜İ\œ™[\™Ù]œ™\Ù]
+document.querySelector("#director-rows")?.addEventListener("click", async (event) => {
+  const button = event.target.closest('[data-action="remove-director"]'); if (!button) return;
+  if (!confirm("Retirer lâ€™accÃ¨s de ce compte Discord ?")) return;
+  try { await api("/api/management/directors/" + button.dataset.id, { method: "DELETE" }); tell("AccÃ¨s retirÃ©."); await loadDirectors(); }
+  catch (error) { tell(error.message, true); }
+});
 
-NÂˆØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[Ë\™]šY]ÈŠK^ÛÛ[H]Xİ[™HYÛ™H°êKˆÂˆ[
-™\İ[™[\ŞYY\Ë›[™İ
-Èˆ[\ŞpêJÊHZ›İ]0êJÊKˆZ›İ]H]\ˆQ\ØÛÜ™[ˆ[ÙYšX[\ÈšXÚ\È]H™\ÛÚ[‹ˆŠNÂˆHØ]Ú
-\œ›ÜŠHÂˆÛÛœİ›Ü›S›İXÙHHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKX[Ë[›İXÙHŠNÂˆ›Ü›S›İXÙK^ÛÛ[H\œ›Ü‹›Y\ÜØYÙNÂˆ›Ü›S›İXÙKšY[ˆH˜[ÙNÂˆ›Ü›S›İXÙK™›Øİ\Ê
-NÂˆBˆš[˜[HÈ]Û‹™\ØX›YH˜[ÙNÈBŸJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÜÙX\˜ÚŠOË˜Y]™[\İ[™\Šš[œ]‹
+window.addEventListener("harmony:refresh", () => {
+  if (document.visibilityState !== "visible" || document.querySelector("dialog[open]")) return;
+  const page = document.body.dataset.page;
+  if (page === "contracts" && (editingContractId || contractFormDirty || pendingContractPdfData)) return;
+  if (page === "directors") { loadDirectors(); return; }
+  load();
+});
 
-HOˆÈ™[™\‘[\ŞYY\Ê
-NÈ\Q[\ŞYYT™XYÛ›J
-NÈJNÂ˜ÛÛœİX[ÙÈHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKYX[ÙÈŠNÂ˜ÛÛœİ[\ŞYYQ›Ü›HHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKY›Ü›HŠNÂ˜ÛÛœİ[\ŞYYTİX›Z]X™[HØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK\İX›Z][X™[ŠNÂ™[˜İ[ÛˆÙ][\ŞYYQ›Ü›S[ÙJ[\ŞYYHH[
-HÂˆY][™Ñ[\ŞYYRYH[\ŞYYOËšY[Âˆ[\ŞYYQ›Ü›Kœ™\Ù]
-
-NÂˆÛÛœİ›Ü›S›İXÙHHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKY›Ü›K[›İXÙHŠNÂˆ›Ü›S›İXÙK^ÛÛ[HˆÂˆ›Ü›S›İXÙKšY[ˆHYNÂˆØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKY›Ü›KY^YXœ›İÈŠK^ÛÛ[H[\ŞYYHÈ“SÑQ’PĞUSÓˆHÔÔÒQTˆˆˆ““ÕU‘PUHÔÔÒQTˆÂˆØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKYX[ÙË]]HŠK^ÛÛ[H[\ŞYYHÈ“[ÙYšY\ˆHšXÚHˆˆZ›İ]\ˆ[ˆ[\ŞpêHÂˆ[\ŞYYTİX›Z]X™[^ÛÛ[H[\ŞYYHÈ‘[œ™YÚ\İ™\ˆ\ÈÚ[™Ù[Y[Èˆˆ‘[œ™YÚ\İ™\ˆÂˆYˆ
-[\ŞYYJH›Üˆ
-ÛÛœİÙ^HÙˆÈ™š\œİ˜[YH‹›\İ˜[YH‹™[\ŞYYS[X™\ˆ‹™\ØÛÜ™Y‹™Ø\˜YÙT›ÛH—JH[\ŞYYQ›Ü›K™[[Y[ÖÚÙ^WK˜[YHH[\ŞYYVÚÙ^WHˆÂŸB™Øİ[Y[œ]Y\TÙ[XİÜŠˆØYY[\ŞYYHŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
-
-HOˆÈÙ][\ŞYYQ›Ü›S[ÙJ
-NÈX[ÙËœÚİÓ[Ù[
-
-NÈJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠ‹™X[ÙËXÛÜÙHŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
-
-HOˆX[ÙË˜ÛÜÙJ
-JNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠ‹™X[ÙËXØ[˜Ù[ŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹
-
-HOˆX[ÙË˜ÛÜÙJ
-JNÂ™X[ÙÏË˜Y]™[\İ[™\Š˜ÛÜÙH‹
-
-HOˆÙ][\ŞYYQ›Ü›S[ÙJ
-JNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKY›Ü›HŠOË˜Y]™[\İ[™\ŠœİX›Z]‹\Ş[˜È
-]™[
-HOˆÂˆ]™[œ™]™[Y˜][
-
-NÈÛÛœİ›Ü›Q[[Y[H]™[˜İ\œ™[\™Ù]ÈÛÛœİ›Ü›HH™]È›Ü›Q]J›Ü›Q[[Y[
-NÈÛÛœİ]ÛˆH›Ü›Q[[Y[œ]Y\TÙ[XİÜŠ–İ\O\İX›Z]HŠNÈ]Û‹™\ØX›YHYNÂˆHÂˆÛÛœİ\ÑY][™ÈH›ÛÛX[ŠY][™Ñ[\ŞYYRY
-NÂˆÛÛœİ[™Ú[H\ÑY][™ÈÈ‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ËÈˆ
-È[˜ÛÙUT’PÛÛ\Û™[
-Y][™Ñ[\ŞYYRY
-Hˆ‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ÈÂˆÛÛœİØ]™YH]ØZ]\J[™Ú[ÈY]Ùˆ\ÑY][™ÈÈ”UÒˆˆ”ÔÕ‹›ÙNˆ”ÓÓ‹œİš[™ÚYJØš™Xİ™œ›ÛQ[šY\Ê›Ü›JJHJNÂˆYˆ
-\ÑY][™È	‰ˆØ]™Y™[\ŞYYJHÂˆ[\ŞYY\ÈH[\ŞYY\Ë›X\
-
-[\ŞYYJHOˆ[\ŞYYKšYOOHØ]™Y™[\ŞYYKšYÈØ]™Y™[\ŞYYHˆ[\ŞYYJNÂˆ™[™\‘[\ŞYY\Ê
-NÂˆH[ÙHÂˆ]ØZ]ØY
-
-NÂˆBˆX[ÙË˜ÛÜÙJ
-NÈ[
-\ÑY][™ÈÈ‘šXÚH[\ŞpêHZ\ÙH0è›İ\‹ˆˆˆ‘[\ŞpêHZ›İ]0êKˆŠNÂˆBˆØ]Ú
-\œ›ÜŠHÂˆYˆ
-X[ÙË›Ü[ŠHÂˆÛÛœİ›Ü›S›İXÙHHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYKY›Ü›K[›İXÙHŠNÂˆ›Ü›S›İXÙK^ÛÛ[H\œ›Ü‹›Y\ÜØYÙNÂˆ›Ü›S›İXÙKšY[ˆH˜[ÙNÂˆ›Ü›S›İXÙK™›Øİ\ÏËŠ
-NÂˆH[ÙH[
-\œ›Ü‹›Y\ÜØYÙKYJNÂˆHš[˜[HÈ]Û‹™\ØX›YH˜[ÙNÈBŸJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹\Ş[˜È
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-–Ù]KXXİ[Û—HŠNÈYˆ
-X]ÛŠH™]\›ÂˆÛÛœİÈXİ[Û‹Y\KØİ[Y[YHH]Û‹™]\Ù]ÂˆHÂˆÛÛœİØİ[Y[]Y\HH™]ÈT“ÙX\˜Ú\˜[\ÊÈ\HJNÂˆYˆ
-Øİ[Y[Y
-HØİ[Y[]Y\KœÙ]
-™Øİ[Y[Y‹Øİ[Y[Y
-NÂˆYˆ
-Xİ[ÛˆOOH™Y]Y[\ŞYYHŠHÂˆÛÛœİ[\ŞYYHH[\ŞYY\Ë™š[™
-
-][JHOˆ][KšYOOHY
-NÂˆYˆ
-Y[\ŞYYJH›İÈ™]È\œ›ÜŠ‘šXÚH[\ŞpêH[›İ]˜X›KˆXİX[\ÙHHYÙH]°êY\ÜØZYKˆŠNÂˆÙ][\ŞYYQ›Ü›S[ÙJ[\ŞYYJNÂˆX[ÙËœÚİÓ[Ù[
-
-NÂˆ™]\›ÂˆBˆYˆ
-Xİ[ÛˆOOH™İÛ›ØYŠHÂˆÛÛœİ™\ÜÛœÙHH]ØZ]™]Ú
-‹Ø\KÛX[˜YÙ[Y[ÙØİ[Y[ËÈˆ
-ÈY
-ÈÈˆ
-ÈØİ[Y[]Y\KÈÜ™Y[X[ÎˆœØ[YK[ÜšYÚ[ˆ‹ØXÚNˆ››Ë\İÜ™HˆJNÂˆYˆ
-\™\ÜÛœÙK›ÚÊH›İÈ™]È\œ›ÜŠ•0ê[0êXÚ\™Ù[Y[[\ÜÜÚX›HİHXØğêÈ™Y\ğêKˆŠNÂˆÛÛœİ›ØˆH]ØZ]™\ÜÛœÙK˜›ØŠ
-NÈÛÛœİHHØİ[Y[˜Ü™X]Q[[Y[
-˜HŠNÈKš™YˆHT“˜Ü™X]SØš™XİT“
-›ØŠNÈK™İÛ›ØYHš\›[ÛKHˆ
-È\NÈK˜ÛXÚÊ
-NÈT“œ™]›ÚÙSØš™XİT“
-Kš™YŠNÈ™]\›ÂˆBˆYˆ
-Xİ[ÛˆOOHœ™[[İ™KYØÈŠHÈYˆ
-XÛÛ™š\›J\HOOH™\ÛXHˆÈ”İ\š[Y\ˆÙH\0íYHÈˆˆ”İ\š[Y\ˆˆ
-ÈĞÔÖİ\WKÓİÙ\Ø\ÙJ
-H
-ÈˆÈŠJH™]\›È]ØZ]\J‹Ø\KÛX[˜YÙ[Y[ÙØİ[Y[ËÈˆ
-ÈY
-ÈÈˆ
-ÈØİ[Y[]Y\KÈY]Ùˆ‘SUHˆJNÈ[
-\HOOH™\ÛXHˆÈ‘\0íYHİ\š[pêKˆˆˆ‘Øİ[Y[İ\š[pêKˆŠNÈ]ØZ]ØY
-
-NÈBˆYˆ
-Xİ[ÛˆOOH™[]KY[\ŞYYHŠHÈYˆ
-XÛÛ™š\›J”İ\š[Y\ˆÙ][\ŞpêH]İ]\ÈÙ\ÈpêÙ\ÈÈÙ]HXİ[Ûˆ\İ0êYš[š]]™KˆŠJH™]\›È]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ËÈˆ
-ÈYÈY]Ùˆ‘SUHˆJNÈ[
-‘ÜÜÚY\ˆ[\ŞpêHİ\š[pêKˆŠNÈ]ØZ]ØY
-
-NÈBˆHØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈBŸJNÂ˜ÛÛœİ™]šY]Ô[™[HØİ[Y[˜Ü™X]Q[[Y[
-˜\ÚYHŠNÂœ™]šY]Ô[™[˜Û\ÜÓ˜[YHH™ØË\™]šY]ÈÂœ™]šY]Ô[™[šY[ˆHYNÂœ™]šY]Ô[™[œÙ]]šX]Jœ›ÛH‹œİ]\ÈŠNÂœ™]šY]Ô[™[œÙ]]šX]J˜\šXK[]™H‹œÛ]HŠNÂ™Øİ[Y[˜›ÙK˜\[™
-™]šY]Ô[™[
-NÂ›]™]šY]ÕÚÙ[ˆHÂ›]™]šY]Õ\›HˆÂ™[˜İ[ÛˆYT™]šY]Ê
-HÂˆ™]šY]ÕÚÙ[ˆ
-ÏHNÂˆ™]šY]Ô[™[šY[ˆHYNÂˆ™]šY]Ô[™[œ™\XÙPÚ[™[Š
-NÂˆYˆ
-™]šY]Õ\›
-HT“œ™]›ÚÙSØš™XİT“
-™]šY]Õ\›
-NÂˆ™]šY]Õ\›HˆÂŸB™[˜İ[ÛˆÜÚ][Û”™]šY]Ê]ÛŠHÂˆÛÛœİ™XİH]Û‹™Ù]›İ[™[™ĞÛY[™Xİ
-
-NÂˆÛÛœİÚYHX]›Z[ŠŒÚ[™İËš[›™\•ÚYH
-NÂˆ]ÜH™XİÜHÌÌÂˆYˆ
-ÜLŠHÜHX]›Z[Š™Xİ˜›İÛH
-ÈLÚ[™İËš[›™\’ZYÚHÌÌŠNÂˆ™]šY]Ô[™[œİ[KÚYHÚY
-ÈœÂˆ™]šY]Ô[™[œİ[K›YHX]›Z[ŠÚ[™İËš[›™\•ÚYHÚYHL‹X]›X^
-L‹™XİœšYÚ
-ÈL
-JH
-ÈœÂˆ™]šY]Ô[™[œİ[KÜHX]›X^
-L‹Ü
-H
-ÈœÂŸB˜\Ş[˜È[˜İ[ÛˆÚİÔ™]šY]Ê]ÛŠHÂˆYT™]šY]Ê
-NÂˆÛÛœİÚÙ[ˆH
-ÊÜ™]šY]ÕÚÙ[ÂˆÜÚ][Û”™]šY]Ê]ÛŠNÂˆ™]šY]Ô[™[^ÛÛ[HÚ\™Ù[Y[H8 &X\\°éİx )ˆÂˆ™]šY]Ô[™[šY[ˆH˜[ÙNÂˆÛÛœİ]Y\HH™]ÈT“ÙX\˜Ú\˜[\ÊÈ\Nˆ]Û‹™]\Ù]\HJNÂˆYˆ
-]Û‹™]\Ù]™Øİ[Y[Y
-H]Y\KœÙ]
-™Øİ[Y[Y‹]Û‹™]\Ù]™Øİ[Y[Y
-NÂˆHÂˆÛÛœİ™\ÜÛœÙHH]ØZ]™]Ú
-‹Ø\KÛX[˜YÙ[Y[ÙØİ[Y[ËÈˆ
-È]Û‹™]\Ù]šY
-ÈÈˆ
-È]Y\KÈÜ™Y[X[ÎˆœØ[YK[ÜšYÚ[ˆ‹ØXÚNˆ››Ë\İÜ™HˆJNÂˆYˆ
-\™\ÜÛœÙK›ÚÊH›İÈ™]È\œ›ÜŠ\\°éİH[™\ÜÛšX›KˆŠNÂˆÛÛœİ›ØˆH]ØZ]™\ÜÛœÙK˜›ØŠ
-NÂˆYˆ
-ÚÙ[ˆOOH™]šY]ÕÚÙ[ŠH™]\›Âˆ™]šY]Õ\›HT“˜Ü™X]SØš™XİT“
-›ØŠNÂˆ™]šY]Ô[™[œ™\XÙPÚ[™[Š
-NÂˆYˆ
-›Ø‹\HOOH˜\XØ][Û‹ÜˆŠHÂˆÛÛœİœ˜[YHHØİ[Y[˜Ü™X]Q[[Y[
-šYœ˜[YHŠNÂˆœ˜[YK]HH\\°éİHHØİ[Y[ˆÂˆœ˜[YKœÜ˜ÈH™]šY]Õ\›Âˆ™]šY]Ô[™[˜\[™
-œ˜[YJNÂˆH[ÙHYˆ
-›Ø‹\Kœİ\ÕÚ]
-š[XYÙKÈŠJHÂˆÛÛœİ[XYÙHHØİ[Y[˜Ü™X]Q[[Y[
-š[YÈŠNÂˆ[XYÙK˜[H\\°éİHHØİ[Y[[œ™YÚ\İ°êHÂˆ[XYÙKœÜ˜ÈH™]šY]Õ\›Âˆ™]šY]Ô[™[˜\[™
-[XYÙJNÂˆH[ÙHÂˆ™]šY]Ô[™[^ÛÛ[H‘›Ü›X]8 &X\\°éİH›Ûˆš\È[ˆÚ\™ÙKˆÂˆBˆÜÚ][Û”™]šY]Ê]ÛŠNÂˆHØ]Ú
-\œ›ÜŠHÂˆYˆ
-ÚÙ[ˆOOH™]šY]ÕÚÙ[ŠH™]šY]Ô[™[^ÛÛ[H\œ›Ü‹›Y\ÜØYÙNÂˆBŸBÚ[™İË˜Y]™[\İ[™\ŠœØÜ›Û‹YT™]šY]ËÈ\ÜÚ]™NˆYHJNÂÚ[™İË˜Y]™[\İ[™\Šœ™\Ú^™H‹YT™]šY]ÊNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\ŠœÚ[\›İ™\ˆ‹
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KXXİ[ÛHœ™]šY]È—IÊNÂˆYˆ
-]Ûˆ	‰ˆX]Û‹˜ÛÛZ[œÊ]™[œ™[]Y\™Ù]
-JHÚİÔ™]šY]Ê]ÛŠNÂŸJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\ŠœÚ[\›İ]‹
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KXXİ[ÛHœ™]šY]È—IÊNÂˆYˆ
-]Ûˆ	‰ˆX]Û‹˜ÛÛZ[œÊ]™[œ™[]Y\™Ù]
-JHYT™]šY]Ê
-NÂŸJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\Š™›Øİ\Ú[ˆ‹
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KXXİ[ÛHœ™]šY]È—IÊNÂˆYˆ
-]ÛŠHÚİÔ™]šY]Ê]ÛŠNÂŸJNÂ™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\Š™›Øİ\Ûİ]‹
-]™[
-HOˆÂˆYˆ
-]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KXXİ[ÛHœ™]šY]È—IÊJHYT™]šY]Ê
-NÂŸJNÂ‚™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ[\ŞYYK[\İŠOË˜Y]™[\İ[™\Š˜Ú[™ÙH‹\Ş[˜È
-]™[
-HOˆÂˆÛÛœİ[œ]H]™[\™Ù]˜ÛÜÙ\İ
-	Ú[œ]Ù]KXXİ[ÛH\ØY—IÊNÈYˆ
-Z[œ]Z[œ]™š[\ÏË–ÌJH™]\›ÂˆÛÛœİš[HH[œ]™š[\ÖÌNÈ[œ]™\ØX›YHYNÈ[
-‘[›ÚHHˆ
-ÈĞÔÖÚ[œ]™]\Ù]\WKÓİÙ\Ø\ÙJ
-H
-È¸ )ˆŠNÂˆHÂˆÛÛœİ™\ÜÛœÙHH]ØZ]™]Ú
-‹Ø\KÛX[˜YÙ[Y[ÙØİ[Y[ËÈˆ
-È[œ]™]\Ù]šY
-Èİ\OHˆ
-È[œ]™]\Ù]\KÈY]Ùˆ”U‹Ü™Y[X[ÎˆœØ[YK[ÜšYÚ[ˆ‹ØXÚNˆ››Ë\İÜ™H‹XY\œÎˆÈÛÛ[U\Hˆš[K\H˜\XØ][Û‹ÛØİ]\İ™X[HˆK›ÙNˆš[HJNÂˆÛÛœİ]HH]ØZ]™\ÜÛœÙKšœÛÛŠ
-K˜Ø]Ú
+Promise.resolve(window.siteAccessReady).then((access) => { if (access) load(); });
 
 
-HOˆ
-ßJJNÈYˆ
-™\ÜÛœÙKœİ]\ÈOOHJHÈØØ][Û‹˜\ÜÚYÛŠ‹ÛÙÚ[‹ÈŠNÈ™]\›ÈBˆYˆ
-\™\ÜÛœÙK›ÚÊH›İÈ™]È\œ›ÜŠ
-È[œİ\ÜYÙš[Wİ\Nˆ‘›Ü›X]™Y\ğêHˆ‹”Ë‘ÈİHÙX”[š\]Y[Y[ˆ‹š[WİÛ×Û\™ÙNˆ“HšXÚY\ˆ0ê\\ÜÙHH[Z]HH[ËˆˆJVÙ]K™\œ›Ü—H‘[›ÚH[\ÜÜÚX›KˆŠNÂˆ[
-”pêÙH[œ™YÚ\İ°êYKˆXİX[\Ø][ÛˆHÜÜÚY\¸ )ˆŠNÈ]ØZ]ØY
 
-NÂˆHØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈHš[˜[HÈ[œ]™\ØX›YH˜[ÙNÈ[œ]˜[YHHˆÈBŸJNÂ‚˜\Ş[˜È[˜İ[ÛˆØY\™XİÜœÊ
-HÂˆHÂˆÛÛœİ]HH]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù\™XİÜœÈŠNÂˆÛÛœİ›ÙHHØİ[Y[œ]Y\TÙ[XİÜŠˆÙ\™XİÜ‹\›İÜÈŠNÂˆ›ÙKš[›™\’SH]K™\™XİÜœË›[™İÈ]K™\™XİÜœË›X\
-
-\™XİÜŠHOˆ	Ï]ˆÛ\ÜÏHœ\œÛÛ‹[˜[YH‰È
-ÈØY™J\™XİÜ‹›˜[YH‘\™Xİ]\ˆŠH
-È
-\™XİÜ‹œ›ÛHOOH˜YZ[ˆˆÈ	ÈÜ[ˆÛ\ÜÏH˜YZ[‹X˜YÙHQRSÜÜ[‰ÈˆˆŠH
-È	ÏÙ]]ˆÛ\ÜÏHœ\œÛÛ‹ZY‰È
-ÈØY™J\™XİÜ‹™\ØÛÜ™Y
-H
-È	ÏÙ]İ‰È
-È
-\™XİÜ‹˜YY]È™]È]J\™XİÜ‹˜YY]
-KÓØØ[Q]Tİš[™Ê™œ‹Q”ˆŠHˆÛÛ\Hš[˜Ú\[ŠH
-È	Ïİ‰È
-È
-\™XİÜ‹œ›ÛHOOH˜YZ[ˆˆÈ	ÏÜ[ˆÛ\ÜÏH™ØË\İ]\È”›İ0êYğêOÜÜ[‰Èˆ	Ï]ÛˆÛ\ÜÏHœ™[[İ™K[[šÈˆ]KXXİ[ÛHœ™[[İ™KY\™XİÜˆˆ]KZYH‰È
-ÈØY™J\™XİÜ‹™\ØÛÜ™Y
-H
-È	È”™]\™\ˆ8 &XXØğêÏØ]Û‰ÊH
-È	Ïİİ‰ÊKš›Ú[ŠˆŠHˆ	ÏˆÛ\ÜÏH™[\K\›İÈÛÛÜ[HŒÈ]Xİ[ˆ\™Xİ]\ˆÙXÛÛ™Z\™KˆH]^Z›İ]\ˆ[ˆÛÛ\HÚKY\Üİ\Ëİİ‰ÎÂˆ]ØZ]ØY›ÛT\›Z\ÜÚ[ÛœÊ
-NÂˆHØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈBŸB‚˜\Ş[˜È[˜İ[ÛˆØY›ÛT\›Z\ÜÚ[ÛœÊ
-HÂˆÛÛœİ[™[HØİ[Y[œ]Y\TÙ[XİÜŠˆÜ›ÛK\\›Z\ÜÚ[ÛœË\[™[ŠNÂˆYˆ
-\[™[
-H™]\›ÂˆÛÛœİ]HH]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ÏÜ™\Ûİ\˜ÙO\\›Z\ÜÚ[ÛœÈŠNÂˆÛÛœİ›ÙHHØİ[Y[œ]Y\TÙ[XİÜŠˆÜ›ÛK\\›Z\ÜÚ[Û‹\›İÜÈŠNÂˆÛÛœİX“X™[ÈHØš™Xİ™œ›ÛQ[šY\Ê]KXœË›X\
-
-XŠHOˆİX‹šÙ^KX‹›X™[JJNÂˆÛÛœİXœÈH]KXœË›X\
-
-XŠHOˆX‹šÙ^JNÂˆ›ÙKš[›™\’SH]Kœ›Û\Ë›X\
-
-›ÛJHOˆ	ÏØÛÜOHœ›İÈ‰È
-ÈØY™J“ÓWÓP‘SÖÜ›ÛWH›ÛJH
-È	Ïİ‰È
-ÈXœË›X\
-
-XŠHOˆ	ÏX™[Û\ÜÏHœ\›Z\ÜÚ[Û‹]ÙÙÛH[œ]\OH˜ÚXÚØ›Şˆ]K\›ÛOH‰È
-ÈØY™J›ÛJH
-È	Èˆ]K]XH‰È
-ÈØY™JXŠH
-È	Èˆ	È
-È
-]Kœ\›Z\ÜÚ[ÛœÖÜ›ÛWVİX—HÈ˜ÚXÚÙYˆˆˆŠH
-È	ÏÜ[ˆÛ\ÜÏHœÜ‹[Û›H‰È
-ÈØY™JX“X™[ÖİX—H
-Èˆİ\ˆˆ
-È
-“ÓWÓP‘SÖÜ›ÛWH›ÛJJH
-È	ÏÜÜ[ÛX™[İ‰ÊKš›Ú[ŠˆŠH
-È	Ïİ‰ÊKš›Ú[ŠˆŠNÂˆ[™[šY[ˆH˜[ÙNÂŸB‚™Øİ[Y[œ]Y\TÙ[XİÜŠˆÜØ]™K\›ÛK\\›Z\ÜÚ[ÛœÈŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹\Ş[˜È
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[˜İ\œ™[\™Ù]Âˆ]Û‹™\ØX›YHYNÂˆHÂˆÛÛœİ\›Z\ÜÚ[ÛœÈHßNÂˆØİ[Y[œ]Y\TÙ[XİÜ[
-ˆÜ›ÛK\\›Z\ÜÚ[Û‹\›İÜÈ[œ]Ù]K\›ÛWHŠK™›Ü‘XXÚ
-
-[œ]
-HOˆÂˆ\›Z\ÜÚ[ÛœÖÚ[œ]™]\Ù]œ›ÛWHHßNÂˆ\›Z\ÜÚ[ÛœÖÚ[œ]™]\Ù]œ›ÛWVÚ[œ]™]\Ù]X—HH[œ]˜ÚXÚÙYÂˆJNÂˆ]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù[\ŞYY\ÏÜ™\Ûİ\˜ÙO\\›Z\ÜÚ[ÛœÈ‹ÈY]Ùˆ”U‹›ÙNˆ”ÓÓ‹œİš[™ÚYJÈ\›Z\ÜÚ[ÛœÈJHJNÂˆ[
-“\È\›Z\ÜÚ[ÛœÈ\È°í\ÈÛ0ê]0êH[œ™YÚ\İ°êY\ËˆŠNÂˆHØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈBˆš[˜[HÈ]Û‹™\ØX›YH˜[ÙNÈBŸJNÂ‚™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ\™XİÜ‹Y›Ü›HŠOË˜Y]™[\İ[™\ŠœİX›Z]‹\Ş[˜È
-]™[
-HOˆÂˆ]™[œ™]™[Y˜][
-
-NÈÛÛœİ›Ü›Q[[Y[H]™[˜İ\œ™[\™Ù]ÈÛÛœİ›Ü›HH™]È›Ü›Q]J›Ü›Q[[Y[
-NÈÛÛœİ]ÛˆH›Ü›Q[[Y[œ]Y\TÙ[XİÜŠ–İ\O\İX›Z]HŠNÈ]Û‹™\ØX›YHYNÂˆHÈ]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù\™XİÜœÈ‹ÈY]Ùˆ”ÔÕ‹›ÙNˆ”ÓÓ‹œİš[™ÚYJØš™Xİ™œ›ÛQ[šY\Ê›Ü›JJHJNÈ›Ü›Q[[Y[œ™\Ù]
-
-NÈ[
-ÛÛ\H]]Üš\ğêKˆŠNÈ]ØZ]ØY\™XİÜœÊ
-NÈBˆØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈHš[˜[HÈ]Û‹™\ØX›YH˜[ÙNÈBŸJNÂ‚™Øİ[Y[œ]Y\TÙ[XİÜŠˆÙ\™XİÜ‹\›İÜÈŠOË˜Y]™[\İ[™\Š˜ÛXÚÈ‹\Ş[˜È
-]™[
-HOˆÂˆÛÛœİ]ÛˆH]™[\™Ù]˜ÛÜÙ\İ
-	ÖÙ]KXXİ[ÛHœ™[[İ™KY\™XİÜˆ—IÊNÈYˆ
-X]ÛŠH™]\›ÂˆYˆ
-XÛÛ™š\›J”™]\™\ˆ8 &XXØğêÈHÙHÛÛ\H\ØÛÜ™ÈŠJH™]\›ÂˆHÈ]ØZ]\J‹Ø\KÛX[˜YÙ[Y[Ù\™XİÜœËÈˆ
-È]Û‹™]\Ù]šYÈY]Ùˆ‘SUHˆJNÈ[
-XØğêÈ™]\°êKˆŠNÈ]ØZ]ØY\™XİÜœÊ
-NÈBˆØ]Ú
-\œ›ÜŠHÈ[
-\œ›Ü‹›Y\ÜØYÙKYJNÈBŸJNÂ‚Ú[™İË˜Y]™[\İ[™\Šš\›[ÛNœ™Yœ™\Ú‹
-
-HOˆÂˆYˆ
-Øİ[Y[š\ÚXš[]Tİ]HOOHš\ÚX›HˆØİ[Y[œ]Y\TÙ[XİÜŠ™X[ÙÖÛÜ[—HŠJH™]\›ÂˆÛÛœİYÙHHØİ[Y[˜›ÙK™]\Ù]œYÙNÂˆYˆ
-YÙHOOH˜ÛÛ˜XİÈˆ	‰ˆ
-Y][™ĞÛÛ˜XİYÛÛ˜Xİ›Ü›Q\H[™[™ĞÛÛ˜Xİ‘]JJH™]\›ÂˆYˆ
-YÙHOOH™\™XİÜœÈŠHÈØY\™XİÜœÊ
-NÈ™]\›ÈBˆØY
-
-NÂŸJNÂ‚”›ÛZ\ÙKœ™\ÛÛ™JÚ[™İËœÚ]PXØÙ\ÜÔ™XYJK[Š
-XØÙ\ÜÊHOˆÈYˆ
-XØÙ\ÜÊHØY
-
-NÈJNÂƒBƒB
