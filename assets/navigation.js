@@ -9,18 +9,26 @@ const SITE_TABS = [
 async function loadSiteAccess() {
   const navs = [...document.querySelectorAll("[data-site-navigation]")];
   try {
-    const response = await fetch("/api/management/employees?resource=access", {
-      credentials: "same-origin",
-      cache: "no-store",
-      headers: { Accept: "application/json" },
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
+    let response;
+    try {
+      response = await fetch("/api/management/employees?resource=access", {
+        credentials: "same-origin",
+        cache: "no-store",
+        headers: { Accept: "application/json" },
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeout);
+    }
     if (response.status === 401) {
       location.assign("/login/?next=" + encodeURIComponent(location.pathname));
       return null;
     }
     if (response.status === 403) {
       for (const nav of navs) nav.textContent = "Accès employé requis";
-      return null;
+      return { unavailable: true, tabs: [] };
     }
     if (!response.ok) throw new Error("site_access_unavailable");
     const access = await response.json();
@@ -48,7 +56,8 @@ async function loadSiteAccess() {
     return access;
   } catch {
     for (const nav of navs) nav.textContent = "Accès momentanément indisponible";
-    return null;
+    // Let the page API run so it can report its own error instead of leaving a loading placeholder.
+    return { unavailable: true, tabs: [] };
   }
 }
 
